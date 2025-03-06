@@ -1,5 +1,5 @@
 [![Test](https://github.com/jpoehnelt/apps-script/actions/workflows/test.yml/badge.svg)](https://github.com/jpoehnelt/apps-script/actions/workflows/test.yml)
-[![Release](https://github.com/jpoehnelt/apps-script/actions/workflows/relase.yml/badge.svg)](https://github.com/jpoehnelt/apps-script/actions/workflows/relase.yml)
+[![Release](https://github.com/jpoehnelt/apps-script/actions/workflows/release.yml/badge.svg)](https://github.com/jpoehnelt/apps-script/actions/workflows/release.yml)
 [![Changesets](https://img.shields.io/badge/changesets-%E2%89%A0-blue.svg)](https://github.com/jpoehnelt/apps-script/blob/main/changesets.md)
 
 
