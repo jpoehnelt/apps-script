@@ -1,0 +1,23 @@
+{
+  "name": "@repository/apps-script-agent",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "node build.js",
+    "check": "tsc --noEmit",
+    "push": "clasp push -f"
+  },
+  "author": "Justin Poehnelt <justin.poehnelt@gmail.com>",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@google-cloud/vertexai": "^1.9.3",
+    "@google/clasp": "^2.5.0",
+    "@types/google-apps-script": "^1.0.97",
+    "esbuild": "^0.25.0"
+  },
+  "type": "module",
+  "dependencies": {
+    "zod": "^3.24.2",
+    "zod-openapi": "^4.2.3"
+  },
+  "private": true
+}
