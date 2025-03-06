@@ -5,14 +5,22 @@ export function convertGmailAppMessageToPlainObject(
   date: string;
   subject: string;
   from: string;
+  to: string;
+  cc: string;
+  bcc: string;
+  messageId: string;
   labels?: string[];
 } {
   const labels = getGmailUserLabels();
   return {
     message: message.getPlainBody(),
+    messageId: message.getId(),
     date: message.getDate().toISOString(),
     subject: message.getSubject(),
     from: message.getFrom(),
+    to: message.getTo(),
+    cc: message.getCc(),
+    bcc: message.getBcc(),
     labels: (Gmail?.Users?.Messages?.get("me", message.getId())?.labelIds ?? [])
       .map((labelId) => labels.find((label) => label.id === labelId)?.name)
       .filter(Boolean) as string[],
@@ -22,7 +30,11 @@ export function convertGmailAppMessageToPlainObject(
 export function convertGmailAppThreadToPlainObject(
   thread: GoogleAppsScript.Gmail.GmailThread
 ) {
-  return thread.getMessages().map(convertGmailAppMessageToPlainObject);
+  return {
+    messages: thread.getMessages().map(convertGmailAppMessageToPlainObject),
+    threadId: thread.getId(),
+    drafts: getDraftsForThreadId(thread.getId()),
+  };
 }
 
 export function serializeGmailAppThread(
@@ -31,14 +43,23 @@ export function serializeGmailAppThread(
   return JSON.stringify(convertGmailAppThreadToPlainObject(thread));
 }
 
-
 export function _getGmailUserLabels(): GoogleAppsScript.Gmail.Schema.Label[] {
   return (Gmail?.Users?.Labels?.list("me")?.labels ?? []).filter(Boolean);
 }
 
-export const getGmailUserLabels = memoize(_getGmailUserLabels, 10);
+export function getDraftsForThreadId(
+  threadId: string
+): GoogleAppsScript.Gmail.Schema.Draft[] {
+  return (Gmail?.Users?.Drafts?.list("me")?.drafts ?? []).filter(
+    (draft) => draft.message?.threadId === threadId
+  );
+}
 
-export function createGmailUserLabelIfNotExists(labelName: string): GoogleAppsScript.Gmail.Schema.Label {
+export const getGmailUserLabels = memoize(_getGmailUserLabels, 5);
+
+export function createGmailUserLabelIfNotExists(
+  labelName: string
+): GoogleAppsScript.Gmail.Schema.Label | undefined {
   if (labelName.includes("/")) {
     const parent = labelName.split("/").slice(0, -1).join("/");
     createGmailUserLabelIfNotExists(parent);
@@ -52,12 +73,17 @@ export function createGmailUserLabelIfNotExists(labelName: string): GoogleAppsSc
   );
 
   if (!label) {
-    return Gmail?.Users?.Labels?.create(
-      {
-        name: labelName,
-      },
-      "me"
-    ) as GoogleAppsScript.Gmail.Schema.Label;
+    try {
+      return Gmail?.Users?.Labels?.create(
+        {
+          name: labelName,
+        },
+        "me"
+      ) as GoogleAppsScript.Gmail.Schema.Label;
+    } catch (e) {
+      console.log(`Failed to create label ${labelName}`);
+      return;
+    }
   }
 
   return label;

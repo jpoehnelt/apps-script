@@ -55,10 +55,33 @@ function main_({ MODEL, PROJECT_ID }: { MODEL: string; PROJECT_ID: string }) {
       Object.keys(FUNCTIONS).map((key) => [key, [] as any[]])
     );
 
+    let shouldPlan = true;
+
     while (!isDone) {
       const allowedFunctionNames: string[] = Object.keys(FUNCTIONS).filter(
         (key) => functionCalls[key].length === 0
       );
+
+      let mode: FunctionCallingMode = "ANY" as FunctionCallingMode;
+
+      if (shouldPlan) {
+        contents.push({
+          role: "user",
+          parts: [
+            {
+              text: `Generate a multistep plan for this email thread using only the available tools: ${JSON.stringify(
+                TOOLS
+              )}`,
+            },
+          ],
+        });
+
+        // Only plan once
+        shouldPlan = false;
+        // Do not call any functions while planning
+        mode = "NONE" as FunctionCallingMode;
+        allowedFunctionNames.length = 0;
+      }
 
       const output = generate(
         {
@@ -67,7 +90,7 @@ function main_({ MODEL, PROJECT_ID }: { MODEL: string; PROJECT_ID: string }) {
           systemInstruction: SYSTEM_INSTRUCTION,
           toolConfig: {
             functionCallingConfig: {
-              mode: "ANY" as FunctionCallingMode,
+              mode,
               // only call functions that we haven't called before
               allowedFunctionNames,
             },
@@ -82,6 +105,7 @@ function main_({ MODEL, PROJECT_ID }: { MODEL: string; PROJECT_ID: string }) {
       }
 
       const { content } = output.candidates[0];
+      console.log(JSON.stringify(content, null, 2));
 
       // push the function call to the contents
       contents.push(content);
@@ -95,7 +119,7 @@ function main_({ MODEL, PROJECT_ID }: { MODEL: string; PROJECT_ID: string }) {
           if (name === "doNothing") {
             isDone = true;
           }
-          
+
           functionCalls[name].push(args);
           const { fn, schema } = FUNCTIONS[name as keyof typeof FUNCTIONS];
 
@@ -103,7 +127,9 @@ function main_({ MODEL, PROJECT_ID }: { MODEL: string; PROJECT_ID: string }) {
             throw new Error(`Function ${name} not defined`);
           }
 
-          console.log(`${thread.getFirstMessageSubject()} - Calling ${name} with ${JSON.stringify(args)}`);
+          console.log(
+            `${thread.getFirstMessageSubject()} - Calling ${name} with ${JSON.stringify(args)}`
+          );
 
           const content = fn(schema.parse(args) as any, {
             thread,
@@ -120,10 +146,12 @@ function main_({ MODEL, PROJECT_ID }: { MODEL: string; PROJECT_ID: string }) {
           };
         });
 
-      contents.push({
-        role: "function",
-        parts: functionReponsePart,
-      });
+      if (functionReponsePart.length > 0) {
+        contents.push({
+          role: "user",
+          parts: functionReponsePart,
+        });
+      }
     }
   }
 }

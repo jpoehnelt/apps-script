@@ -16,8 +16,8 @@ export interface Context {
 }
 
 const SEARCH_GMAIL = z.object({
-  query: z.string().openapi({
-    description: "Gmail search query",
+  queries: z.array(z.string()).openapi({
+    description: "Gmail search queries",
   }),
 });
 
@@ -40,10 +40,101 @@ const GET_RECENT_INBOX_MESSAGES = z.object({}).openapi({});
 const APPLY_LABELS = z.object({
   labelNames: z
     .array(
-      z.string().openapi({
-        description:
-          "Label name using '/' for hierarchy matching: /^[a-z_]+\/[a-z_]+$/",
-      })
+      z
+        .enum([
+          "Projects",
+          "Projects/Active",
+          "Projects/Completed",
+          "Projects/Pending",
+          "Projects/Research",
+          "Work",
+          "Work/Meetings",
+          "Work/Reports",
+          "Work/Tasks",
+          "Work/Clients",
+          "Work/Vendors",
+          "Work/Training",
+          "Personal",
+          "Personal/Family",
+          "Personal/Friends",
+          "Personal/Hobbies",
+          "Personal/Health",
+          "Personal/Home",
+          "Personal/Events",
+          "Personal/Recipes",
+          "Personal/To-Do",
+          "Personal/Reminders",
+          "Personal/Inspirations",
+          "Money",
+          "Money/Bills",
+          "Money/Invoices",
+          "Money/Statements",
+          "Money/Investments",
+          "Money/Taxes",
+          "Money/Receipts",
+          "Money/Budget",
+          "Money/Subscriptions",
+          "Money/Refunds",
+          "Money/Donations",
+          "Travel",
+          "Travel/Flights",
+          "Travel/Hotels",
+          "Travel/Itinerary",
+          "Travel/Reservations",
+          "Travel/Destinations",
+          "Travel/Reviews",
+          "Travel/Photos",
+          "Travel/Packing",
+          "Travel/Business",
+          "Travel/Personal",
+          "Shopping",
+          "Shopping/Orders",
+          "Shopping/Returns",
+          "Shopping/Wishlist",
+          "Shopping/Coupons",
+          "Shopping/Electronics",
+          "Shopping/Clothing",
+          "Shopping/Home Goods",
+          "Shopping/Books",
+          "Shopping/Subscriptions",
+          "Shopping/Receipts",
+          "Social",
+          "Social/Facebook",
+          "Social/Twitter",
+          "Social/LinkedIn",
+          "Social/Instagram",
+          "Social/Forums",
+          "Social/Newsletters",
+          "Social/Groups",
+          "Social/Notifications",
+          "Social/Invitations",
+          "Social/Updates",
+          "News",
+          "News/Technology",
+          "News/Politics",
+          "News/World",
+          "News/Local",
+          "News/Business",
+          "News/Science",
+          "News/Sports",
+          "News/Entertainment",
+          "News/Newsletters",
+          "News/Blogs",
+          "Learning",
+          "Learning/Courses",
+          "Learning/Webinars",
+          "Learning/Books",
+          "Learning/Articles",
+          "Learning/Tutorials",
+          "Learning/Languages",
+          "Learning/Skills",
+          "Learning/Certifications",
+          "Learning/Resources",
+          "Learning/Inspiration",
+        ])
+        .openapi({
+          description: "A label name using hierarchy.",
+        })
     )
     .openapi({
       description: "Labels to apply to a message",
@@ -58,14 +149,15 @@ function getRecentInboxMessages() {
   };
 }
 
-function searchGmail({ query }: z.infer<typeof SEARCH_GMAIL>) {
-  const threads = GmailApp.search(query);
-  return {
-    query,
-    results: GmailApp.search(query, 0, 10)
-      .map(convertGmailAppThreadToPlainObject)
-      .join("\n\n"),
-  };
+function searchGmail({ queries }: z.infer<typeof SEARCH_GMAIL>) {
+  return queries.map((query) => {
+    return {
+      query,
+      results: GmailApp.search(query, 0, 10).map(
+        convertGmailAppThreadToPlainObject
+      ),
+    };
+  });
 }
 
 function createDraftReply(
@@ -74,8 +166,7 @@ function createDraftReply(
 ) {
   const draft = GmailApp.getThreadById(threadId).createDraftReply(reply);
   return {
-    draftId: draft.getId(),
-    reply,
+    draft: Gmail.Users?.Drafts?.get("me", draft.getId()),
   };
 }
 
@@ -97,8 +188,11 @@ function applyLabels(
   { threadId }: Context
 ) {
   const addLabelIds = labelNames
+    .map((labelName) => labelName.split("/").map((label) => label.trim()))
+    .flat()
     .map(createGmailUserLabelIfNotExists)
-    .map((label) => label?.id!);
+    .map((label) => label?.id!)
+    .filter(Boolean);
 
   try {
     Gmail?.Users?.Threads?.modify(
@@ -122,7 +216,7 @@ export const FUNCTIONS = {
     declaration: {
       name: "searchGmail",
       description:
-        "Search for related Gmail threads and messages. The Gmail query syntax is described here: https://developers.google.com/gmail/api/guides/query. Here are some examples: 'in:inbox after:2025-01-01', 'subject:invoice', 'from:foo@example.com', 'is:starred'",
+        "Search for related Gmail threads and messages. The Gmail query syntax is described here: https://developers.google.com/gmail/api/guides/query. Here are some examples: 'in:inbox after:2025-01-01', 'subject:invoice', 'from:foo@example.com', 'is:starred'. Can make multiple simultaneous searches.",
       parameters: createSchema(SEARCH_GMAIL)
         .schema as unknown as FunctionDeclarationSchema,
     },
