@@ -24,7 +24,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
+        <!-- <tr>
             <th>Duration</th>
             {#each Object.entries(test) as [key, value]}
                 <td class={isHidden(key) ? "hidden" : ""}
@@ -34,7 +34,7 @@
                     }).format(value.duration / 1000)}</td
                 >
             {/each}
-        </tr>
+        </tr> -->
         <tr>
             <th>Tokens</th>
             {#each Object.entries(test) as [key, value]}
