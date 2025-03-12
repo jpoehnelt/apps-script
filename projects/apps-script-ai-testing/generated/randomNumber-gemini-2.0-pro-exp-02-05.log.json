@@ -1,0 +1,74 @@
+{
+  "object": {
+    "code": "function getRandomInteger() {\n  return Math.floor(Math.random() * 100) + 1;\n}"
+  },
+  "finishReason": "stop",
+  "usage": {
+    "promptTokens": 63,
+    "completionTokens": 33,
+    "totalTokens": 96
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "experimental_providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "response": {
+    "id": "aiobj-mOuC2RUDbmKE2uQb1lG3JTIJ",
+    "timestamp": "2025-03-11T22:10:12.563Z",
+    "modelId": "gemini-2.0-pro-exp-02-05",
+    "headers": {
+      "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+      "content-encoding": "gzip",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Tue, 11 Mar 2025 22:10:12 GMT",
+      "server": "scaffolding on HTTPServer2",
+      "server-timing": "gfet4t7; dur=973",
+      "transfer-encoding": "chunked",
+      "vary": "Origin, X-Origin, Referer",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "0"
+    },
+    "body": {
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": " {\"code\": \"function getRandomInteger() {\\n  return Math.floor(Math.random() * 100) + 1;\\n}\"}"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP",
+          "index": 0
+        }
+      ],
+      "usageMetadata": {
+        "promptTokenCount": 63,
+        "candidatesTokenCount": 33,
+        "totalTokenCount": 96,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 63
+          }
+        ]
+      },
+      "modelVersion": "gemini-2.0-pro-exp-02-05"
+    }
+  },
+  "request": {
+    "body": "{\"generationConfig\":{\"maxOutputTokens\":5000,\"temperature\":0,\"responseMimeType\":\"application/json\",\"responseSchema\":{\"required\":[\"code\"],\"type\":\"object\",\"properties\":{\"code\":{\"description\":\"Valid Apps Script code\",\"type\":\"string\"}}}},\"contents\":[{\"role\":\"user\",\"parts\":[{\"text\":\"Write Apps Script code to create a function that returns a random number between 1 and 100\"}]}],\"systemInstruction\":{\"parts\":[{\"text\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"}]}}"
+  },
+  "duration": 1024
+}

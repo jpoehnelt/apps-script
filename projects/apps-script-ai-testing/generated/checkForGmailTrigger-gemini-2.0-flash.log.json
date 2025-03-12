@@ -1,0 +1,80 @@
+{
+  "object": {
+    "code": "// Function to check for new emails\nfunction checkForNewEmails() {\n  var label = GmailApp.getUserLabelByName('Auto-Processed');\n  if (!label) {\n    label = GmailApp.createLabel('Auto-Processed');\n  }\n  \n  var threads = GmailApp.search('is:unread');\n\n  for (var i = 0; i < threads.length; i++) {\n    var messages = threads[i].getMessages();\n    for (var j = 0; j < messages.length; j++) {\n      if (messages[j].isUnread()) {\n        Logger.log('New email found: ' + messages[j].getSubject());\n        // Add your code here to process the new email\n        // For example, you can forward it, save attachments, etc.\n\n        // Mark the email as read and apply a label (optional)\n        messages[j].markRead();\n        threads[i].addLabel(label);\n      }\n    }\n  }\n}\n\n// Function to create a time-based trigger\nfunction createTimeBasedTrigger() {\n  // Delete existing trigger to avoid duplicates\n  deleteTrigger('checkForNewEmails');\n\n  // Create a trigger to run the checkForNewEmails function every 10 minutes\n  ScriptApp.newTrigger('checkForNewEmails')\n    .timeBased()\n    .everyMinutes(10)\n    .create();\n\n  Logger.log('Time-based trigger created to run every 10 minutes.');\n}\n\n// Function to delete an existing trigger (helper function)\nfunction deleteTrigger(functionName) {\n  var triggers = ScriptApp.getProjectTriggers();\n  for (var i = 0; i < triggers.length; i++) {\n    if (triggers[i].getHandlerFunction() == functionName) {\n      ScriptApp.deleteTrigger(triggers[i]);\n      Logger.log('Deleted trigger for function: ' + functionName);\n      return;\n    }\n  }\n}\n\n// Function to run when the script is first installed or authorized\nfunction onInstall(e) {\n  createTimeBasedTrigger();\n}\n\n// Function to run when the spreadsheet is opened\nfunction onOpen(e) {\n  var ui = SpreadsheetApp.getUi();\n  ui.createMenu('Email Checker')\n      .addItem('Create Trigger', 'createTimeBasedTrigger')\n      .addToUi();\n}\n"
+  },
+  "finishReason": "stop",
+  "usage": {
+    "promptTokens": 74,
+    "completionTokens": 580,
+    "totalTokens": 654
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "experimental_providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "response": {
+    "id": "aiobj-sXXWTD3nw5Dl1VfV5MZI6Hkd",
+    "timestamp": "2025-03-11T22:09:09.808Z",
+    "modelId": "gemini-2.0-flash",
+    "headers": {
+      "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+      "content-encoding": "gzip",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Tue, 11 Mar 2025 22:09:09 GMT",
+      "server": "scaffolding on HTTPServer2",
+      "server-timing": "gfet4t7; dur=3303",
+      "transfer-encoding": "chunked",
+      "vary": "Origin, X-Origin, Referer",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "0"
+    },
+    "body": {
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\n  \"code\": \"// Function to check for new emails\\nfunction checkForNewEmails() {\\n  var label = GmailApp.getUserLabelByName('Auto-Processed');\\n  if (!label) {\\n    label = GmailApp.createLabel('Auto-Processed');\\n  }\\n  \\n  var threads = GmailApp.search('is:unread');\\n\\n  for (var i = 0; i < threads.length; i++) {\\n    var messages = threads[i].getMessages();\\n    for (var j = 0; j < messages.length; j++) {\\n      if (messages[j].isUnread()) {\\n        Logger.log('New email found: ' + messages[j].getSubject());\\n        // Add your code here to process the new email\\n        // For example, you can forward it, save attachments, etc.\\n\\n        // Mark the email as read and apply a label (optional)\\n        messages[j].markRead();\\n        threads[i].addLabel(label);\\n      }\\n    }\\n  }\\n}\\n\\n// Function to create a time-based trigger\\nfunction createTimeBasedTrigger() {\\n  // Delete existing trigger to avoid duplicates\\n  deleteTrigger('checkForNewEmails');\\n\\n  // Create a trigger to run the checkForNewEmails function every 10 minutes\\n  ScriptApp.newTrigger('checkForNewEmails')\\n    .timeBased()\\n    .everyMinutes(10)\\n    .create();\\n\\n  Logger.log('Time-based trigger created to run every 10 minutes.');\\n}\\n\\n// Function to delete an existing trigger (helper function)\\nfunction deleteTrigger(functionName) {\\n  var triggers = ScriptApp.getProjectTriggers();\\n  for (var i = 0; i < triggers.length; i++) {\\n    if (triggers[i].getHandlerFunction() == functionName) {\\n      ScriptApp.deleteTrigger(triggers[i]);\\n      Logger.log('Deleted trigger for function: ' + functionName);\\n      return;\\n    }\\n  }\\n}\\n\\n// Function to run when the script is first installed or authorized\\nfunction onInstall(e) {\\n  createTimeBasedTrigger();\\n}\\n\\n// Function to run when the spreadsheet is opened\\nfunction onOpen(e) {\\n  var ui = SpreadsheetApp.getUi();\\n  ui.createMenu('Email Checker')\\n      .addItem('Create Trigger', 'createTimeBasedTrigger')\\n      .addToUi();\\n}\\n\"\n}"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP",
+          "avgLogprobs": -0.04327469200923525
+        }
+      ],
+      "usageMetadata": {
+        "promptTokenCount": 74,
+        "candidatesTokenCount": 580,
+        "totalTokenCount": 654,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 74
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 580
+          }
+        ]
+      },
+      "modelVersion": "gemini-2.0-flash"
+    }
+  },
+  "request": {
+    "body": "{\"generationConfig\":{\"maxOutputTokens\":5000,\"temperature\":0,\"responseMimeType\":\"application/json\",\"responseSchema\":{\"required\":[\"code\"],\"type\":\"object\",\"properties\":{\"code\":{\"description\":\"Valid Apps Script code\",\"type\":\"string\"}}}},\"contents\":[{\"role\":\"user\",\"parts\":[{\"text\":\"Write Apps Script code to create a trigger that runs a function every 10 minutes and checks if I have any new email in Gmail\"}]}],\"systemInstruction\":{\"parts\":[{\"text\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"}]}}"
+  },
+  "duration": 3361
+}

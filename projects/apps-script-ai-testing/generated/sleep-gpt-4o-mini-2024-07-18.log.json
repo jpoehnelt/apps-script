@@ -1,0 +1,108 @@
+{
+  "object": {
+    "code": "function sleep(milliseconds) {\n  var start = new Date().getTime();\n  while (new Date().getTime() < start + milliseconds) {\n    // Do nothing\n  }\n}\n\nfunction sleepFor10Seconds() {\n  sleep(10000);\n}"
+  },
+  "finishReason": "stop",
+  "usage": {
+    "promptTokens": 115,
+    "completionTokens": 66,
+    "totalTokens": 181
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "openai": {
+      "reasoningTokens": 0,
+      "acceptedPredictionTokens": 0,
+      "rejectedPredictionTokens": 0,
+      "cachedPromptTokens": 0
+    }
+  },
+  "experimental_providerMetadata": {
+    "openai": {
+      "reasoningTokens": 0,
+      "acceptedPredictionTokens": 0,
+      "rejectedPredictionTokens": 0,
+      "cachedPromptTokens": 0
+    }
+  },
+  "response": {
+    "id": "chatcmpl-BA2AAY7rwfELvibrTaAIhEjNvowiZ",
+    "timestamp": "2025-03-11T22:14:54.000Z",
+    "modelId": "gpt-4o-mini-2024-07-18",
+    "headers": {
+      "access-control-expose-headers": "X-Request-ID",
+      "alt-svc": "h3=\":443\"; ma=86400",
+      "cf-cache-status": "DYNAMIC",
+      "cf-ray": "91ee68489f772c66-SLC",
+      "connection": "keep-alive",
+      "content-encoding": "br",
+      "content-type": "application/json",
+      "date": "Tue, 11 Mar 2025 22:14:55 GMT",
+      "openai-organization": "user-d5jsqqcojibbhbhmezpursh3",
+      "openai-processing-ms": "1917",
+      "openai-version": "2020-10-01",
+      "server": "cloudflare",
+      "set-cookie": "_cfuvid=1cME89.DaVbcnkoihkJ9w66aDLAuKInydXrNf8KzGkk-1741731295643-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None",
+      "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+      "transfer-encoding": "chunked",
+      "x-content-type-options": "nosniff",
+      "x-ratelimit-limit-requests": "10000",
+      "x-ratelimit-limit-tokens": "200000",
+      "x-ratelimit-remaining-requests": "9994",
+      "x-ratelimit-remaining-tokens": "194928",
+      "x-ratelimit-reset-requests": "46.131s",
+      "x-ratelimit-reset-tokens": "1.521s",
+      "x-request-id": "req_4976888eec112b832bc9bb2155090668"
+    },
+    "body": {
+      "id": "chatcmpl-BA2AAY7rwfELvibrTaAIhEjNvowiZ",
+      "object": "chat.completion",
+      "created": 1741731294,
+      "model": "gpt-4o-mini-2024-07-18",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "tool_calls": [
+              {
+                "id": "call_1M0XoVooMCuRP75KzCMTohiG",
+                "type": "function",
+                "function": {
+                  "name": "json",
+                  "arguments": "{\"code\":\"function sleep(milliseconds) {\\n  var start = new Date().getTime();\\n  while (new Date().getTime() < start + milliseconds) {\\n    // Do nothing\\n  }\\n}\\n\\nfunction sleepFor10Seconds() {\\n  sleep(10000);\\n}\"}"
+                }
+              }
+            ],
+            "refusal": null,
+            "annotations": []
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 115,
+        "completion_tokens": 66,
+        "total_tokens": 181,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "service_tier": "default",
+      "system_fingerprint": "fp_06737a9306"
+    }
+  },
+  "request": {
+    "body": "{\"model\":\"gpt-4o-mini-2024-07-18\",\"max_tokens\":5000,\"temperature\":0,\"messages\":[{\"role\":\"system\",\"content\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"},{\"role\":\"user\",\"content\":\"Write Apps Script code to create a function that puts the script to sleep for 10 seconds\"}],\"tool_choice\":{\"type\":\"function\",\"function\":{\"name\":\"json\"}},\"tools\":[{\"type\":\"function\",\"function\":{\"name\":\"json\",\"description\":\"Respond with a JSON object.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\",\"description\":\"Valid Apps Script code\"}},\"required\":[\"code\"],\"additionalProperties\":false,\"$schema\":\"http://json-schema.org/draft-07/schema#\"}}}]}"
+  },
+  "duration": 2169
+}

@@ -1,0 +1,107 @@
+{
+  "object": {
+    "code": "function getCurrentDate() {\n  return new Date();\n}"
+  },
+  "finishReason": "stop",
+  "usage": {
+    "promptTokens": 110,
+    "completionTokens": 20,
+    "totalTokens": 130
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "openai": {
+      "reasoningTokens": 0,
+      "acceptedPredictionTokens": 0,
+      "rejectedPredictionTokens": 0,
+      "cachedPromptTokens": 0
+    }
+  },
+  "experimental_providerMetadata": {
+    "openai": {
+      "reasoningTokens": 0,
+      "acceptedPredictionTokens": 0,
+      "rejectedPredictionTokens": 0,
+      "cachedPromptTokens": 0
+    }
+  },
+  "response": {
+    "id": "chatcmpl-BA29MYL62GkvmkxQaVLJnfPqC0Uj6",
+    "timestamp": "2025-03-11T22:14:04.000Z",
+    "modelId": "gpt-4.5-preview-2025-02-27",
+    "headers": {
+      "access-control-expose-headers": "X-Request-ID",
+      "alt-svc": "h3=\":443\"; ma=86400",
+      "cf-cache-status": "DYNAMIC",
+      "cf-ray": "91ee67157e1a2c66-SLC",
+      "connection": "keep-alive",
+      "content-encoding": "br",
+      "content-type": "application/json",
+      "date": "Tue, 11 Mar 2025 22:14:05 GMT",
+      "openai-organization": "user-d5jsqqcojibbhbhmezpursh3",
+      "openai-processing-ms": "943",
+      "openai-version": "2020-10-01",
+      "server": "cloudflare",
+      "set-cookie": "_cfuvid=X.zDB26RkYtoMVG.f76EuR110WWbxk6iX65LqWrZDPw-1741731245450-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None",
+      "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+      "transfer-encoding": "chunked",
+      "x-content-type-options": "nosniff",
+      "x-ratelimit-limit-requests": "1000",
+      "x-ratelimit-limit-tokens": "125000",
+      "x-ratelimit-remaining-requests": "999",
+      "x-ratelimit-remaining-tokens": "119931",
+      "x-ratelimit-reset-requests": "60ms",
+      "x-ratelimit-reset-tokens": "2.432s",
+      "x-request-id": "req_625d6489ec958cde7a31222451801b4f"
+    },
+    "body": {
+      "id": "chatcmpl-BA29MYL62GkvmkxQaVLJnfPqC0Uj6",
+      "object": "chat.completion",
+      "created": 1741731244,
+      "model": "gpt-4.5-preview-2025-02-27",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "tool_calls": [
+              {
+                "id": "call_htAHwRDWmpaSqI2DN8TEaFmt",
+                "type": "function",
+                "function": {
+                  "name": "json",
+                  "arguments": "{\"code\":\"function getCurrentDate() {\\n  return new Date();\\n}\"}"
+                }
+              }
+            ],
+            "refusal": null,
+            "annotations": []
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 110,
+        "completion_tokens": 20,
+        "total_tokens": 130,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "service_tier": "default",
+      "system_fingerprint": null
+    }
+  },
+  "request": {
+    "body": "{\"model\":\"gpt-4.5-preview-2025-02-27\",\"max_tokens\":5000,\"temperature\":0,\"messages\":[{\"role\":\"system\",\"content\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"},{\"role\":\"user\",\"content\":\"Write Apps Script code to create a function that returns the current date\"}],\"tool_choice\":{\"type\":\"function\",\"function\":{\"name\":\"json\"}},\"tools\":[{\"type\":\"function\",\"function\":{\"name\":\"json\",\"description\":\"Respond with a JSON object.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\",\"description\":\"Valid Apps Script code\"}},\"required\":[\"code\"],\"additionalProperties\":false,\"$schema\":\"http://json-schema.org/draft-07/schema#\"}}}]}"
+  },
+  "duration": 1099
+}

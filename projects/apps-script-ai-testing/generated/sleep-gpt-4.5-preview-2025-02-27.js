@@ -1,0 +1,1 @@
+function sleepTenSeconds() {\n  Utilities.sleep(10000);\n}

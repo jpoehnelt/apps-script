@@ -1,0 +1,83 @@
+{
+  "object": {
+    "code": "function fetchDataFromExample() {\n  try {\n    // Make a GET request to example.com\n    const response = UrlFetchApp.fetch('https://example.com');\n    \n    // Get the response content\n    const content = response.getContentText();\n    \n    // Get the response code\n    const responseCode = response.getResponseCode();\n    \n    // Log the results\n    Logger.log('Response Code: ' + responseCode);\n    Logger.log('Content: ' + content);\n    \n    return content;\n    \n  } catch(error) {\n    Logger.log('Error fetching data: ' + error.toString());\n    throw error;\n  }\n}"
+  },
+  "finishReason": "tool-calls",
+  "usage": {
+    "promptTokens": 471,
+    "completionTokens": 191,
+    "totalTokens": 662
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "anthropic": {
+      "cacheCreationInputTokens": 0,
+      "cacheReadInputTokens": 0
+    }
+  },
+  "experimental_providerMetadata": {
+    "anthropic": {
+      "cacheCreationInputTokens": 0,
+      "cacheReadInputTokens": 0
+    }
+  },
+  "response": {
+    "id": "msg_01AyEesGjhcKunZncCJmr8MJ",
+    "timestamp": "2025-03-11T22:05:15.877Z",
+    "modelId": "claude-3-5-sonnet-20241022",
+    "headers": {
+      "anthropic-organization-id": "215d381a-c388-42c7-8115-840170a6d5c4",
+      "anthropic-ratelimit-input-tokens-limit": "40000",
+      "anthropic-ratelimit-input-tokens-remaining": "40000",
+      "anthropic-ratelimit-input-tokens-reset": "2025-03-11T22:05:13Z",
+      "anthropic-ratelimit-output-tokens-limit": "8000",
+      "anthropic-ratelimit-output-tokens-remaining": "8000",
+      "anthropic-ratelimit-output-tokens-reset": "2025-03-11T22:05:15Z",
+      "anthropic-ratelimit-requests-limit": "50",
+      "anthropic-ratelimit-requests-remaining": "49",
+      "anthropic-ratelimit-requests-reset": "2025-03-11T22:05:13Z",
+      "anthropic-ratelimit-tokens-limit": "48000",
+      "anthropic-ratelimit-tokens-remaining": "48000",
+      "anthropic-ratelimit-tokens-reset": "2025-03-11T22:05:13Z",
+      "cf-cache-status": "DYNAMIC",
+      "cf-ray": "91ee5a14ca1ce65f-DEN",
+      "connection": "keep-alive",
+      "content-encoding": "gzip",
+      "content-type": "application/json",
+      "date": "Tue, 11 Mar 2025 22:05:15 GMT",
+      "request-id": "req_01EXfp2Bz7JbQ6qmWNHijLDY",
+      "server": "cloudflare",
+      "transfer-encoding": "chunked",
+      "via": "1.1 google",
+      "x-robots-tag": "none"
+    },
+    "body": {
+      "id": "msg_01AyEesGjhcKunZncCJmr8MJ",
+      "type": "message",
+      "role": "assistant",
+      "model": "claude-3-5-sonnet-20241022",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_016NSZDkvqNRvQr5c2owTxGU",
+          "name": "json",
+          "input": {
+            "code": "function fetchDataFromExample() {\n  try {\n    // Make a GET request to example.com\n    const response = UrlFetchApp.fetch('https://example.com');\n    \n    // Get the response content\n    const content = response.getContentText();\n    \n    // Get the response code\n    const responseCode = response.getResponseCode();\n    \n    // Log the results\n    Logger.log('Response Code: ' + responseCode);\n    Logger.log('Content: ' + content);\n    \n    return content;\n    \n  } catch(error) {\n    Logger.log('Error fetching data: ' + error.toString());\n    throw error;\n  }\n}"
+          }
+        }
+      ],
+      "stop_reason": "tool_use",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 471,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "output_tokens": 191
+      }
+    }
+  },
+  "request": {
+    "body": "{\"model\":\"claude-3-5-sonnet-20241022\",\"max_tokens\":5000,\"temperature\":0,\"system\":[{\"type\":\"text\",\"text\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"}],\"messages\":[{\"role\":\"user\",\"content\":[{\"type\":\"text\",\"text\":\"Write Apps Script code to fetch data from example.com\"}]}],\"tools\":[{\"name\":\"json\",\"description\":\"Respond with a JSON object.\",\"input_schema\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\",\"description\":\"Valid Apps Script code\"}},\"required\":[\"code\"],\"additionalProperties\":false,\"$schema\":\"http://json-schema.org/draft-07/schema#\"}}],\"tool_choice\":{\"type\":\"tool\",\"name\":\"json\"}}"
+  },
+  "duration": 4158
+}

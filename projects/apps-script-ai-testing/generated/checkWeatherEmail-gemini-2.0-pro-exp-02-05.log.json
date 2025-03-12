@@ -1,0 +1,74 @@
+{
+  "object": {
+    "code": "function checkWeatherAndSendEmail() {\n  // Replace with your location's latitude and longitude\n  const latitude = 37.7749; // Example: San Francisco\n  const longitude = -122.4194;\n\n  // Replace with your OpenWeatherMap API key\n  const apiKey = 'YOUR_OPENWEATHERMAP_API_KEY';\n\n  // Build the API URL for the 7 day forecast\n  const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;\n\n  // Fetch the weather data\n  const response = UrlFetchApp.fetch(apiUrl);\n  const data = JSON.parse(response.getContentText());\n\n  // Check for rain in the forecast\n  let rainExpected = false;\n  let rainTime = '';\n  let rainDescription = '';\n\n  //Iterate through the 3-hour forecasts\n  for (let i = 0; i < data.list.length; i++) {\n    const forecast = data.list[i];\n    const forecastTime = new Date(forecast.dt * 1000); // Convert Unix timestamp to milliseconds\n\n    // Check if the forecast includes rain\n    if (forecast.weather && forecast.weather.length > 0) {\n      for (let j = 0; j < forecast.weather.length; j++) {\n        const weather = forecast.weather[j];\n        if (weather.main.toLowerCase().includes('rain')) {\n          rainExpected = true;\n          rainTime = forecastTime.toLocaleString(); // Format the date and time\n          rainDescription = weather.description; // Get a more detailed description\n          break; // Exit the inner loop once rain is found\n        }\n      }\n    }\n    if (rainExpected) {\n      break; // Exit the outer loop once rain is found in any forecast\n    }\n  }\n\n  // Send an email if rain is expected\n  if (rainExpected) {\n    const recipient = 'your_email@example.com'; // Replace with your email address\n    const subject = 'Rain Expected in the Forecast';\n    const body = `Rain is expected at ${rainTime}. Description: ${rainDescription}.`;\n\n    MailApp.sendEmail(recipient, subject, body);\n  }\n}"
+  },
+  "finishReason": "stop",
+  "usage": {
+    "promptTokens": 60,
+    "completionTokens": 564,
+    "totalTokens": 624
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "experimental_providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "response": {
+    "id": "aiobj-NckTDfCyjWNnCDl82CYvv2Gf",
+    "timestamp": "2025-03-11T22:11:34.872Z",
+    "modelId": "gemini-2.0-pro-exp-02-05",
+    "headers": {
+      "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+      "content-encoding": "gzip",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Tue, 11 Mar 2025 22:11:34 GMT",
+      "server": "scaffolding on HTTPServer2",
+      "server-timing": "gfet4t7; dur=5898",
+      "transfer-encoding": "chunked",
+      "vary": "Origin, X-Origin, Referer",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "0"
+    },
+    "body": {
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": " {\"code\":\"function checkWeatherAndSendEmail() {\\n  // Replace with your location's latitude and longitude\\n  const latitude = 37.7749; // Example: San Francisco\\n  const longitude = -122.4194;\\n\\n  // Replace with your OpenWeatherMap API key\\n  const apiKey = 'YOUR_OPENWEATHERMAP_API_KEY';\\n\\n  // Build the API URL for the 7 day forecast\\n  const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;\\n\\n  // Fetch the weather data\\n  const response = UrlFetchApp.fetch(apiUrl);\\n  const data = JSON.parse(response.getContentText());\\n\\n  // Check for rain in the forecast\\n  let rainExpected = false;\\n  let rainTime = '';\\n  let rainDescription = '';\\n\\n  //Iterate through the 3-hour forecasts\\n  for (let i = 0; i < data.list.length; i++) {\\n    const forecast = data.list[i];\\n    const forecastTime = new Date(forecast.dt * 1000); // Convert Unix timestamp to milliseconds\\n\\n    // Check if the forecast includes rain\\n    if (forecast.weather && forecast.weather.length > 0) {\\n      for (let j = 0; j < forecast.weather.length; j++) {\\n        const weather = forecast.weather[j];\\n        if (weather.main.toLowerCase().includes('rain')) {\\n          rainExpected = true;\\n          rainTime = forecastTime.toLocaleString(); // Format the date and time\\n          rainDescription = weather.description; // Get a more detailed description\\n          break; // Exit the inner loop once rain is found\\n        }\\n      }\\n    }\\n    if (rainExpected) {\\n      break; // Exit the outer loop once rain is found in any forecast\\n    }\\n  }\\n\\n  // Send an email if rain is expected\\n  if (rainExpected) {\\n    const recipient = 'your_email@example.com'; // Replace with your email address\\n    const subject = 'Rain Expected in the Forecast';\\n    const body = `Rain is expected at ${rainTime}. Description: ${rainDescription}.`;\\n\\n    MailApp.sendEmail(recipient, subject, body);\\n  }\\n}\"}"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP",
+          "index": 0
+        }
+      ],
+      "usageMetadata": {
+        "promptTokenCount": 60,
+        "candidatesTokenCount": 564,
+        "totalTokenCount": 624,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 60
+          }
+        ]
+      },
+      "modelVersion": "gemini-2.0-pro-exp-02-05"
+    }
+  },
+  "request": {
+    "body": "{\"generationConfig\":{\"maxOutputTokens\":5000,\"temperature\":0,\"responseMimeType\":\"application/json\",\"responseSchema\":{\"required\":[\"code\"],\"type\":\"object\",\"properties\":{\"code\":{\"description\":\"Valid Apps Script code\",\"type\":\"string\"}}}},\"contents\":[{\"role\":\"user\",\"parts\":[{\"text\":\"Write Apps Script code to check the weather and send an email if it is going to rain\"}]}],\"systemInstruction\":{\"parts\":[{\"text\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"}]}}"
+  },
+  "duration": 5943
+}

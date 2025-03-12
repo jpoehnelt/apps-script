@@ -1,0 +1,74 @@
+{
+  "object": {
+    "code": "function getCurrentDate() {\n  var today = new Date();\n  var date = (today.getMonth()+1)+'-'+today.getDate()+'-'+today.getFullYear();\n  return date\n}"
+  },
+  "finishReason": "stop",
+  "usage": {
+    "promptTokens": 55,
+    "completionTokens": 51,
+    "totalTokens": 106
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "experimental_providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "response": {
+    "id": "aiobj-Qqs8SfufobNRTuF4Zihp9ZFM",
+    "timestamp": "2025-03-11T22:10:13.829Z",
+    "modelId": "gemini-2.0-pro-exp-02-05",
+    "headers": {
+      "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+      "content-encoding": "gzip",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Tue, 11 Mar 2025 22:10:13 GMT",
+      "server": "scaffolding on HTTPServer2",
+      "server-timing": "gfet4t7; dur=1214",
+      "transfer-encoding": "chunked",
+      "vary": "Origin, X-Origin, Referer",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "0"
+    },
+    "body": {
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": " {\"code\": \"function getCurrentDate() {\\n  var today = new Date();\\n  var date = (today.getMonth()+1)+'-'+today.getDate()+'-'+today.getFullYear();\\n  return date\\n}\"} "
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP",
+          "index": 0
+        }
+      ],
+      "usageMetadata": {
+        "promptTokenCount": 55,
+        "candidatesTokenCount": 51,
+        "totalTokenCount": 106,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 55
+          }
+        ]
+      },
+      "modelVersion": "gemini-2.0-pro-exp-02-05"
+    }
+  },
+  "request": {
+    "body": "{\"generationConfig\":{\"maxOutputTokens\":5000,\"temperature\":0,\"responseMimeType\":\"application/json\",\"responseSchema\":{\"required\":[\"code\"],\"type\":\"object\",\"properties\":{\"code\":{\"description\":\"Valid Apps Script code\",\"type\":\"string\"}}}},\"contents\":[{\"role\":\"user\",\"parts\":[{\"text\":\"Write Apps Script code to create a function that returns the current date\"}]}],\"systemInstruction\":{\"parts\":[{\"text\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"}]}}"
+  },
+  "duration": 1265
+}

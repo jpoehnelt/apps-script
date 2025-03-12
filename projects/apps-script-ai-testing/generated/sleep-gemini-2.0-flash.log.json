@@ -1,0 +1,80 @@
+{
+  "object": {
+    "code": "function pauseScript() {\n  Utilities.sleep(10000);\n}"
+  },
+  "finishReason": "stop",
+  "usage": {
+    "promptTokens": 66,
+    "completionTokens": 28,
+    "totalTokens": 94
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "experimental_providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "response": {
+    "id": "aiobj-a9qKoXSQoWemhgxPnDUc30Ew",
+    "timestamp": "2025-03-11T22:09:03.354Z",
+    "modelId": "gemini-2.0-flash",
+    "headers": {
+      "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+      "content-encoding": "gzip",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Tue, 11 Mar 2025 22:09:03 GMT",
+      "server": "scaffolding on HTTPServer2",
+      "server-timing": "gfet4t7; dur=500",
+      "transfer-encoding": "chunked",
+      "vary": "Origin, X-Origin, Referer",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "0"
+    },
+    "body": {
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\n  \"code\": \"function pauseScript() {\\n  Utilities.sleep(10000);\\n}\"\n}"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP",
+          "avgLogprobs": -0.0232389292546681
+        }
+      ],
+      "usageMetadata": {
+        "promptTokenCount": 66,
+        "candidatesTokenCount": 28,
+        "totalTokenCount": 94,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 66
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 28
+          }
+        ]
+      },
+      "modelVersion": "gemini-2.0-flash"
+    }
+  },
+  "request": {
+    "body": "{\"generationConfig\":{\"maxOutputTokens\":5000,\"temperature\":0,\"responseMimeType\":\"application/json\",\"responseSchema\":{\"required\":[\"code\"],\"type\":\"object\",\"properties\":{\"code\":{\"description\":\"Valid Apps Script code\",\"type\":\"string\"}}}},\"contents\":[{\"role\":\"user\",\"parts\":[{\"text\":\"Write Apps Script code to create a function that puts the script to sleep for 10 seconds\"}]}],\"systemInstruction\":{\"parts\":[{\"text\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"}]}}"
+  },
+  "duration": 549
+}

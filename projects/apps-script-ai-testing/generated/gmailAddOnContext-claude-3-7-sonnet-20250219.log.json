@@ -1,0 +1,83 @@
+{
+  "object": {
+    "code": "/**\n * Creates a Gmail add-on that displays additional information about the email being read.\n */\n\n/**\n * Callback for rendering the card for Gmail.\n * @param {Object} e The event object.\n * @return {CardService.Card} The card to show to the user.\n */\nfunction onGmailMessageOpen(e) {\n  // Get the current message\n  var messageId = e.messageMetadata.messageId;\n  var accessToken = e.messageMetadata.accessToken;\n  var message = GmailApp.getMessageById(messageId);\n  \n  // Build the card\n  var card = buildEmailInfoCard(message);\n  \n  return card;\n}\n\n/**\n * Builds a card with information about the email.\n * @param {GmailMessage} message The message to analyze.\n * @return {CardService.Card} The card to display.\n */\nfunction buildEmailInfoCard(message) {\n  // Get message details\n  var sender = message.getFrom();\n  var subject = message.getSubject();\n  var date = message.getDate();\n  var formattedDate = Utilities.formatDate(date, Session.getScriptTimeZone(), \"MMM dd, yyyy 'at' hh:mm a\");\n  var size = Math.round(message.getRawContent().length / 1024); // Size in KB\n  var attachments = message.getAttachments();\n  var hasAttachments = attachments.length > 0;\n  var recipients = message.getTo() + (message.getCc() ? \", \" + message.getCc() : \"\");\n  \n  // Extract domain from sender email\n  var senderEmail = sender.match(/[^<]*<([^>]*)>/);\n  var domain = senderEmail ? senderEmail[1].split('@')[1] : \"unknown\";\n  \n  // Create header section\n  var headerSection = CardService.newCardSection()\n      .setHeader(\"Email Information\")\n      .addWidget(CardService.newKeyValue()\n          .setTopLabel(\"From\")\n          .setContent(sender)\n          .setMultiline(true))\n      .addWidget(CardService.newKeyValue()\n          .setTopLabel(\"Subject\")\n          .setContent(subject)\n          .setMultiline(true))\n      .addWidget(CardService.newKeyValue()\n          .setTopLabel(\"Date\")\n          .setContent(formattedDate));\n  \n  // Create details section\n  var detailsSection = CardService.newCardSection()\n      .setHeader(\"Additional Details\")\n      .addWidget(CardService.newKeyValue()\n          .setTopLabel(\"Domain\")\n          .setContent(domain))\n      .addWidget(CardService.newKeyValue()\n          .setTopLabel(\"Size\")\n          .setContent(size + \" KB\"))\n      .addWidget(CardService.newKeyValue()\n          .setTopLabel(\"Recipients\")\n          .setContent(recipients)\n          .setMultiline(true));\n  \n  // Create attachments section if there are any\n  if (hasAttachments) {\n    var attachmentSection = CardService.newCardSection()\n        .setHeader(\"Attachments\");\n    \n    for (var i = 0; i < attachments.length; i++) {\n      var attachment = attachments[i];\n      attachmentSection.addWidget(CardService.newKeyValue()\n          .setTopLabel(\"Attachment \" + (i + 1))\n          .setContent(attachment.getName() + \" (\" + Math.round(attachment.getSize() / 1024) + \" KB)\")\n          .setMultiline(true));\n    }\n  }\n  \n  // Build the card\n  var card = CardService.newCard()\n      .setName(\"Email Info\")\n      .addSection(headerSection)\n      .addSection(detailsSection);\n  \n  // Add attachment section if there are attachments\n  if (hasAttachments) {\n    card.addSection(attachmentSection);\n  }\n  \n  return card;\n}\n\n/**\n * Required function that is called when the add-on is installed.\n * @param {Object} e The event object.\n * @return {CardService.Card} The card to show to the user.\n */\nfunction onInstall(e) {\n  return onHomepage(e);\n}\n\n/**\n * Required function that is called when the add-on is opened in Gmail.\n * @param {Object} e The event object.\n * @return {CardService.Card} The card to show to the user.\n */\nfunction onHomepage(e) {\n  var card = CardService.newCard()\n      .setName(\"Homepage\")\n      .addSection(CardService.newCardSection()\n          .setHeader(\"Email Analyzer\")\n          .addWidget(CardService.newTextParagraph()\n              .setText(\"Open an email to see additional information about it.\"))\n      );\n  \n  return card;\n}\n\n/**\n * Manifest for the Gmail add-on.\n */\nvar manifest = {\n  \"gmail\": {\n    \"contextualTriggers\": [{\n      \"unconditional\": {},\n      \"onTriggerFunction\": \"onGmailMessageOpen\"\n    }],\n    \"primaryColor\": \"#4285F4\",\n    \"secondaryColor\": \"#EA4335\",\n    \"version\": \"CURRENT_VERSION\",\n    \"openLinkUrlPrefixes\": [\n      \"https://mail.google.com/\"\n    ]\n  }\n};"
+  },
+  "finishReason": "tool-calls",
+  "usage": {
+    "promptTokens": 484,
+    "completionTokens": 1367,
+    "totalTokens": 1851
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "anthropic": {
+      "cacheCreationInputTokens": 0,
+      "cacheReadInputTokens": 0
+    }
+  },
+  "experimental_providerMetadata": {
+    "anthropic": {
+      "cacheCreationInputTokens": 0,
+      "cacheReadInputTokens": 0
+    }
+  },
+  "response": {
+    "id": "msg_01NXDg86cz6batFFhzjyrW1M",
+    "timestamp": "2025-03-11T23:59:17.184Z",
+    "modelId": "claude-3-7-sonnet-20250219",
+    "headers": {
+      "anthropic-organization-id": "215d381a-c388-42c7-8115-840170a6d5c4",
+      "anthropic-ratelimit-input-tokens-limit": "20000",
+      "anthropic-ratelimit-input-tokens-remaining": "20000",
+      "anthropic-ratelimit-input-tokens-reset": "2025-03-11T23:56:53Z",
+      "anthropic-ratelimit-output-tokens-limit": "8000",
+      "anthropic-ratelimit-output-tokens-remaining": "8000",
+      "anthropic-ratelimit-output-tokens-reset": "2025-03-11T23:57:09Z",
+      "anthropic-ratelimit-requests-limit": "50",
+      "anthropic-ratelimit-requests-remaining": "49",
+      "anthropic-ratelimit-requests-reset": "2025-03-11T23:56:52Z",
+      "anthropic-ratelimit-tokens-limit": "28000",
+      "anthropic-ratelimit-tokens-remaining": "28000",
+      "anthropic-ratelimit-tokens-reset": "2025-03-11T23:56:53Z",
+      "cf-cache-status": "DYNAMIC",
+      "cf-ray": "91eefda5e86c2f75-LAX",
+      "connection": "keep-alive",
+      "content-encoding": "gzip",
+      "content-type": "application/json",
+      "date": "Tue, 11 Mar 2025 23:57:09 GMT",
+      "request-id": "req_01MMsx58BHMpLxC8Lu6BnWjY",
+      "server": "cloudflare",
+      "transfer-encoding": "chunked",
+      "via": "1.1 google",
+      "x-robots-tag": "none"
+    },
+    "body": {
+      "id": "msg_01NXDg86cz6batFFhzjyrW1M",
+      "type": "message",
+      "role": "assistant",
+      "model": "claude-3-7-sonnet-20250219",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_01HvrM4do4UDLauafAjw5eXA",
+          "name": "json",
+          "input": {
+            "code": "/**\n * Creates a Gmail add-on that displays additional information about the email being read.\n */\n\n/**\n * Callback for rendering the card for Gmail.\n * @param {Object} e The event object.\n * @return {CardService.Card} The card to show to the user.\n */\nfunction onGmailMessageOpen(e) {\n  // Get the current message\n  var messageId = e.messageMetadata.messageId;\n  var accessToken = e.messageMetadata.accessToken;\n  var message = GmailApp.getMessageById(messageId);\n  \n  // Build the card\n  var card = buildEmailInfoCard(message);\n  \n  return card;\n}\n\n/**\n * Builds a card with information about the email.\n * @param {GmailMessage} message The message to analyze.\n * @return {CardService.Card} The card to display.\n */\nfunction buildEmailInfoCard(message) {\n  // Get message details\n  var sender = message.getFrom();\n  var subject = message.getSubject();\n  var date = message.getDate();\n  var formattedDate = Utilities.formatDate(date, Session.getScriptTimeZone(), \"MMM dd, yyyy 'at' hh:mm a\");\n  var size = Math.round(message.getRawContent().length / 1024); // Size in KB\n  var attachments = message.getAttachments();\n  var hasAttachments = attachments.length > 0;\n  var recipients = message.getTo() + (message.getCc() ? \", \" + message.getCc() : \"\");\n  \n  // Extract domain from sender email\n  var senderEmail = sender.match(/[^<]*<([^>]*)>/);\n  var domain = senderEmail ? senderEmail[1].split('@')[1] : \"unknown\";\n  \n  // Create header section\n  var headerSection = CardService.newCardSection()\n      .setHeader(\"Email Information\")\n      .addWidget(CardService.newKeyValue()\n          .setTopLabel(\"From\")\n          .setContent(sender)\n          .setMultiline(true))\n      .addWidget(CardService.newKeyValue()\n          .setTopLabel(\"Subject\")\n          .setContent(subject)\n          .setMultiline(true))\n      .addWidget(CardService.newKeyValue()\n          .setTopLabel(\"Date\")\n          .setContent(formattedDate));\n  \n  // Create details section\n  var detailsSection = CardService.newCardSection()\n      .setHeader(\"Additional Details\")\n      .addWidget(CardService.newKeyValue()\n          .setTopLabel(\"Domain\")\n          .setContent(domain))\n      .addWidget(CardService.newKeyValue()\n          .setTopLabel(\"Size\")\n          .setContent(size + \" KB\"))\n      .addWidget(CardService.newKeyValue()\n          .setTopLabel(\"Recipients\")\n          .setContent(recipients)\n          .setMultiline(true));\n  \n  // Create attachments section if there are any\n  if (hasAttachments) {\n    var attachmentSection = CardService.newCardSection()\n        .setHeader(\"Attachments\");\n    \n    for (var i = 0; i < attachments.length; i++) {\n      var attachment = attachments[i];\n      attachmentSection.addWidget(CardService.newKeyValue()\n          .setTopLabel(\"Attachment \" + (i + 1))\n          .setContent(attachment.getName() + \" (\" + Math.round(attachment.getSize() / 1024) + \" KB)\")\n          .setMultiline(true));\n    }\n  }\n  \n  // Build the card\n  var card = CardService.newCard()\n      .setName(\"Email Info\")\n      .addSection(headerSection)\n      .addSection(detailsSection);\n  \n  // Add attachment section if there are attachments\n  if (hasAttachments) {\n    card.addSection(attachmentSection);\n  }\n  \n  return card;\n}\n\n/**\n * Required function that is called when the add-on is installed.\n * @param {Object} e The event object.\n * @return {CardService.Card} The card to show to the user.\n */\nfunction onInstall(e) {\n  return onHomepage(e);\n}\n\n/**\n * Required function that is called when the add-on is opened in Gmail.\n * @param {Object} e The event object.\n * @return {CardService.Card} The card to show to the user.\n */\nfunction onHomepage(e) {\n  var card = CardService.newCard()\n      .setName(\"Homepage\")\n      .addSection(CardService.newCardSection()\n          .setHeader(\"Email Analyzer\")\n          .addWidget(CardService.newTextParagraph()\n              .setText(\"Open an email to see additional information about it.\"))\n      );\n  \n  return card;\n}\n\n/**\n * Manifest for the Gmail add-on.\n */\nvar manifest = {\n  \"gmail\": {\n    \"contextualTriggers\": [{\n      \"unconditional\": {},\n      \"onTriggerFunction\": \"onGmailMessageOpen\"\n    }],\n    \"primaryColor\": \"#4285F4\",\n    \"secondaryColor\": \"#EA4335\",\n    \"version\": \"CURRENT_VERSION\",\n    \"openLinkUrlPrefixes\": [\n      \"https://mail.google.com/\"\n    ]\n  }\n};"
+          }
+        }
+      ],
+      "stop_reason": "tool_use",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 484,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "output_tokens": 1367
+      }
+    }
+  },
+  "request": {
+    "body": "{\"model\":\"claude-3-7-sonnet-20250219\",\"max_tokens\":5000,\"temperature\":0,\"system\":[{\"type\":\"text\",\"text\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"}],\"messages\":[{\"role\":\"user\",\"content\":[{\"type\":\"text\",\"text\":\"Write Apps Script code to create a Gmail add-on that allows users to view additional information about the email they are reading\"}]}],\"tools\":[{\"name\":\"json\",\"description\":\"Respond with a JSON object.\",\"input_schema\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\",\"description\":\"Valid Apps Script code\"}},\"required\":[\"code\"],\"additionalProperties\":false,\"$schema\":\"http://json-schema.org/draft-07/schema#\"}}],\"tool_choice\":{\"type\":\"tool\",\"name\":\"json\"}}"
+  },
+  "duration": 448974
+}

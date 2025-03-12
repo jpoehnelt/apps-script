@@ -1,0 +1,80 @@
+{
+  "object": {
+    "code": "function fetchDataFromExampleCom() {\n  // Make a request to example.com\n  const response = UrlFetchApp.fetch('https://example.com');\n\n  // Get the content as a string\n  const content = response.getContentText();\n\n  // Log the content (you can process it further as needed)\n  Logger.log(content);\n\n  // Return the content\n  return content;\n}"
+  },
+  "finishReason": "stop",
+  "usage": {
+    "promptTokens": 58,
+    "completionTokens": 105,
+    "totalTokens": 163
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "experimental_providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "response": {
+    "id": "aiobj-rRi503bO79MgPFu7ssrY7AwN",
+    "timestamp": "2025-03-11T22:12:47.022Z",
+    "modelId": "gemini-1.5-pro",
+    "headers": {
+      "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+      "content-encoding": "gzip",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Tue, 11 Mar 2025 22:12:47 GMT",
+      "server": "scaffolding on HTTPServer2",
+      "server-timing": "gfet4t7; dur=2192",
+      "transfer-encoding": "chunked",
+      "vary": "Origin, X-Origin, Referer",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "0"
+    },
+    "body": {
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"code\": \"function fetchDataFromExampleCom() {\\n  // Make a request to example.com\\n  const response = UrlFetchApp.fetch('https://example.com');\\n\\n  // Get the content as a string\\n  const content = response.getContentText();\\n\\n  // Log the content (you can process it further as needed)\\n  Logger.log(content);\\n\\n  // Return the content\\n  return content;\\n}\"}"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP",
+          "avgLogprobs": -0.03865063985188802
+        }
+      ],
+      "usageMetadata": {
+        "promptTokenCount": 58,
+        "candidatesTokenCount": 105,
+        "totalTokenCount": 163,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 58
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 105
+          }
+        ]
+      },
+      "modelVersion": "gemini-1.5-pro-002"
+    }
+  },
+  "request": {
+    "body": "{\"generationConfig\":{\"maxOutputTokens\":5000,\"temperature\":0,\"responseMimeType\":\"application/json\",\"responseSchema\":{\"required\":[\"code\"],\"type\":\"object\",\"properties\":{\"code\":{\"description\":\"Valid Apps Script code\",\"type\":\"string\"}}}},\"contents\":[{\"role\":\"user\",\"parts\":[{\"text\":\"Write Apps Script code to fetch data from example.com\"}]}],\"systemInstruction\":{\"parts\":[{\"text\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"}]}}"
+  },
+  "duration": 2243
+}

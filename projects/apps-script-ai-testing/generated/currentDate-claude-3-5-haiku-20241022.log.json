@@ -1,0 +1,83 @@
+{
+  "object": {
+    "code": "function getCurrentDate() {\n  return new Date();\n}"
+  },
+  "finishReason": "tool-calls",
+  "usage": {
+    "promptTokens": 514,
+    "completionTokens": 47,
+    "totalTokens": 561
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "anthropic": {
+      "cacheCreationInputTokens": 0,
+      "cacheReadInputTokens": 0
+    }
+  },
+  "experimental_providerMetadata": {
+    "anthropic": {
+      "cacheCreationInputTokens": 0,
+      "cacheReadInputTokens": 0
+    }
+  },
+  "response": {
+    "id": "msg_01AuJq92Lx5hSYuF8HKTGCAT",
+    "timestamp": "2025-03-11T22:00:15.989Z",
+    "modelId": "claude-3-5-haiku-20241022",
+    "headers": {
+      "anthropic-organization-id": "215d381a-c388-42c7-8115-840170a6d5c4",
+      "anthropic-ratelimit-input-tokens-limit": "50000",
+      "anthropic-ratelimit-input-tokens-remaining": "50000",
+      "anthropic-ratelimit-input-tokens-reset": "2025-03-11T22:00:15Z",
+      "anthropic-ratelimit-output-tokens-limit": "10000",
+      "anthropic-ratelimit-output-tokens-remaining": "10000",
+      "anthropic-ratelimit-output-tokens-reset": "2025-03-11T22:00:16Z",
+      "anthropic-ratelimit-requests-limit": "50",
+      "anthropic-ratelimit-requests-remaining": "49",
+      "anthropic-ratelimit-requests-reset": "2025-03-11T22:00:16Z",
+      "anthropic-ratelimit-tokens-limit": "60000",
+      "anthropic-ratelimit-tokens-remaining": "60000",
+      "anthropic-ratelimit-tokens-reset": "2025-03-11T22:00:15Z",
+      "cf-cache-status": "DYNAMIC",
+      "cf-ray": "91ee52d25968e65f-DEN",
+      "connection": "keep-alive",
+      "content-encoding": "gzip",
+      "content-type": "application/json",
+      "date": "Tue, 11 Mar 2025 22:00:16 GMT",
+      "request-id": "req_018YeDP6zTJfNh5mLzj7Nmqh",
+      "server": "cloudflare",
+      "transfer-encoding": "chunked",
+      "via": "1.1 google",
+      "x-robots-tag": "none"
+    },
+    "body": {
+      "id": "msg_01AuJq92Lx5hSYuF8HKTGCAT",
+      "type": "message",
+      "role": "assistant",
+      "model": "claude-3-5-haiku-20241022",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_01ECYFsd1u7nXRjHe7BB7ptw",
+          "name": "json",
+          "input": {
+            "code": "function getCurrentDate() {\n  return new Date();\n}"
+          }
+        }
+      ],
+      "stop_reason": "tool_use",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 514,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "output_tokens": 47
+      }
+    }
+  },
+  "request": {
+    "body": "{\"model\":\"claude-3-5-haiku-20241022\",\"max_tokens\":5000,\"temperature\":0,\"system\":[{\"type\":\"text\",\"text\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"}],\"messages\":[{\"role\":\"user\",\"content\":[{\"type\":\"text\",\"text\":\"Write Apps Script code to create a function that returns the current date\"}]}],\"tools\":[{\"name\":\"json\",\"description\":\"Respond with a JSON object.\",\"input_schema\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\",\"description\":\"Valid Apps Script code\"}},\"required\":[\"code\"],\"additionalProperties\":false,\"$schema\":\"http://json-schema.org/draft-07/schema#\"}}],\"tool_choice\":{\"type\":\"tool\",\"name\":\"json\"}}"
+  },
+  "duration": 1631
+}

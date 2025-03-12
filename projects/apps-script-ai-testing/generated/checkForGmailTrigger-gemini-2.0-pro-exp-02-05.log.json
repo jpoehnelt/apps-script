@@ -1,0 +1,74 @@
+{
+  "object": {
+    "code": "function createTrigger() {\n  // Trigger the checkEmail function every 10 minutes.\n  ScriptApp.newTrigger('checkEmail')\n      .timeBased()\n      .everyMinutes(10)\n      .create();\n}\n\nfunction checkEmail() {\n  // Get the number of unread threads in the inbox.\n  var unreadCount = GmailApp.getInboxUnreadCount();\n\n  // Log the unread count.\n  Logger.log('Unread email count: ' + unreadCount);\n\n  if (unreadCount > 0) {\n    // Get the first page of unread threads.\n    var threads = GmailApp.getInboxThreads(0, 1); // Fetch only 1 thread for efficiency\n    if (threads.length > 0) {\n      var firstMessage = threads[0].getMessages()[0];\n      var sender = firstMessage.getFrom();\n      var subject = firstMessage.getSubject();\n      var date = firstMessage.getDate();\n\n      // Log details of the first unread email.\n      Logger.log('You have new email(s). First new email details:');\n      Logger.log('Sender: ' + sender);\n      Logger.log('Subject: ' + subject);\n      Logger.log('Date: ' + date);\n\n      // Example: Send a notification (you can customize this part)\n      // MailApp.sendEmail({\n      //   to: Session.getActiveUser().getEmail(),\n      //   subject: 'New Email Notification',\n      //   body: 'You have ' + unreadCount + ' unread emails. First new email: Sender: ' + sender + ', Subject: ' + subject\n      // });\n    }\n  }\n}\n\n\nfunction deleteTrigger(){\n  var triggers = ScriptApp.getProjectTriggers();\n  for (var i = 0; i < triggers.length; i++) {\n    if (triggers[i].getHandlerFunction() == 'checkEmail') {\n      ScriptApp.deleteTrigger(triggers[i]);\n    }\n  }\n}\n"
+  },
+  "finishReason": "stop",
+  "usage": {
+    "promptTokens": 69,
+    "completionTokens": 492,
+    "totalTokens": 561
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "experimental_providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "response": {
+    "id": "aiobj-EuKe82Y3U6cgQxoVLbqLYZNT",
+    "timestamp": "2025-03-11T22:12:41.587Z",
+    "modelId": "gemini-2.0-pro-exp-02-05",
+    "headers": {
+      "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+      "content-encoding": "gzip",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Tue, 11 Mar 2025 22:11:41 GMT",
+      "server": "scaffolding on HTTPServer2",
+      "server-timing": "gfet4t7; dur=6058",
+      "transfer-encoding": "chunked",
+      "vary": "Origin, X-Origin, Referer",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "0"
+    },
+    "body": {
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": " {\"code\":\"function createTrigger() {\\n  // Trigger the checkEmail function every 10 minutes.\\n  ScriptApp.newTrigger('checkEmail')\\n      .timeBased()\\n      .everyMinutes(10)\\n      .create();\\n}\\n\\nfunction checkEmail() {\\n  // Get the number of unread threads in the inbox.\\n  var unreadCount = GmailApp.getInboxUnreadCount();\\n\\n  // Log the unread count.\\n  Logger.log('Unread email count: ' + unreadCount);\\n\\n  if (unreadCount > 0) {\\n    // Get the first page of unread threads.\\n    var threads = GmailApp.getInboxThreads(0, 1); // Fetch only 1 thread for efficiency\\n    if (threads.length > 0) {\\n      var firstMessage = threads[0].getMessages()[0];\\n      var sender = firstMessage.getFrom();\\n      var subject = firstMessage.getSubject();\\n      var date = firstMessage.getDate();\\n\\n      // Log details of the first unread email.\\n      Logger.log('You have new email(s). First new email details:');\\n      Logger.log('Sender: ' + sender);\\n      Logger.log('Subject: ' + subject);\\n      Logger.log('Date: ' + date);\\n\\n      // Example: Send a notification (you can customize this part)\\n      // MailApp.sendEmail({\\n      //   to: Session.getActiveUser().getEmail(),\\n      //   subject: 'New Email Notification',\\n      //   body: 'You have ' + unreadCount + ' unread emails. First new email: Sender: ' + sender + ', Subject: ' + subject\\n      // });\\n    }\\n  }\\n}\\n\\n\\nfunction deleteTrigger(){\\n  var triggers = ScriptApp.getProjectTriggers();\\n  for (var i = 0; i < triggers.length; i++) {\\n    if (triggers[i].getHandlerFunction() == 'checkEmail') {\\n      ScriptApp.deleteTrigger(triggers[i]);\\n    }\\n  }\\n}\\n\"}"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP",
+          "index": 0
+        }
+      ],
+      "usageMetadata": {
+        "promptTokenCount": 69,
+        "candidatesTokenCount": 492,
+        "totalTokenCount": 561,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 69
+          }
+        ]
+      },
+      "modelVersion": "gemini-2.0-pro-exp-02-05"
+    }
+  },
+  "request": {
+    "body": "{\"generationConfig\":{\"maxOutputTokens\":5000,\"temperature\":0,\"responseMimeType\":\"application/json\",\"responseSchema\":{\"required\":[\"code\"],\"type\":\"object\",\"properties\":{\"code\":{\"description\":\"Valid Apps Script code\",\"type\":\"string\"}}}},\"contents\":[{\"role\":\"user\",\"parts\":[{\"text\":\"Write Apps Script code to create a trigger that runs a function every 10 minutes and checks if I have any new email in Gmail\"}]}],\"systemInstruction\":{\"parts\":[{\"text\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"}]}}"
+  },
+  "duration": 66712
+}

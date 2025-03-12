@@ -1,0 +1,80 @@
+{
+  "object": {
+    "code": "/**\n * A class representing a Person.\n */\nclass Person {\n  /**\n   * Constructor for the Person class.\n   * @param {string} firstName The first name of the person.\n   * @param {string} lastName The last name of the person.\n   * @param {number} age The age of the person.\n   */\n  constructor(firstName, lastName, age) {\n    /**\n     * @private @type {string} The first name of the person.\n     */\n    this.firstName_ = firstName;\n    /**\n     * @private @type {string} The last name of the person.\n     */\n    this.lastName_ = lastName;\n    /**\n     * @private @type {number} The age of the person.\n     */\n    this.age_ = age;\n  }\n\n  /**\n   * Gets the first name of the person.\n   * @return {string} The first name.\n   */\n  getFirstName() {\n    return this.firstName_;\n  }\n\n  /**\n   * Sets the first name of the person.\n   * @param {string} firstName The new first name.\n   */\n  setFirstName(firstName) {\n    this.firstName_ = firstName;\n  }\n\n  /**\n   * Gets the last name of the person.\n   * @return {string} The last name.\n   */\n  getLastName() {\n    return this.lastName_;\n  }\n\n  /**\n   * Sets the last name of the person.\n   * @param {string} lastName The new last name.\n   */\n  setLastName(lastName) {\n    this.lastName_ = lastName;\n  }\n\n  /**\n   * Gets the age of the person.\n   * @return {number} The age.\n   */\n  getAge() {\n    return this.age_;\n  }\n\n  /**\n   * Sets the age of the person.\n   * @param {number} age The new age.\n   */\n  setAge(age) {\n    this.age_ = age;\n  }\n\n  /**\n   * Returns the full name of the person.\n   * @return {string} The full name.\n   */\n  getFullName() {\n    return this.firstName_ + ' ' + this.lastName_;\n  }\n\n  /**\n   * Returns a string representation of the person.\n   * @return {string} The string representation.\n   */\n  toString() {\n    return 'Person: {firstName: ' + this.firstName_ + ', lastName: ' + this.lastName_ + ', age: ' + this.age_ + '}';\n  }\n}\n\n/**\n * Example usage of the Person class.\n */\nfunction testPerson() {\n  // Create a new Person object.\n  var person = new Person('John', 'Doe', 30);\n\n  // Log the person's full name.\n  Logger.log(person.getFullName()); // Output: John Doe\n\n  // Log the person's age.\n  Logger.log(person.getAge()); // Output: 30\n\n  // Change the person's age.\n  person.setAge(31);\n\n  // Log the updated age.\n  Logger.log(person.getAge()); // Output: 31\n\n  // Log the string representation of the person.\n  Logger.log(person.toString());\n}\n"
+  },
+  "finishReason": "stop",
+  "usage": {
+    "promptTokens": 59,
+    "completionTokens": 835,
+    "totalTokens": 894
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "experimental_providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "response": {
+    "id": "aiobj-nVBMFKQULLMg3rYpcCHnbdKr",
+    "timestamp": "2025-03-11T22:09:02.804Z",
+    "modelId": "gemini-2.0-flash",
+    "headers": {
+      "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+      "content-encoding": "gzip",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Tue, 11 Mar 2025 22:09:02 GMT",
+      "server": "scaffolding on HTTPServer2",
+      "server-timing": "gfet4t7; dur=4083",
+      "transfer-encoding": "chunked",
+      "vary": "Origin, X-Origin, Referer",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "0"
+    },
+    "body": {
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\n  \"code\": \"/**\\n * A class representing a Person.\\n */\\nclass Person {\\n  /**\\n   * Constructor for the Person class.\\n   * @param {string} firstName The first name of the person.\\n   * @param {string} lastName The last name of the person.\\n   * @param {number} age The age of the person.\\n   */\\n  constructor(firstName, lastName, age) {\\n    /**\\n     * @private @type {string} The first name of the person.\\n     */\\n    this.firstName_ = firstName;\\n    /**\\n     * @private @type {string} The last name of the person.\\n     */\\n    this.lastName_ = lastName;\\n    /**\\n     * @private @type {number} The age of the person.\\n     */\\n    this.age_ = age;\\n  }\\n\\n  /**\\n   * Gets the first name of the person.\\n   * @return {string} The first name.\\n   */\\n  getFirstName() {\\n    return this.firstName_;\\n  }\\n\\n  /**\\n   * Sets the first name of the person.\\n   * @param {string} firstName The new first name.\\n   */\\n  setFirstName(firstName) {\\n    this.firstName_ = firstName;\\n  }\\n\\n  /**\\n   * Gets the last name of the person.\\n   * @return {string} The last name.\\n   */\\n  getLastName() {\\n    return this.lastName_;\\n  }\\n\\n  /**\\n   * Sets the last name of the person.\\n   * @param {string} lastName The new last name.\\n   */\\n  setLastName(lastName) {\\n    this.lastName_ = lastName;\\n  }\\n\\n  /**\\n   * Gets the age of the person.\\n   * @return {number} The age.\\n   */\\n  getAge() {\\n    return this.age_;\\n  }\\n\\n  /**\\n   * Sets the age of the person.\\n   * @param {number} age The new age.\\n   */\\n  setAge(age) {\\n    this.age_ = age;\\n  }\\n\\n  /**\\n   * Returns the full name of the person.\\n   * @return {string} The full name.\\n   */\\n  getFullName() {\\n    return this.firstName_ + ' ' + this.lastName_;\\n  }\\n\\n  /**\\n   * Returns a string representation of the person.\\n   * @return {string} The string representation.\\n   */\\n  toString() {\\n    return 'Person: {firstName: ' + this.firstName_ + ', lastName: ' + this.lastName_ + ', age: ' + this.age_ + '}';\\n  }\\n}\\n\\n/**\\n * Example usage of the Person class.\\n */\\nfunction testPerson() {\\n  // Create a new Person object.\\n  var person = new Person('John', 'Doe', 30);\\n\\n  // Log the person's full name.\\n  Logger.log(person.getFullName()); // Output: John Doe\\n\\n  // Log the person's age.\\n  Logger.log(person.getAge()); // Output: 30\\n\\n  // Change the person's age.\\n  person.setAge(31);\\n\\n  // Log the updated age.\\n  Logger.log(person.getAge()); // Output: 31\\n\\n  // Log the string representation of the person.\\n  Logger.log(person.toString());\\n}\\n\"\n}"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP",
+          "avgLogprobs": -0.016447494415465943
+        }
+      ],
+      "usageMetadata": {
+        "promptTokenCount": 59,
+        "candidatesTokenCount": 835,
+        "totalTokenCount": 894,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 59
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 835
+          }
+        ]
+      },
+      "modelVersion": "gemini-2.0-flash"
+    }
+  },
+  "request": {
+    "body": "{\"generationConfig\":{\"maxOutputTokens\":5000,\"temperature\":0,\"responseMimeType\":\"application/json\",\"responseSchema\":{\"required\":[\"code\"],\"type\":\"object\",\"properties\":{\"code\":{\"description\":\"Valid Apps Script code\",\"type\":\"string\"}}}},\"contents\":[{\"role\":\"user\",\"parts\":[{\"text\":\"Write Apps Script code to create a class with properties and methods\"}]}],\"systemInstruction\":{\"parts\":[{\"text\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"}]}}"
+  },
+  "duration": 4137
+}

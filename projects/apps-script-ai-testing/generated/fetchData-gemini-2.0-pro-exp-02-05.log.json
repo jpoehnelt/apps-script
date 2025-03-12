@@ -1,0 +1,74 @@
+{
+  "object": {
+    "code": "function fetchDataFromExampleDotCom() {\n  var url = 'https://example.com';\n\n  try {\n    var response = UrlFetchApp.fetch(url);\n    \n    // Check the HTTP status code\n    var statusCode = response.getResponseCode();\n    Logger.log('HTTP Status Code: ' + statusCode);\n\n    if (statusCode == 200) {\n      // Get the content as text\n      var contentText = response.getContentText();\n      Logger.log('Content: ' + contentText);\n\n      // Optionally, parse the content if it's JSON (example)\n      // try {\n      //   var jsonData = JSON.parse(contentText);\n      //   Logger.log('Parsed JSON: ' + JSON.stringify(jsonData, null, 2));\n      //   // Process the jsonData as needed\n      // } catch (jsonError) {\n      //   Logger.log('Error parsing JSON: ' + jsonError);\n      // }\n\n      return contentText; // Or return jsonData if you parsed it\n    } else {\n      Logger.log('Request failed. Status code: ' + statusCode);\n      // Handle non-200 status codes appropriately\n      return null; // Or throw an error, or return a specific error message\n    }\n  } catch (e) {\n    Logger.log('Error fetching data: ' + e);\n    // Handle the error appropriately (e.g., retry, log, notify)\n    return null; // Or throw an error\n  }\n}\n\n// Example usage (optional):\nfunction testFetch() {\n  var data = fetchDataFromExampleDotCom();\n  if (data) {\n    Logger.log('Successfully fetched data.');\n    // Further processing of the data\n  } else {\n    Logger.log('Failed to fetch data.');\n  }\n}"
+  },
+  "finishReason": "stop",
+  "usage": {
+    "promptTokens": 53,
+    "completionTokens": 436,
+    "totalTokens": 489
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "experimental_providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "response": {
+    "id": "aiobj-y3Xvr06DZQbrFIQz7g9bXnaO",
+    "timestamp": "2025-03-11T22:10:18.814Z",
+    "modelId": "gemini-2.0-pro-exp-02-05",
+    "headers": {
+      "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+      "content-encoding": "gzip",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Tue, 11 Mar 2025 22:10:18 GMT",
+      "server": "scaffolding on HTTPServer2",
+      "server-timing": "gfet4t7; dur=4684",
+      "transfer-encoding": "chunked",
+      "vary": "Origin, X-Origin, Referer",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "0"
+    },
+    "body": {
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": " {\"code\": \"function fetchDataFromExampleDotCom() {\\n  var url = 'https://example.com';\\n\\n  try {\\n    var response = UrlFetchApp.fetch(url);\\n    \\n    // Check the HTTP status code\\n    var statusCode = response.getResponseCode();\\n    Logger.log('HTTP Status Code: ' + statusCode);\\n\\n    if (statusCode == 200) {\\n      // Get the content as text\\n      var contentText = response.getContentText();\\n      Logger.log('Content: ' + contentText);\\n\\n      // Optionally, parse the content if it's JSON (example)\\n      // try {\\n      //   var jsonData = JSON.parse(contentText);\\n      //   Logger.log('Parsed JSON: ' + JSON.stringify(jsonData, null, 2));\\n      //   // Process the jsonData as needed\\n      // } catch (jsonError) {\\n      //   Logger.log('Error parsing JSON: ' + jsonError);\\n      // }\\n\\n      return contentText; // Or return jsonData if you parsed it\\n    } else {\\n      Logger.log('Request failed. Status code: ' + statusCode);\\n      // Handle non-200 status codes appropriately\\n      return null; // Or throw an error, or return a specific error message\\n    }\\n  } catch (e) {\\n    Logger.log('Error fetching data: ' + e);\\n    // Handle the error appropriately (e.g., retry, log, notify)\\n    return null; // Or throw an error\\n  }\\n}\\n\\n// Example usage (optional):\\nfunction testFetch() {\\n  var data = fetchDataFromExampleDotCom();\\n  if (data) {\\n    Logger.log('Successfully fetched data.');\\n    // Further processing of the data\\n  } else {\\n    Logger.log('Failed to fetch data.');\\n  }\\n}\"}"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP",
+          "index": 0
+        }
+      ],
+      "usageMetadata": {
+        "promptTokenCount": 53,
+        "candidatesTokenCount": 436,
+        "totalTokenCount": 489,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 53
+          }
+        ]
+      },
+      "modelVersion": "gemini-2.0-pro-exp-02-05"
+    }
+  },
+  "request": {
+    "body": "{\"generationConfig\":{\"maxOutputTokens\":5000,\"temperature\":0,\"responseMimeType\":\"application/json\",\"responseSchema\":{\"required\":[\"code\"],\"type\":\"object\",\"properties\":{\"code\":{\"description\":\"Valid Apps Script code\",\"type\":\"string\"}}}},\"contents\":[{\"role\":\"user\",\"parts\":[{\"text\":\"Write Apps Script code to fetch data from example.com\"}]}],\"systemInstruction\":{\"parts\":[{\"text\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"}]}}"
+  },
+  "duration": 4984
+}

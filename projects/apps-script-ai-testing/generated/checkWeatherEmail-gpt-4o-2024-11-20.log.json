@@ -1,0 +1,108 @@
+{
+  "object": {
+    "code": "function checkWeatherAndSendEmail() {\n  var apiKey = \"YOUR_OPENWEATHERMAP_API_KEY\"; // Replace with your OpenWeatherMap API key\n  var city = \"YOUR_CITY_NAME\"; // Replace with your city name\n  var emailAddress = \"RECIPIENT_EMAIL_ADDRESS\"; // Replace with the recipient's email address\n\n  // Fetch weather data from OpenWeatherMap API\n  var url = \"https://api.openweathermap.org/data/2.5/weather?q=\" + city + \"&appid=\" + apiKey;\n  var response = UrlFetchApp.fetch(url);\n  var weatherData = JSON.parse(response.getContentText());\n\n  // Check if it is going to rain\n  var weatherConditions = weatherData.weather;\n  var isRaining = weatherConditions.some(function(condition) {\n    return condition.main.toLowerCase().includes(\"rain\");\n  });\n\n  // Send an email if it is going to rain\n  if (isRaining) {\n    var subject = \"Weather Alert: Rain Expected\";\n    var body = \"Hello,\\n\\nIt looks like it is going to rain in \" + city + \". Don't forget to carry an umbrella!\\n\\nBest regards,\\nWeather Alert System\";\n    MailApp.sendEmail(emailAddress, subject, body);\n  }\n}"
+  },
+  "finishReason": "stop",
+  "usage": {
+    "promptTokens": 115,
+    "completionTokens": 300,
+    "totalTokens": 415
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "openai": {
+      "reasoningTokens": 0,
+      "acceptedPredictionTokens": 0,
+      "rejectedPredictionTokens": 0,
+      "cachedPromptTokens": 0
+    }
+  },
+  "experimental_providerMetadata": {
+    "openai": {
+      "reasoningTokens": 0,
+      "acceptedPredictionTokens": 0,
+      "rejectedPredictionTokens": 0,
+      "cachedPromptTokens": 0
+    }
+  },
+  "response": {
+    "id": "chatcmpl-BA29vV5wLrJM9d2gbnhjG7BXrauFR",
+    "timestamp": "2025-03-11T22:14:39.000Z",
+    "modelId": "gpt-4o-2024-11-20",
+    "headers": {
+      "access-control-expose-headers": "X-Request-ID",
+      "alt-svc": "h3=\":443\"; ma=86400",
+      "cf-cache-status": "DYNAMIC",
+      "cf-ray": "91ee67da2a772c66-SLC",
+      "connection": "keep-alive",
+      "content-encoding": "br",
+      "content-type": "application/json",
+      "date": "Tue, 11 Mar 2025 22:14:45 GMT",
+      "openai-organization": "user-d5jsqqcojibbhbhmezpursh3",
+      "openai-processing-ms": "5477",
+      "openai-version": "2020-10-01",
+      "server": "cloudflare",
+      "set-cookie": "_cfuvid=ZrI0UBQq441gCG1dH0lCYIw5_0FGEnlXfp0WD.1CMME-1741731285102-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None",
+      "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+      "transfer-encoding": "chunked",
+      "x-content-type-options": "nosniff",
+      "x-ratelimit-limit-requests": "500",
+      "x-ratelimit-limit-tokens": "30000",
+      "x-ratelimit-remaining-requests": "499",
+      "x-ratelimit-remaining-tokens": "24930",
+      "x-ratelimit-reset-requests": "120ms",
+      "x-ratelimit-reset-tokens": "10.14s",
+      "x-request-id": "req_26ce8807c08c3b3327709165dbabffa1"
+    },
+    "body": {
+      "id": "chatcmpl-BA29vV5wLrJM9d2gbnhjG7BXrauFR",
+      "object": "chat.completion",
+      "created": 1741731279,
+      "model": "gpt-4o-2024-11-20",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "tool_calls": [
+              {
+                "id": "call_Rf9vVsa8sUiqCYLghEJBAYSE",
+                "type": "function",
+                "function": {
+                  "name": "json",
+                  "arguments": "{\"code\":\"function checkWeatherAndSendEmail() {\\n  var apiKey = \\\"YOUR_OPENWEATHERMAP_API_KEY\\\"; // Replace with your OpenWeatherMap API key\\n  var city = \\\"YOUR_CITY_NAME\\\"; // Replace with your city name\\n  var emailAddress = \\\"RECIPIENT_EMAIL_ADDRESS\\\"; // Replace with the recipient's email address\\n\\n  // Fetch weather data from OpenWeatherMap API\\n  var url = \\\"https://api.openweathermap.org/data/2.5/weather?q=\\\" + city + \\\"&appid=\\\" + apiKey;\\n  var response = UrlFetchApp.fetch(url);\\n  var weatherData = JSON.parse(response.getContentText());\\n\\n  // Check if it is going to rain\\n  var weatherConditions = weatherData.weather;\\n  var isRaining = weatherConditions.some(function(condition) {\\n    return condition.main.toLowerCase().includes(\\\"rain\\\");\\n  });\\n\\n  // Send an email if it is going to rain\\n  if (isRaining) {\\n    var subject = \\\"Weather Alert: Rain Expected\\\";\\n    var body = \\\"Hello,\\\\n\\\\nIt looks like it is going to rain in \\\" + city + \\\". Don't forget to carry an umbrella!\\\\n\\\\nBest regards,\\\\nWeather Alert System\\\";\\n    MailApp.sendEmail(emailAddress, subject, body);\\n  }\\n}\"}"
+                }
+              }
+            ],
+            "refusal": null,
+            "annotations": []
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 115,
+        "completion_tokens": 300,
+        "total_tokens": 415,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "service_tier": "default",
+      "system_fingerprint": "fp_1d7c5f52ce"
+    }
+  },
+  "request": {
+    "body": "{\"model\":\"gpt-4o-2024-11-20\",\"max_tokens\":5000,\"temperature\":0,\"messages\":[{\"role\":\"system\",\"content\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"},{\"role\":\"user\",\"content\":\"Write Apps Script code to check the weather and send an email if it is going to rain\"}],\"tool_choice\":{\"type\":\"function\",\"function\":{\"name\":\"json\"}},\"tools\":[{\"type\":\"function\",\"function\":{\"name\":\"json\",\"description\":\"Respond with a JSON object.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\",\"description\":\"Valid Apps Script code\"}},\"required\":[\"code\"],\"additionalProperties\":false,\"$schema\":\"http://json-schema.org/draft-07/schema#\"}}}]}"
+  },
+  "duration": 9316
+}

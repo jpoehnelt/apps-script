@@ -1,0 +1,74 @@
+{
+  "object": {
+    "code": "class SpreadsheetDetails {\n  constructor(spreadsheetId, sheetName) {\n    this.spreadsheetId = spreadsheetId;\n    this.sheetName = sheetName;\n    this.spreadsheet = SpreadsheetApp.openById(this.spreadsheetId);\n    this.sheet = this.spreadsheet.getSheetByName(this.sheetName);\n  }\n\n  getValues(startRow, startColumn, numRows, numColumns) {\n    if (!this.sheet) {\n      throw new Error(\"Sheet \" + this.sheetName + \" not found.\");\n    }\n    return this.sheet.getRange(startRow, startColumn, numRows, numColumns).getValues();\n  }\n\n  setValues(startRow, startColumn, numRows, numColumns, values) {\n    if (!this.sheet) {\n      throw new Error(\"Sheet \" + this.sheetName + \" not found.\");\n    }\n    if (!values || values.length !== numRows || values[0].length !== numColumns) {\n      throw new Error('Values dimensions do not match specified range.');\n    }\n    this.sheet.getRange(startRow, startColumn, numRows, numColumns).setValues(values);\n  }\n\n  appendRow(row) {\n     if (!this.sheet) {\n      throw new Error(\"Sheet \" + this.sheetName + \" not found.\");\n    }\n    this.sheet.appendRow(row);\n  }\n\n  clearRange(startRow, startColumn, numRows, numColumns) {\n    if (!this.sheet) {\n      throw new Error(\"Sheet \" + this.sheetName + \" not found.\");\n    }\n     this.sheet.getRange(startRow, startColumn, numRows, numColumns).clearContent();\n  }\n\n  getLastRow(){\n    if (!this.sheet) {\n      throw new Error(\"Sheet \" + this.sheetName + \" not found.\");\n    }\n    return this.sheet.getLastRow();\n  }\n\n  getSpreadsheetName(){\n    return this.spreadsheet.getName();\n  }\n\n  getSheet(){\n    return this.sheet;\n  }\n\n  getSpreadsheet(){\n    return this.spreadsheet;\n  }\n\n}\n\n\n// Example Usage (for testing purposes):\nfunction testSpreadsheetDetails() {\n  // Replace with a valid spreadsheet ID and sheet name.\n  const spreadsheetId = 'your_spreadsheet_id';  \n  const sheetName = 'Sheet1';\n\n  try {\n    const ssDetails = new SpreadsheetDetails(spreadsheetId, sheetName);\n\n    // Get values\n    const values = ssDetails.getValues(1, 1, 2, 3);\n    Logger.log(\"Values: \" + values);\n\n    // Set values\n    const newValues = [['A1', 'B1', 'C1'], ['A2', 'B2', 'C2']];\n    ssDetails.setValues(3, 1, 2, 3, newValues);\n\n    // Append a row\n    ssDetails.appendRow(['D1', 'E1', 'F1']);\n\n    // Get last row\n    Logger.log(\"Last Row: \" + ssDetails.getLastRow());\n\n    // Clear a range\n    ssDetails.clearRange(5,1,1,3);\n\n    // Get spreadsheet name\n    Logger.log(\"Spreadsheet Name: \" + ssDetails.getSpreadsheetName());\n\n  } catch (error) {\n    Logger.log(\"Error: \" + error);\n  }\n}\n"
+  },
+  "finishReason": "stop",
+  "usage": {
+    "promptTokens": 54,
+    "completionTokens": 875,
+    "totalTokens": 929
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "experimental_providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "response": {
+    "id": "aiobj-gWwjNdfMJ1EvZKPe1Tu5900O",
+    "timestamp": "2025-03-11T22:11:27.851Z",
+    "modelId": "gemini-2.0-pro-exp-02-05",
+    "headers": {
+      "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+      "content-encoding": "gzip",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Tue, 11 Mar 2025 22:10:27 GMT",
+      "server": "scaffolding on HTTPServer2",
+      "server-timing": "gfet4t7; dur=8388",
+      "transfer-encoding": "chunked",
+      "vary": "Origin, X-Origin, Referer",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "0"
+    },
+    "body": {
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": " {\n  \"code\": \"class SpreadsheetDetails {\\n  constructor(spreadsheetId, sheetName) {\\n    this.spreadsheetId = spreadsheetId;\\n    this.sheetName = sheetName;\\n    this.spreadsheet = SpreadsheetApp.openById(this.spreadsheetId);\\n    this.sheet = this.spreadsheet.getSheetByName(this.sheetName);\\n  }\\n\\n  getValues(startRow, startColumn, numRows, numColumns) {\\n    if (!this.sheet) {\\n      throw new Error(\\\"Sheet \\\" + this.sheetName + \\\" not found.\\\");\\n    }\\n    return this.sheet.getRange(startRow, startColumn, numRows, numColumns).getValues();\\n  }\\n\\n  setValues(startRow, startColumn, numRows, numColumns, values) {\\n    if (!this.sheet) {\\n      throw new Error(\\\"Sheet \\\" + this.sheetName + \\\" not found.\\\");\\n    }\\n    if (!values || values.length !== numRows || values[0].length !== numColumns) {\\n      throw new Error('Values dimensions do not match specified range.');\\n    }\\n    this.sheet.getRange(startRow, startColumn, numRows, numColumns).setValues(values);\\n  }\\n\\n  appendRow(row) {\\n     if (!this.sheet) {\\n      throw new Error(\\\"Sheet \\\" + this.sheetName + \\\" not found.\\\");\\n    }\\n    this.sheet.appendRow(row);\\n  }\\n\\n  clearRange(startRow, startColumn, numRows, numColumns) {\\n    if (!this.sheet) {\\n      throw new Error(\\\"Sheet \\\" + this.sheetName + \\\" not found.\\\");\\n    }\\n     this.sheet.getRange(startRow, startColumn, numRows, numColumns).clearContent();\\n  }\\n\\n  getLastRow(){\\n    if (!this.sheet) {\\n      throw new Error(\\\"Sheet \\\" + this.sheetName + \\\" not found.\\\");\\n    }\\n    return this.sheet.getLastRow();\\n  }\\n\\n  getSpreadsheetName(){\\n    return this.spreadsheet.getName();\\n  }\\n\\n  getSheet(){\\n    return this.sheet;\\n  }\\n\\n  getSpreadsheet(){\\n    return this.spreadsheet;\\n  }\\n\\n}\\n\\n\\n// Example Usage (for testing purposes):\\nfunction testSpreadsheetDetails() {\\n  // Replace with a valid spreadsheet ID and sheet name.\\n  const spreadsheetId = 'your_spreadsheet_id';  \\n  const sheetName = 'Sheet1';\\n\\n  try {\\n    const ssDetails = new SpreadsheetDetails(spreadsheetId, sheetName);\\n\\n    // Get values\\n    const values = ssDetails.getValues(1, 1, 2, 3);\\n    Logger.log(\\\"Values: \\\" + values);\\n\\n    // Set values\\n    const newValues = [['A1', 'B1', 'C1'], ['A2', 'B2', 'C2']];\\n    ssDetails.setValues(3, 1, 2, 3, newValues);\\n\\n    // Append a row\\n    ssDetails.appendRow(['D1', 'E1', 'F1']);\\n\\n    // Get last row\\n    Logger.log(\\\"Last Row: \\\" + ssDetails.getLastRow());\\n\\n    // Clear a range\\n    ssDetails.clearRange(5,1,1,3);\\n\\n    // Get spreadsheet name\\n    Logger.log(\\\"Spreadsheet Name: \\\" + ssDetails.getSpreadsheetName());\\n\\n  } catch (error) {\\n    Logger.log(\\\"Error: \\\" + error);\\n  }\\n}\\n\"\n}"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP",
+          "index": 0
+        }
+      ],
+      "usageMetadata": {
+        "promptTokenCount": 54,
+        "candidatesTokenCount": 875,
+        "totalTokenCount": 929,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 54
+          }
+        ]
+      },
+      "modelVersion": "gemini-2.0-pro-exp-02-05"
+    }
+  },
+  "request": {
+    "body": "{\"generationConfig\":{\"maxOutputTokens\":5000,\"temperature\":0,\"responseMimeType\":\"application/json\",\"responseSchema\":{\"required\":[\"code\"],\"type\":\"object\",\"properties\":{\"code\":{\"description\":\"Valid Apps Script code\",\"type\":\"string\"}}}},\"contents\":[{\"role\":\"user\",\"parts\":[{\"text\":\"Write Apps Script code to create a class with properties and methods\"}]}],\"systemInstruction\":{\"parts\":[{\"text\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"}]}}"
+  },
+  "duration": 69035
+}

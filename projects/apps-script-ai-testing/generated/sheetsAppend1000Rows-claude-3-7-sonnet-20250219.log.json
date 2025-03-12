@@ -1,0 +1,83 @@
+{
+  "object": {
+    "code": "/**\n * Adds 1000 rows to the active sheet in the current spreadsheet.\n * Each row will contain sequential numbers in the first column.\n */\nfunction addThousandRows() {\n  // Get the active spreadsheet and sheet\n  var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();\n  var sheet = spreadsheet.getActiveSheet();\n  \n  // Create an array to hold all the row data\n  var rowsData = [];\n  \n  // Generate 1000 rows of data\n  for (var i = 1; i <= 1000; i++) {\n    rowsData.push([i]); // Add a row with just the row number in the first column\n  }\n  \n  // Get the next empty row\n  var lastRow = sheet.getLastRow();\n  \n  // Add all rows at once (more efficient than adding one by one)\n  if (rowsData.length > 0) {\n    sheet.getRange(lastRow + 1, 1, rowsData.length, 1).setValues(rowsData);\n  }\n  \n  // Log completion message\n  Logger.log(\"Added 1000 rows to the sheet\");\n}\n\n/**\n * Alternative version that allows customizing the number of rows and adding more data\n * @param {number} rowCount - Number of rows to add (defaults to 1000)\n * @param {boolean} addTimestamp - Whether to add timestamps in column B (defaults to false)\n */\nfunction addCustomRows(rowCount, addTimestamp) {\n  // Set default values if parameters are not provided\n  rowCount = rowCount || 1000;\n  addTimestamp = addTimestamp || false;\n  \n  // Get the active spreadsheet and sheet\n  var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();\n  var sheet = spreadsheet.getActiveSheet();\n  \n  // Create an array to hold all the row data\n  var rowsData = [];\n  \n  // Generate rows of data\n  for (var i = 1; i <= rowCount; i++) {\n    if (addTimestamp) {\n      rowsData.push([i, new Date()]); // Add row number and timestamp\n    } else {\n      rowsData.push([i]); // Add just the row number\n    }\n  }\n  \n  // Get the next empty row\n  var lastRow = sheet.getLastRow();\n  \n  // Add all rows at once\n  if (rowsData.length > 0) {\n    var columns = addTimestamp ? 2 : 1;\n    sheet.getRange(lastRow + 1, 1, rowsData.length, columns).setValues(rowsData);\n  }\n  \n  // Log completion message\n  Logger.log(\"Added \" + rowCount + \" rows to the sheet\");\n}"
+  },
+  "finishReason": "tool-calls",
+  "usage": {
+    "promptTokens": 479,
+    "completionTokens": 705,
+    "totalTokens": 1184
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "anthropic": {
+      "cacheCreationInputTokens": 0,
+      "cacheReadInputTokens": 0
+    }
+  },
+  "experimental_providerMetadata": {
+    "anthropic": {
+      "cacheCreationInputTokens": 0,
+      "cacheReadInputTokens": 0
+    }
+  },
+  "response": {
+    "id": "msg_014sy4tcEUAyjPTvvRKRag7U",
+    "timestamp": "2025-03-11T23:51:48.208Z",
+    "modelId": "claude-3-7-sonnet-20250219",
+    "headers": {
+      "anthropic-organization-id": "215d381a-c388-42c7-8115-840170a6d5c4",
+      "anthropic-ratelimit-input-tokens-limit": "20000",
+      "anthropic-ratelimit-input-tokens-remaining": "20000",
+      "anthropic-ratelimit-input-tokens-reset": "2025-03-11T23:50:36Z",
+      "anthropic-ratelimit-output-tokens-limit": "8000",
+      "anthropic-ratelimit-output-tokens-remaining": "8000",
+      "anthropic-ratelimit-output-tokens-reset": "2025-03-11T23:50:45Z",
+      "anthropic-ratelimit-requests-limit": "50",
+      "anthropic-ratelimit-requests-remaining": "49",
+      "anthropic-ratelimit-requests-reset": "2025-03-11T23:50:35Z",
+      "anthropic-ratelimit-tokens-limit": "28000",
+      "anthropic-ratelimit-tokens-remaining": "28000",
+      "anthropic-ratelimit-tokens-reset": "2025-03-11T23:50:36Z",
+      "cf-cache-status": "DYNAMIC",
+      "cf-ray": "91eef46eea112b86-LAX",
+      "connection": "keep-alive",
+      "content-encoding": "gzip",
+      "content-type": "application/json",
+      "date": "Tue, 11 Mar 2025 23:50:45 GMT",
+      "request-id": "req_01HiqLReNiEHEs8tu1oQmpbE",
+      "server": "cloudflare",
+      "transfer-encoding": "chunked",
+      "via": "1.1 google",
+      "x-robots-tag": "none"
+    },
+    "body": {
+      "id": "msg_014sy4tcEUAyjPTvvRKRag7U",
+      "type": "message",
+      "role": "assistant",
+      "model": "claude-3-7-sonnet-20250219",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_01C1Ncdvj99xXPXqMvBhp6Wo",
+          "name": "json",
+          "input": {
+            "code": "/**\n * Adds 1000 rows to the active sheet in the current spreadsheet.\n * Each row will contain sequential numbers in the first column.\n */\nfunction addThousandRows() {\n  // Get the active spreadsheet and sheet\n  var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();\n  var sheet = spreadsheet.getActiveSheet();\n  \n  // Create an array to hold all the row data\n  var rowsData = [];\n  \n  // Generate 1000 rows of data\n  for (var i = 1; i <= 1000; i++) {\n    rowsData.push([i]); // Add a row with just the row number in the first column\n  }\n  \n  // Get the next empty row\n  var lastRow = sheet.getLastRow();\n  \n  // Add all rows at once (more efficient than adding one by one)\n  if (rowsData.length > 0) {\n    sheet.getRange(lastRow + 1, 1, rowsData.length, 1).setValues(rowsData);\n  }\n  \n  // Log completion message\n  Logger.log(\"Added 1000 rows to the sheet\");\n}\n\n/**\n * Alternative version that allows customizing the number of rows and adding more data\n * @param {number} rowCount - Number of rows to add (defaults to 1000)\n * @param {boolean} addTimestamp - Whether to add timestamps in column B (defaults to false)\n */\nfunction addCustomRows(rowCount, addTimestamp) {\n  // Set default values if parameters are not provided\n  rowCount = rowCount || 1000;\n  addTimestamp = addTimestamp || false;\n  \n  // Get the active spreadsheet and sheet\n  var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();\n  var sheet = spreadsheet.getActiveSheet();\n  \n  // Create an array to hold all the row data\n  var rowsData = [];\n  \n  // Generate rows of data\n  for (var i = 1; i <= rowCount; i++) {\n    if (addTimestamp) {\n      rowsData.push([i, new Date()]); // Add row number and timestamp\n    } else {\n      rowsData.push([i]); // Add just the row number\n    }\n  }\n  \n  // Get the next empty row\n  var lastRow = sheet.getLastRow();\n  \n  // Add all rows at once\n  if (rowsData.length > 0) {\n    var columns = addTimestamp ? 2 : 1;\n    sheet.getRange(lastRow + 1, 1, rowsData.length, columns).setValues(rowsData);\n  }\n  \n  // Log completion message\n  Logger.log(\"Added \" + rowCount + \" rows to the sheet\");\n}"
+          }
+        }
+      ],
+      "stop_reason": "tool_use",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 479,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "output_tokens": 705
+      }
+    }
+  },
+  "request": {
+    "body": "{\"model\":\"claude-3-7-sonnet-20250219\",\"max_tokens\":5000,\"temperature\":0,\"system\":[{\"type\":\"text\",\"text\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"}],\"messages\":[{\"role\":\"user\",\"content\":[{\"type\":\"text\",\"text\":\"Write Apps Script code to create a function that adds 1000 rows to a Google Sheet\"}]}],\"tools\":[{\"name\":\"json\",\"description\":\"Respond with a JSON object.\",\"input_schema\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\",\"description\":\"Valid Apps Script code\"}},\"required\":[\"code\"],\"additionalProperties\":false,\"$schema\":\"http://json-schema.org/draft-07/schema#\"}}],\"tool_choice\":{\"type\":\"tool\",\"name\":\"json\"}}"
+  },
+  "duration": 74248
+}

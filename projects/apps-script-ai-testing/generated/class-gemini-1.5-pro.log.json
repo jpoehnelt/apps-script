@@ -1,0 +1,80 @@
+{
+  "object": {
+    "code": "class MyClass {\n  constructor(name, age) {\n    this.name = name;\n    this.age = age;\n  }\n\n  greet() {\n    Logger.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);\n  }\n\n  static createObject(name, age) {\n    return new MyClass(name, age);\n  }\n}\n\nfunction testMyClass() {\n  const myObject = MyClass.createObject(\"John Doe\", 30);\n  myObject.greet();\n\n  const anotherObject = new MyClass(\"Jane Doe\", 25);\n  anotherObject.greet(); \n}"
+  },
+  "finishReason": "stop",
+  "usage": {
+    "promptTokens": 59,
+    "completionTokens": 165,
+    "totalTokens": 224
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "experimental_providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "response": {
+    "id": "aiobj-uduwBgSYPqhZ4dleD5ZRgipd",
+    "timestamp": "2025-03-11T22:12:49.975Z",
+    "modelId": "gemini-1.5-pro",
+    "headers": {
+      "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+      "content-encoding": "gzip",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Tue, 11 Mar 2025 22:12:50 GMT",
+      "server": "scaffolding on HTTPServer2",
+      "server-timing": "gfet4t7; dur=2907",
+      "transfer-encoding": "chunked",
+      "vary": "Origin, X-Origin, Referer",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "0"
+    },
+    "body": {
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"code\": \"class MyClass {\\n  constructor(name, age) {\\n    this.name = name;\\n    this.age = age;\\n  }\\n\\n  greet() {\\n    Logger.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);\\n  }\\n\\n  static createObject(name, age) {\\n    return new MyClass(name, age);\\n  }\\n}\\n\\nfunction testMyClass() {\\n  const myObject = MyClass.createObject(\\\"John Doe\\\", 30);\\n  myObject.greet();\\n\\n  const anotherObject = new MyClass(\\\"Jane Doe\\\", 25);\\n  anotherObject.greet(); \\n}\"}"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP",
+          "avgLogprobs": -0.018611198483091413
+        }
+      ],
+      "usageMetadata": {
+        "promptTokenCount": 59,
+        "candidatesTokenCount": 165,
+        "totalTokenCount": 224,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 59
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 165
+          }
+        ]
+      },
+      "modelVersion": "gemini-1.5-pro-002"
+    }
+  },
+  "request": {
+    "body": "{\"generationConfig\":{\"maxOutputTokens\":5000,\"temperature\":0,\"responseMimeType\":\"application/json\",\"responseSchema\":{\"required\":[\"code\"],\"type\":\"object\",\"properties\":{\"code\":{\"description\":\"Valid Apps Script code\",\"type\":\"string\"}}}},\"contents\":[{\"role\":\"user\",\"parts\":[{\"text\":\"Write Apps Script code to create a class with properties and methods\"}]}],\"systemInstruction\":{\"parts\":[{\"text\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"}]}}"
+  },
+  "duration": 2951
+}

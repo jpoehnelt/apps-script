@@ -1,0 +1,80 @@
+{
+  "object": {
+    "code": "function myFunction() {\n  return \"Hello, World!\";\n}"
+  },
+  "finishReason": "stop",
+  "usage": {
+    "promptTokens": 61,
+    "completionTokens": 22,
+    "totalTokens": 83
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "experimental_providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "response": {
+    "id": "aiobj-u7A4lhyvz8ZLHBwIOyej5JfN",
+    "timestamp": "2025-03-11T22:12:42.634Z",
+    "modelId": "gemini-1.5-pro",
+    "headers": {
+      "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+      "content-encoding": "gzip",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Tue, 11 Mar 2025 22:12:42 GMT",
+      "server": "scaffolding on HTTPServer2",
+      "server-timing": "gfet4t7; dur=1003",
+      "transfer-encoding": "chunked",
+      "vary": "Origin, X-Origin, Referer",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "0"
+    },
+    "body": {
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"code\": \"function myFunction() {\\n  return \\\"Hello, World!\\\";\\n}\"}"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP",
+          "avgLogprobs": -0.030393616719679398
+        }
+      ],
+      "usageMetadata": {
+        "promptTokenCount": 61,
+        "candidatesTokenCount": 22,
+        "totalTokenCount": 83,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 61
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 22
+          }
+        ]
+      },
+      "modelVersion": "gemini-1.5-pro-002"
+    }
+  },
+  "request": {
+    "body": "{\"generationConfig\":{\"maxOutputTokens\":5000,\"temperature\":0,\"responseMimeType\":\"application/json\",\"responseSchema\":{\"required\":[\"code\"],\"type\":\"object\",\"properties\":{\"code\":{\"description\":\"Valid Apps Script code\",\"type\":\"string\"}}}},\"contents\":[{\"role\":\"user\",\"parts\":[{\"text\":\"Write Apps Script code to create a function that returns \\\"Hello World\\\"\"}]}],\"systemInstruction\":{\"parts\":[{\"text\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"}]}}"
+  },
+  "duration": 1045
+}

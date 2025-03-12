@@ -1,0 +1,80 @@
+{
+  "object": {
+    "code": "function createTriggerForNewEmail() {\n  // Trigger every 10 minutes.\n  ScriptApp.newTrigger('checkForNewEmail')\n      .timeBased()\n      .everyMinutes(10)\n      .create();\n}\n\nfunction checkForNewEmail() {\n  // Get the current user's email address.\n  var emailAddress = Session.getActiveUser().getEmail();\n\n  // Get unread threads.\n  var threads = GmailApp.search('is:unread');\n\n  // Log the subject of each unread thread.\n  for (var i = 0; i < threads.length; i++) {\n    Logger.log(threads[i].getFirstMessageSubject());\n  }\n}"
+  },
+  "finishReason": "stop",
+  "usage": {
+    "promptTokens": 74,
+    "completionTokens": 171,
+    "totalTokens": 245
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "experimental_providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "response": {
+    "id": "aiobj-590mSlNtZQDtE4qJVuu5iUwR",
+    "timestamp": "2025-03-11T22:14:01.273Z",
+    "modelId": "gemini-1.5-pro",
+    "headers": {
+      "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+      "content-encoding": "gzip",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Tue, 11 Mar 2025 22:14:01 GMT",
+      "server": "scaffolding on HTTPServer2",
+      "server-timing": "gfet4t7; dur=3333",
+      "transfer-encoding": "chunked",
+      "vary": "Origin, X-Origin, Referer",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "0"
+    },
+    "body": {
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"code\": \"function createTriggerForNewEmail() {\\n  // Trigger every 10 minutes.\\n  ScriptApp.newTrigger('checkForNewEmail')\\n      .timeBased()\\n      .everyMinutes(10)\\n      .create();\\n}\\n\\nfunction checkForNewEmail() {\\n  // Get the current user's email address.\\n  var emailAddress = Session.getActiveUser().getEmail();\\n\\n  // Get unread threads.\\n  var threads = GmailApp.search('is:unread');\\n\\n  // Log the subject of each unread thread.\\n  for (var i = 0; i < threads.length; i++) {\\n    Logger.log(threads[i].getFirstMessageSubject());\\n  }\\n}\"}"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP",
+          "avgLogprobs": -0.046912460996393575
+        }
+      ],
+      "usageMetadata": {
+        "promptTokenCount": 74,
+        "candidatesTokenCount": 171,
+        "totalTokenCount": 245,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 74
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 171
+          }
+        ]
+      },
+      "modelVersion": "gemini-1.5-pro-002"
+    }
+  },
+  "request": {
+    "body": "{\"generationConfig\":{\"maxOutputTokens\":5000,\"temperature\":0,\"responseMimeType\":\"application/json\",\"responseSchema\":{\"required\":[\"code\"],\"type\":\"object\",\"properties\":{\"code\":{\"description\":\"Valid Apps Script code\",\"type\":\"string\"}}}},\"contents\":[{\"role\":\"user\",\"parts\":[{\"text\":\"Write Apps Script code to create a trigger that runs a function every 10 minutes and checks if I have any new email in Gmail\"}]}],\"systemInstruction\":{\"parts\":[{\"text\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"}]}}"
+  },
+  "duration": 3390
+}

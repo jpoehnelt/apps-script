@@ -1,0 +1,1 @@
+function fetchData() {\n  var response = UrlFetchApp.fetch('https://example.com');\n  var content = response.getContentText();\n  Logger.log(content);\n}

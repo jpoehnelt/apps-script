@@ -1,0 +1,108 @@
+{
+  "object": {
+    "code": "function createTrigger() {\n  ScriptApp.newTrigger(\"checkNewEmails\")\n    .timeBased()\n    .everyMinutes(10)\n    .create();\n}\n\nfunction checkNewEmails() {\n  var threads = GmailApp.getInboxThreads(0, 10); // Get the latest 10 threads\n  for (var i = 0; i < threads.length; i++) {\n    var thread = threads[i];\n    if (thread.isUnread()) {\n      Logger.log(\"New email found: \" + thread.getFirstMessageSubject());\n    }\n  }\n}"
+  },
+  "finishReason": "stop",
+  "usage": {
+    "promptTokens": 123,
+    "completionTokens": 137,
+    "totalTokens": 260
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "openai": {
+      "reasoningTokens": 0,
+      "acceptedPredictionTokens": 0,
+      "rejectedPredictionTokens": 0,
+      "cachedPromptTokens": 0
+    }
+  },
+  "experimental_providerMetadata": {
+    "openai": {
+      "reasoningTokens": 0,
+      "acceptedPredictionTokens": 0,
+      "rejectedPredictionTokens": 0,
+      "cachedPromptTokens": 0
+    }
+  },
+  "response": {
+    "id": "chatcmpl-BA2A1VUwG7K41LsQ7TwsAJmuSmVWu",
+    "timestamp": "2025-03-11T22:14:45.000Z",
+    "modelId": "gpt-4o-2024-11-20",
+    "headers": {
+      "access-control-expose-headers": "X-Request-ID",
+      "alt-svc": "h3=\":443\"; ma=86400",
+      "cf-cache-status": "DYNAMIC",
+      "cf-ray": "91ee6814493a2c66-SLC",
+      "connection": "keep-alive",
+      "content-encoding": "br",
+      "content-type": "application/json",
+      "date": "Tue, 11 Mar 2025 22:14:47 GMT",
+      "openai-organization": "user-d5jsqqcojibbhbhmezpursh3",
+      "openai-processing-ms": "2501",
+      "openai-version": "2020-10-01",
+      "server": "cloudflare",
+      "set-cookie": "_cfuvid=9GW.h30PpRlYtytZmmU22qmytww.yvXN7UdCAElt00c-1741731287801-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None",
+      "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+      "transfer-encoding": "chunked",
+      "x-content-type-options": "nosniff",
+      "x-ratelimit-limit-requests": "500",
+      "x-ratelimit-limit-tokens": "30000",
+      "x-ratelimit-remaining-requests": "499",
+      "x-ratelimit-remaining-tokens": "24920",
+      "x-ratelimit-reset-requests": "120ms",
+      "x-ratelimit-reset-tokens": "10.16s",
+      "x-request-id": "req_a87ecd44a3782da16e35fab6bd5c53db"
+    },
+    "body": {
+      "id": "chatcmpl-BA2A1VUwG7K41LsQ7TwsAJmuSmVWu",
+      "object": "chat.completion",
+      "created": 1741731285,
+      "model": "gpt-4o-2024-11-20",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "tool_calls": [
+              {
+                "id": "call_fyaCL4wlE21M7TlQfbq2H830",
+                "type": "function",
+                "function": {
+                  "name": "json",
+                  "arguments": "{\"code\":\"function createTrigger() {\\n  ScriptApp.newTrigger(\\\"checkNewEmails\\\")\\n    .timeBased()\\n    .everyMinutes(10)\\n    .create();\\n}\\n\\nfunction checkNewEmails() {\\n  var threads = GmailApp.getInboxThreads(0, 10); // Get the latest 10 threads\\n  for (var i = 0; i < threads.length; i++) {\\n    var thread = threads[i];\\n    if (thread.isUnread()) {\\n      Logger.log(\\\"New email found: \\\" + thread.getFirstMessageSubject());\\n    }\\n  }\\n}\"}"
+                }
+              }
+            ],
+            "refusal": null,
+            "annotations": []
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 137,
+        "total_tokens": 260,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "service_tier": "default",
+      "system_fingerprint": "fp_1d7c5f52ce"
+    }
+  },
+  "request": {
+    "body": "{\"model\":\"gpt-4o-2024-11-20\",\"max_tokens\":5000,\"temperature\":0,\"messages\":[{\"role\":\"system\",\"content\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"},{\"role\":\"user\",\"content\":\"Write Apps Script code to create a trigger that runs a function every 10 minutes and checks if I have any new email in Gmail\"}],\"tool_choice\":{\"type\":\"function\",\"function\":{\"name\":\"json\"}},\"tools\":[{\"type\":\"function\",\"function\":{\"name\":\"json\",\"description\":\"Respond with a JSON object.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\",\"description\":\"Valid Apps Script code\"}},\"required\":[\"code\"],\"additionalProperties\":false,\"$schema\":\"http://json-schema.org/draft-07/schema#\"}}}]}"
+  },
+  "duration": 2695
+}

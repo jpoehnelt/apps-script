@@ -1,0 +1,80 @@
+{
+  "object": {
+    "code": "function fetchDataFromExample() {\n  try {\n    // Fetch the data from example.com\n    var response = UrlFetchApp.fetch('http://example.com');\n\n    // Get the HTTP response code\n    var responseCode = response.getResponseCode();\n\n    // Check if the request was successful (200 OK)\n    if (responseCode == 200) {\n      // Get the content as a string\n      var content = response.getContentText();\n\n      // Log the content (you can modify this to process the data as needed)\n      Logger.log(content);\n\n      // Return the content (optional, depending on your use case)\n      return content;\n    } else {\n      // Log an error message if the request failed\n      Logger.log('Request failed with status code: ' + responseCode);\n      return null; // Or throw an error, depending on your needs\n    }\n  } catch (e) {\n    // Handle any errors that occur during the process\n    Logger.log('An error occurred: ' + e.toString());\n    return null; // Or throw an error\n  }\n}\n"
+  },
+  "finishReason": "stop",
+  "usage": {
+    "promptTokens": 58,
+    "completionTokens": 279,
+    "totalTokens": 337
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "experimental_providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "response": {
+    "id": "aiobj-bdFlpIQbV6HTTbipFsworTDA",
+    "timestamp": "2025-03-11T22:08:58.665Z",
+    "modelId": "gemini-2.0-flash",
+    "headers": {
+      "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+      "content-encoding": "gzip",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Tue, 11 Mar 2025 22:08:58 GMT",
+      "server": "scaffolding on HTTPServer2",
+      "server-timing": "gfet4t7; dur=1752",
+      "transfer-encoding": "chunked",
+      "vary": "Origin, X-Origin, Referer",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "0"
+    },
+    "body": {
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\n  \"code\": \"function fetchDataFromExample() {\\n  try {\\n    // Fetch the data from example.com\\n    var response = UrlFetchApp.fetch('http://example.com');\\n\\n    // Get the HTTP response code\\n    var responseCode = response.getResponseCode();\\n\\n    // Check if the request was successful (200 OK)\\n    if (responseCode == 200) {\\n      // Get the content as a string\\n      var content = response.getContentText();\\n\\n      // Log the content (you can modify this to process the data as needed)\\n      Logger.log(content);\\n\\n      // Return the content (optional, depending on your use case)\\n      return content;\\n    } else {\\n      // Log an error message if the request failed\\n      Logger.log('Request failed with status code: ' + responseCode);\\n      return null; // Or throw an error, depending on your needs\\n    }\\n  } catch (e) {\\n    // Handle any errors that occur during the process\\n    Logger.log('An error occurred: ' + e.toString());\\n    return null; // Or throw an error\\n  }\\n}\\n\"\n}"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP",
+          "avgLogprobs": -0.03799835328132876
+        }
+      ],
+      "usageMetadata": {
+        "promptTokenCount": 58,
+        "candidatesTokenCount": 279,
+        "totalTokenCount": 337,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 58
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 279
+          }
+        ]
+      },
+      "modelVersion": "gemini-2.0-flash"
+    }
+  },
+  "request": {
+    "body": "{\"generationConfig\":{\"maxOutputTokens\":5000,\"temperature\":0,\"responseMimeType\":\"application/json\",\"responseSchema\":{\"required\":[\"code\"],\"type\":\"object\",\"properties\":{\"code\":{\"description\":\"Valid Apps Script code\",\"type\":\"string\"}}}},\"contents\":[{\"role\":\"user\",\"parts\":[{\"text\":\"Write Apps Script code to fetch data from example.com\"}]}],\"systemInstruction\":{\"parts\":[{\"text\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"}]}}"
+  },
+  "duration": 1817
+}

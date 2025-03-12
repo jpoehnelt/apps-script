@@ -1,0 +1,83 @@
+{
+  "object": {
+    "code": "/**\n * Creates a new event in Google Calendar and sends invites to all guests.\n * @param {string} title - The title of the event\n * @param {Date} startTime - The start time of the event\n * @param {Date} endTime - The end time of the event\n * @param {string} description - Description of the event\n * @param {string} location - Location of the event\n * @param {string[]} guests - Array of email addresses for guests\n * @param {boolean} sendInvites - Whether to send invites to guests\n * @return {CalendarEvent} The created calendar event\n */\nfunction createCalendarEventWithGuests(title, startTime, endTime, description, location, guests, sendInvites) {\n  // Default parameters if not provided\n  title = title || 'New Event';\n  startTime = startTime || new Date();\n  endTime = endTime || new Date(startTime.getTime() + (60 * 60 * 1000)); // Default 1 hour after start\n  description = description || '';\n  location = location || '';\n  guests = guests || [];\n  sendInvites = (sendInvites !== false); // Default to true\n  \n  try {\n    // Get the default calendar\n    var calendar = CalendarApp.getDefaultCalendar();\n    \n    // Create the event\n    var event = calendar.createEvent(\n      title,\n      startTime,\n      endTime,\n      {\n        description: description,\n        location: location,\n        guests: guests.join(','),\n        sendInvites: sendInvites\n      }\n    );\n    \n    Logger.log('Event created: %s', event.getId());\n    return event;\n    \n  } catch (error) {\n    Logger.log('Error creating event: ' + error.toString());\n    throw error;\n  }\n}\n\n/**\n * Example usage of the function\n */\nfunction exampleCreateEvent() {\n  // Set event details\n  var title = 'Team Meeting';\n  var startTime = new Date();\n  startTime.setHours(startTime.getHours() + 1); // Start 1 hour from now\n  var endTime = new Date(startTime.getTime() + (60 * 60 * 1000)); // 1 hour duration\n  var description = 'Weekly team sync-up meeting';\n  var location = 'Conference Room A';\n  var guests = ['person1@example.com', 'person2@example.com', 'team@example.com'];\n  \n  // Create the event and send invites\n  var event = createCalendarEventWithGuests(\n    title,\n    startTime,\n    endTime,\n    description,\n    location,\n    guests,\n    true\n  );\n  \n  Logger.log('Event created with ID: ' + event.getId());\n}"
+  },
+  "finishReason": "tool-calls",
+  "usage": {
+    "promptTokens": 478,
+    "completionTokens": 722,
+    "totalTokens": 1200
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "anthropic": {
+      "cacheCreationInputTokens": 0,
+      "cacheReadInputTokens": 0
+    }
+  },
+  "experimental_providerMetadata": {
+    "anthropic": {
+      "cacheCreationInputTokens": 0,
+      "cacheReadInputTokens": 0
+    }
+  },
+  "response": {
+    "id": "msg_01MFCxUBUkcRX2E3NmvH8Fhm",
+    "timestamp": "2025-03-12T00:00:30.394Z",
+    "modelId": "claude-3-7-sonnet-20250219",
+    "headers": {
+      "anthropic-organization-id": "215d381a-c388-42c7-8115-840170a6d5c4",
+      "anthropic-ratelimit-input-tokens-limit": "20000",
+      "anthropic-ratelimit-input-tokens-remaining": "20000",
+      "anthropic-ratelimit-input-tokens-reset": "2025-03-11T23:59:18Z",
+      "anthropic-ratelimit-output-tokens-limit": "8000",
+      "anthropic-ratelimit-output-tokens-remaining": "8000",
+      "anthropic-ratelimit-output-tokens-reset": "2025-03-11T23:59:27Z",
+      "anthropic-ratelimit-requests-limit": "50",
+      "anthropic-ratelimit-requests-remaining": "49",
+      "anthropic-ratelimit-requests-reset": "2025-03-11T23:59:18Z",
+      "anthropic-ratelimit-tokens-limit": "28000",
+      "anthropic-ratelimit-tokens-remaining": "28000",
+      "anthropic-ratelimit-tokens-reset": "2025-03-11T23:59:18Z",
+      "cf-cache-status": "DYNAMIC",
+      "cf-ray": "91ef01350ea42f75-LAX",
+      "connection": "keep-alive",
+      "content-encoding": "gzip",
+      "content-type": "application/json",
+      "date": "Tue, 11 Mar 2025 23:59:27 GMT",
+      "request-id": "req_011CpyVKhkHpXQzXdFwfSh5S",
+      "server": "cloudflare",
+      "transfer-encoding": "chunked",
+      "via": "1.1 google",
+      "x-robots-tag": "none"
+    },
+    "body": {
+      "id": "msg_01MFCxUBUkcRX2E3NmvH8Fhm",
+      "type": "message",
+      "role": "assistant",
+      "model": "claude-3-7-sonnet-20250219",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_01S7ReSPoBnBGPFdAdPX7s7L",
+          "name": "json",
+          "input": {
+            "code": "/**\n * Creates a new event in Google Calendar and sends invites to all guests.\n * @param {string} title - The title of the event\n * @param {Date} startTime - The start time of the event\n * @param {Date} endTime - The end time of the event\n * @param {string} description - Description of the event\n * @param {string} location - Location of the event\n * @param {string[]} guests - Array of email addresses for guests\n * @param {boolean} sendInvites - Whether to send invites to guests\n * @return {CalendarEvent} The created calendar event\n */\nfunction createCalendarEventWithGuests(title, startTime, endTime, description, location, guests, sendInvites) {\n  // Default parameters if not provided\n  title = title || 'New Event';\n  startTime = startTime || new Date();\n  endTime = endTime || new Date(startTime.getTime() + (60 * 60 * 1000)); // Default 1 hour after start\n  description = description || '';\n  location = location || '';\n  guests = guests || [];\n  sendInvites = (sendInvites !== false); // Default to true\n  \n  try {\n    // Get the default calendar\n    var calendar = CalendarApp.getDefaultCalendar();\n    \n    // Create the event\n    var event = calendar.createEvent(\n      title,\n      startTime,\n      endTime,\n      {\n        description: description,\n        location: location,\n        guests: guests.join(','),\n        sendInvites: sendInvites\n      }\n    );\n    \n    Logger.log('Event created: %s', event.getId());\n    return event;\n    \n  } catch (error) {\n    Logger.log('Error creating event: ' + error.toString());\n    throw error;\n  }\n}\n\n/**\n * Example usage of the function\n */\nfunction exampleCreateEvent() {\n  // Set event details\n  var title = 'Team Meeting';\n  var startTime = new Date();\n  startTime.setHours(startTime.getHours() + 1); // Start 1 hour from now\n  var endTime = new Date(startTime.getTime() + (60 * 60 * 1000)); // 1 hour duration\n  var description = 'Weekly team sync-up meeting';\n  var location = 'Conference Room A';\n  var guests = ['person1@example.com', 'person2@example.com', 'team@example.com'];\n  \n  // Create the event and send invites\n  var event = createCalendarEventWithGuests(\n    title,\n    startTime,\n    endTime,\n    description,\n    location,\n    guests,\n    true\n  );\n  \n  Logger.log('Event created with ID: ' + event.getId());\n}"
+          }
+        }
+      ],
+      "stop_reason": "tool_use",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 478,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "output_tokens": 722
+      }
+    }
+  },
+  "request": {
+    "body": "{\"model\":\"claude-3-7-sonnet-20250219\",\"max_tokens\":5000,\"temperature\":0,\"system\":[{\"type\":\"text\",\"text\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"}],\"messages\":[{\"role\":\"user\",\"content\":[{\"type\":\"text\",\"text\":\"Write Apps Script code create a new event in Google Calendar and send invites to all guests\"}]}],\"tools\":[{\"name\":\"json\",\"description\":\"Respond with a JSON object.\",\"input_schema\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\",\"description\":\"Valid Apps Script code\"}},\"required\":[\"code\"],\"additionalProperties\":false,\"$schema\":\"http://json-schema.org/draft-07/schema#\"}}],\"tool_choice\":{\"type\":\"tool\",\"name\":\"json\"}}"
+  },
+  "duration": 73207
+}

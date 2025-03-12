@@ -1,0 +1,80 @@
+{
+  "object": {
+    "code": "function checkWeatherAndSendEmail() {\n  // Replace with your OpenWeatherMap API key and email address\n  var apiKey = \"YOUR_API_KEY\";\n  var city = \"YOUR_CITY\"; // e.g., \"London\"\n  var emailAddress = \"YOUR_EMAIL_ADDRESS\";\n\n  // Construct the API URL\n  var url = \"https://api.openweathermap.org/data/2.5/weather?q=\" + city + \"&appid=\" + apiKey + \"&units=metric\";\n\n  // Fetch the weather data\n  try {\n    var response = UrlFetchApp.fetch(url);\n    var json = JSON.parse(response.getContentText());\n\n    // Check for rain\n    if (json.weather && json.weather.length > 0) {\n      var weatherDescription = json.weather[0].description.toLowerCase();\n      if (weatherDescription.indexOf(\"rain\") > -1) {\n        // Send an email\n        var subject = \"Rain Alert for \" + city;\n        var body = \"It is expected to rain in \" + city + \". Description: \" + weatherDescription + \". Temperature: \" + json.main.temp + \"°C\";\n        MailApp.sendEmail(emailAddress, subject, body);\n        Logger.log(\"Rain alert email sent to \" + emailAddress);\n      } else {\n        Logger.log(\"No rain expected in \" + city + \". Weather: \" + weatherDescription);\n      }\n    } else {\n      Logger.log(\"Weather data not available for \" + city);\n    }\n  } catch (e) {\n    Logger.log(\"Error fetching weather data: \" + e);\n  }\n}\n\n// Optional: Create a time-based trigger to run the function periodically\nfunction createTimeDrivenTrigger() {\n  // Trigger every day at 6 AM\n  ScriptApp.newTrigger('checkWeatherAndSendEmail')\n    .timeBased()\n    .atHour(6)\n    .everyDays(1)\n    .create();\n}\n"
+  },
+  "finishReason": "stop",
+  "usage": {
+    "promptTokens": 65,
+    "completionTokens": 494,
+    "totalTokens": 559
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "experimental_providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "response": {
+    "id": "aiobj-QqDMXJinSS5WLVshCXwtgUjk",
+    "timestamp": "2025-03-11T22:09:06.446Z",
+    "modelId": "gemini-2.0-flash",
+    "headers": {
+      "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+      "content-encoding": "gzip",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Tue, 11 Mar 2025 22:09:06 GMT",
+      "server": "scaffolding on HTTPServer2",
+      "server-timing": "gfet4t7; dur=3047",
+      "transfer-encoding": "chunked",
+      "vary": "Origin, X-Origin, Referer",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "0"
+    },
+    "body": {
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\n  \"code\": \"function checkWeatherAndSendEmail() {\\n  // Replace with your OpenWeatherMap API key and email address\\n  var apiKey = \\\"YOUR_API_KEY\\\";\\n  var city = \\\"YOUR_CITY\\\"; // e.g., \\\"London\\\"\\n  var emailAddress = \\\"YOUR_EMAIL_ADDRESS\\\";\\n\\n  // Construct the API URL\\n  var url = \\\"https://api.openweathermap.org/data/2.5/weather?q=\\\" + city + \\\"&appid=\\\" + apiKey + \\\"&units=metric\\\";\\n\\n  // Fetch the weather data\\n  try {\\n    var response = UrlFetchApp.fetch(url);\\n    var json = JSON.parse(response.getContentText());\\n\\n    // Check for rain\\n    if (json.weather && json.weather.length > 0) {\\n      var weatherDescription = json.weather[0].description.toLowerCase();\\n      if (weatherDescription.indexOf(\\\"rain\\\") > -1) {\\n        // Send an email\\n        var subject = \\\"Rain Alert for \\\" + city;\\n        var body = \\\"It is expected to rain in \\\" + city + \\\". Description: \\\" + weatherDescription + \\\". Temperature: \\\" + json.main.temp + \\\"°C\\\";\\n        MailApp.sendEmail(emailAddress, subject, body);\\n        Logger.log(\\\"Rain alert email sent to \\\" + emailAddress);\\n      } else {\\n        Logger.log(\\\"No rain expected in \\\" + city + \\\". Weather: \\\" + weatherDescription);\\n      }\\n    } else {\\n      Logger.log(\\\"Weather data not available for \\\" + city);\\n    }\\n  } catch (e) {\\n    Logger.log(\\\"Error fetching weather data: \\\" + e);\\n  }\\n}\\n\\n// Optional: Create a time-based trigger to run the function periodically\\nfunction createTimeDrivenTrigger() {\\n  // Trigger every day at 6 AM\\n  ScriptApp.newTrigger('checkWeatherAndSendEmail')\\n    .timeBased()\\n    .atHour(6)\\n    .everyDays(1)\\n    .create();\\n}\\n\"\n}"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP",
+          "avgLogprobs": -0.04095102225238013
+        }
+      ],
+      "usageMetadata": {
+        "promptTokenCount": 65,
+        "candidatesTokenCount": 494,
+        "totalTokenCount": 559,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 65
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 494
+          }
+        ]
+      },
+      "modelVersion": "gemini-2.0-flash"
+    }
+  },
+  "request": {
+    "body": "{\"generationConfig\":{\"maxOutputTokens\":5000,\"temperature\":0,\"responseMimeType\":\"application/json\",\"responseSchema\":{\"required\":[\"code\"],\"type\":\"object\",\"properties\":{\"code\":{\"description\":\"Valid Apps Script code\",\"type\":\"string\"}}}},\"contents\":[{\"role\":\"user\",\"parts\":[{\"text\":\"Write Apps Script code to check the weather and send an email if it is going to rain\"}]}],\"systemInstruction\":{\"parts\":[{\"text\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"}]}}"
+  },
+  "duration": 3091
+}

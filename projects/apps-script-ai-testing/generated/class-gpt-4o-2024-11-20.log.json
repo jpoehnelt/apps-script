@@ -1,0 +1,108 @@
+{
+  "object": {
+    "code": "class MyClass {\n  constructor(property1, property2) {\n    this.property1 = property1;\n    this.property2 = property2;\n  }\n\n  // Method to display properties\n  displayProperties() {\n    Logger.log(`Property 1: ${this.property1}, Property 2: ${this.property2}`);\n  }\n\n  // Method to update properties\n  updateProperties(newProperty1, newProperty2) {\n    this.property1 = newProperty1;\n    this.property2 = newProperty2;\n  }\n}\n\nfunction testMyClass() {\n  // Create an instance of MyClass\n  const myInstance = new MyClass('Value1', 'Value2');\n\n  // Display initial properties\n  myInstance.displayProperties();\n\n  // Update properties\n  myInstance.updateProperties('NewValue1', 'NewValue2');\n\n  // Display updated properties\n  myInstance.displayProperties();\n}"
+  },
+  "finishReason": "stop",
+  "usage": {
+    "promptTokens": 109,
+    "completionTokens": 217,
+    "totalTokens": 326
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "openai": {
+      "reasoningTokens": 0,
+      "acceptedPredictionTokens": 0,
+      "rejectedPredictionTokens": 0,
+      "cachedPromptTokens": 0
+    }
+  },
+  "experimental_providerMetadata": {
+    "openai": {
+      "reasoningTokens": 0,
+      "acceptedPredictionTokens": 0,
+      "rejectedPredictionTokens": 0,
+      "cachedPromptTokens": 0
+    }
+  },
+  "response": {
+    "id": "chatcmpl-BA29ntP7AIMv5Sz508dzMGoUQUgU1",
+    "timestamp": "2025-03-11T22:14:31.000Z",
+    "modelId": "gpt-4o-2024-11-20",
+    "headers": {
+      "access-control-expose-headers": "X-Request-ID",
+      "alt-svc": "h3=\":443\"; ma=86400",
+      "cf-cache-status": "DYNAMIC",
+      "cf-ray": "91ee67bf18e12c66-SLC",
+      "connection": "keep-alive",
+      "content-encoding": "br",
+      "content-type": "application/json",
+      "date": "Tue, 11 Mar 2025 22:14:35 GMT",
+      "openai-organization": "user-d5jsqqcojibbhbhmezpursh3",
+      "openai-processing-ms": "3523",
+      "openai-version": "2020-10-01",
+      "server": "cloudflare",
+      "set-cookie": "_cfuvid=fTIxSvCPIx9_AiJ4wQyDMjvg1M9M8qm5m3bR_MsJjDY-1741731275168-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None",
+      "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+      "transfer-encoding": "chunked",
+      "x-content-type-options": "nosniff",
+      "x-ratelimit-limit-requests": "500",
+      "x-ratelimit-limit-tokens": "30000",
+      "x-ratelimit-remaining-requests": "499",
+      "x-ratelimit-remaining-tokens": "24934",
+      "x-ratelimit-reset-requests": "120ms",
+      "x-ratelimit-reset-tokens": "10.132s",
+      "x-request-id": "req_7dbce728b8a106145efa301024f7f2df"
+    },
+    "body": {
+      "id": "chatcmpl-BA29ntP7AIMv5Sz508dzMGoUQUgU1",
+      "object": "chat.completion",
+      "created": 1741731271,
+      "model": "gpt-4o-2024-11-20",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "tool_calls": [
+              {
+                "id": "call_CFGdBMc5z6SHEwpEKOM9x0yG",
+                "type": "function",
+                "function": {
+                  "name": "json",
+                  "arguments": "{\"code\":\"class MyClass {\\n  constructor(property1, property2) {\\n    this.property1 = property1;\\n    this.property2 = property2;\\n  }\\n\\n  // Method to display properties\\n  displayProperties() {\\n    Logger.log(`Property 1: ${this.property1}, Property 2: ${this.property2}`);\\n  }\\n\\n  // Method to update properties\\n  updateProperties(newProperty1, newProperty2) {\\n    this.property1 = newProperty1;\\n    this.property2 = newProperty2;\\n  }\\n}\\n\\nfunction testMyClass() {\\n  // Create an instance of MyClass\\n  const myInstance = new MyClass('Value1', 'Value2');\\n\\n  // Display initial properties\\n  myInstance.displayProperties();\\n\\n  // Update properties\\n  myInstance.updateProperties('NewValue1', 'NewValue2');\\n\\n  // Display updated properties\\n  myInstance.displayProperties();\\n}\"}"
+                }
+              }
+            ],
+            "refusal": null,
+            "annotations": []
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 109,
+        "completion_tokens": 217,
+        "total_tokens": 326,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "service_tier": "default",
+      "system_fingerprint": "fp_1d7c5f52ce"
+    }
+  },
+  "request": {
+    "body": "{\"model\":\"gpt-4o-2024-11-20\",\"max_tokens\":5000,\"temperature\":0,\"messages\":[{\"role\":\"system\",\"content\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"},{\"role\":\"user\",\"content\":\"Write Apps Script code to create a class with properties and methods\"}],\"tool_choice\":{\"type\":\"function\",\"function\":{\"name\":\"json\"}},\"tools\":[{\"type\":\"function\",\"function\":{\"name\":\"json\",\"description\":\"Respond with a JSON object.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\",\"description\":\"Valid Apps Script code\"}},\"required\":[\"code\"],\"additionalProperties\":false,\"$schema\":\"http://json-schema.org/draft-07/schema#\"}}}]}"
+  },
+  "duration": 3679
+}
