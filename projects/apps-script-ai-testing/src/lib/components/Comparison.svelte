@@ -13,7 +13,8 @@
     }
 </script>
 
-<table>
+<div class="overflow-x-auto">
+<table class="w-full">
     <thead>
         <tr>
             <th></th>
@@ -53,6 +54,7 @@
         </tr>
     </tbody>
 </table>
+</div>
 
 <style>
     :global(td.code pre) {
