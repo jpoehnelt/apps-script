@@ -1,0 +1,108 @@
+{
+  "object": {
+    "code": "function createEventAndInviteGuests() {\n  var calendar = CalendarApp.getDefaultCalendar();\n\n  // Define event details\n  var eventTitle = \"Team Meeting\";\n  var eventDescription = \"Discussing project updates and next steps.\";\n  var eventLocation = \"Google Meet\";\n  var startTime = new Date(\"2023-10-20T10:00:00\");\n  var endTime = new Date(\"2023-10-20T11:00:00\");\n\n  // List of guest emails\n  var guestEmails = [\"guest1@example.com\", \"guest2@example.com\", \"guest3@example.com\"];\n\n  // Create the event\n  var event = calendar.createEvent(eventTitle, startTime, endTime, {\n    description: eventDescription,\n    location: eventLocation,\n    guests: guestEmails.join(\",\"),\n    sendInvites: true\n  });\n\n  Logger.log(\"Event created: \" + event.getId());\n}"
+  },
+  "finishReason": "stop",
+  "usage": {
+    "promptTokens": 114,
+    "completionTokens": 232,
+    "totalTokens": 346
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "openai": {
+      "reasoningTokens": 0,
+      "acceptedPredictionTokens": 0,
+      "rejectedPredictionTokens": 0,
+      "cachedPromptTokens": 0
+    }
+  },
+  "experimental_providerMetadata": {
+    "openai": {
+      "reasoningTokens": 0,
+      "acceptedPredictionTokens": 0,
+      "rejectedPredictionTokens": 0,
+      "cachedPromptTokens": 0
+    }
+  },
+  "response": {
+    "id": "chatcmpl-BA41197zxbDmeNqb3C3MaBeUoHvZc",
+    "timestamp": "2025-03-12T00:13:35.000Z",
+    "modelId": "gpt-4o-2024-11-20",
+    "headers": {
+      "access-control-expose-headers": "X-Request-ID",
+      "alt-svc": "h3=\":443\"; ma=86400",
+      "cf-cache-status": "DYNAMIC",
+      "cf-ray": "91ef162979a4ae22-SLC",
+      "connection": "keep-alive",
+      "content-encoding": "br",
+      "content-type": "application/json",
+      "date": "Wed, 12 Mar 2025 00:13:39 GMT",
+      "openai-organization": "user-d5jsqqcojibbhbhmezpursh3",
+      "openai-processing-ms": "4026",
+      "openai-version": "2020-10-01",
+      "server": "cloudflare",
+      "set-cookie": "_cfuvid=E6ICExKLyc1p_mTnhdTNzS1dM9hx5jgxiwx3dBce6vA-1741738419730-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None",
+      "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+      "transfer-encoding": "chunked",
+      "x-content-type-options": "nosniff",
+      "x-ratelimit-limit-requests": "500",
+      "x-ratelimit-limit-tokens": "30000",
+      "x-ratelimit-remaining-requests": "499",
+      "x-ratelimit-remaining-tokens": "24928",
+      "x-ratelimit-reset-requests": "120ms",
+      "x-ratelimit-reset-tokens": "10.144s",
+      "x-request-id": "req_dbdd958a4dbdd04df9544c22a9a3c90f"
+    },
+    "body": {
+      "id": "chatcmpl-BA41197zxbDmeNqb3C3MaBeUoHvZc",
+      "object": "chat.completion",
+      "created": 1741738415,
+      "model": "gpt-4o-2024-11-20",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "tool_calls": [
+              {
+                "id": "call_7ApcaohkoA1JyDxXLjR10wV0",
+                "type": "function",
+                "function": {
+                  "name": "json",
+                  "arguments": "{\"code\":\"function createEventAndInviteGuests() {\\n  var calendar = CalendarApp.getDefaultCalendar();\\n\\n  // Define event details\\n  var eventTitle = \\\"Team Meeting\\\";\\n  var eventDescription = \\\"Discussing project updates and next steps.\\\";\\n  var eventLocation = \\\"Google Meet\\\";\\n  var startTime = new Date(\\\"2023-10-20T10:00:00\\\");\\n  var endTime = new Date(\\\"2023-10-20T11:00:00\\\");\\n\\n  // List of guest emails\\n  var guestEmails = [\\\"guest1@example.com\\\", \\\"guest2@example.com\\\", \\\"guest3@example.com\\\"];\\n\\n  // Create the event\\n  var event = calendar.createEvent(eventTitle, startTime, endTime, {\\n    description: eventDescription,\\n    location: eventLocation,\\n    guests: guestEmails.join(\\\",\\\"),\\n    sendInvites: true\\n  });\\n\\n  Logger.log(\\\"Event created: \\\" + event.getId());\\n}\"}"
+                }
+              }
+            ],
+            "refusal": null,
+            "annotations": []
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 114,
+        "completion_tokens": 232,
+        "total_tokens": 346,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "service_tier": "default",
+      "system_fingerprint": "fp_1d7c5f52ce"
+    }
+  },
+  "request": {
+    "body": "{\"model\":\"gpt-4o-2024-11-20\",\"max_tokens\":5000,\"temperature\":0,\"messages\":[{\"role\":\"system\",\"content\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"},{\"role\":\"user\",\"content\":\"Write Apps Script code create a new event in Google Calendar and send invites to all guests\"}],\"tool_choice\":{\"type\":\"function\",\"function\":{\"name\":\"json\"}},\"tools\":[{\"type\":\"function\",\"function\":{\"name\":\"json\",\"description\":\"Respond with a JSON object.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\",\"description\":\"Valid Apps Script code\"}},\"required\":[\"code\"],\"additionalProperties\":false,\"$schema\":\"http://json-schema.org/draft-07/schema#\"}}}]}"
+  },
+  "duration": 4187
+}

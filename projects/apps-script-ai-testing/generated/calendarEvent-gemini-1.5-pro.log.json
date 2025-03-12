@@ -1,0 +1,80 @@
+{
+  "object": {
+    "code": "function createCalendarEventAndSendInvites() {\n  // Get the calendar service\n  var calendar = CalendarApp.getDefaultCalendar();\n\n  // Set the event details\n  var title = \"New Event Title\";\n  var description = \"Event description here\";\n  var startTime = new Date(\"2024-05-20T09:00:00\");\n  var endTime = new Date(\"2024-05-20T10:00:00\");\n  var guests = \"guest1@example.com, guest2@example.com\"; // Comma-separated list of guest emails\n  var options = {\n    guests: guests,\n    sendInvites: true // Set to true to send invitations\n  };\n\n  // Create the event\n  var event = calendar.createEvent(title, startTime, endTime, options);\n\n  // Log the event ID (optional)\n  Logger.log(\"Event created with ID: \" + event.getId());\n\n  // Send a customized invitation email (optional)\n  // Loop through each guest and send a personalized email\n  var guestEmails = guests.split(\",\");\n  for (var i = 0; i < guestEmails.length; i++) {\n    var guestEmail = guestEmails[i].trim();\n    var subject = \"Invitation to \" + title;\n    var body = \"You are invited to attend \" + title + \" on \" + startTime.toLocaleDateString() + \" at \" + startTime.toLocaleTimeString() + \".\\n\\n\" + description;\n    MailApp.sendEmail(guestEmail, subject, body);\n  }\n}"
+  },
+  "finishReason": "stop",
+  "usage": {
+    "promptTokens": 64,
+    "completionTokens": 399,
+    "totalTokens": 463
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "experimental_providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "response": {
+    "id": "aiobj-LSk95m59Sy0l1nqFWZUbwmfk",
+    "timestamp": "2025-03-12T00:13:00.971Z",
+    "modelId": "gemini-1.5-pro",
+    "headers": {
+      "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+      "content-encoding": "gzip",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Wed, 12 Mar 2025 00:13:01 GMT",
+      "server": "scaffolding on HTTPServer2",
+      "server-timing": "gfet4t7; dur=6126",
+      "transfer-encoding": "chunked",
+      "vary": "Origin, X-Origin, Referer",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "0"
+    },
+    "body": {
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"code\": \"function createCalendarEventAndSendInvites() {\\n  // Get the calendar service\\n  var calendar = CalendarApp.getDefaultCalendar();\\n\\n  // Set the event details\\n  var title = \\\"New Event Title\\\";\\n  var description = \\\"Event description here\\\";\\n  var startTime = new Date(\\\"2024-05-20T09:00:00\\\");\\n  var endTime = new Date(\\\"2024-05-20T10:00:00\\\");\\n  var guests = \\\"guest1@example.com, guest2@example.com\\\"; // Comma-separated list of guest emails\\n  var options = {\\n    guests: guests,\\n    sendInvites: true // Set to true to send invitations\\n  };\\n\\n  // Create the event\\n  var event = calendar.createEvent(title, startTime, endTime, options);\\n\\n  // Log the event ID (optional)\\n  Logger.log(\\\"Event created with ID: \\\" + event.getId());\\n\\n  // Send a customized invitation email (optional)\\n  // Loop through each guest and send a personalized email\\n  var guestEmails = guests.split(\\\",\\\");\\n  for (var i = 0; i < guestEmails.length; i++) {\\n    var guestEmail = guestEmails[i].trim();\\n    var subject = \\\"Invitation to \\\" + title;\\n    var body = \\\"You are invited to attend \\\" + title + \\\" on \\\" + startTime.toLocaleDateString() + \\\" at \\\" + startTime.toLocaleTimeString() + \\\".\\\\n\\\\n\\\" + description;\\n    MailApp.sendEmail(guestEmail, subject, body);\\n  }\\n}\"}"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP",
+          "avgLogprobs": -0.033983902226115824
+        }
+      ],
+      "usageMetadata": {
+        "promptTokenCount": 64,
+        "candidatesTokenCount": 399,
+        "totalTokenCount": 463,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 64
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 399
+          }
+        ]
+      },
+      "modelVersion": "gemini-1.5-pro-002"
+    }
+  },
+  "request": {
+    "body": "{\"generationConfig\":{\"maxOutputTokens\":5000,\"temperature\":0,\"responseMimeType\":\"application/json\",\"responseSchema\":{\"required\":[\"code\"],\"type\":\"object\",\"properties\":{\"code\":{\"description\":\"Valid Apps Script code\",\"type\":\"string\"}}}},\"contents\":[{\"role\":\"user\",\"parts\":[{\"text\":\"Write Apps Script code create a new event in Google Calendar and send invites to all guests\"}]}],\"systemInstruction\":{\"parts\":[{\"text\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"}]}}"
+  },
+  "duration": 6163
+}

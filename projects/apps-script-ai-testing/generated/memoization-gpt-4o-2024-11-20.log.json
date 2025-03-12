@@ -1,0 +1,108 @@
+{
+  "object": {
+    "code": "function memoize(fn) {\n  const cache = {};\n  return function(...args) {\n    const key = JSON.stringify(args);\n    if (cache[key]) {\n      return cache[key];\n    }\n    const result = fn(...args);\n    cache[key] = result;\n    return result;\n  };\n}\n\n// Example of an expensive function\nfunction expensiveFunction(num) {\n  Utilities.sleep(2000); // Simulate a time-consuming operation\n  return num * num;\n}\n\n// Memoized version of the expensive function\nconst memoizedExpensiveFunction = memoize(expensiveFunction);\n\nfunction testMemoization() {\n  Logger.log(memoizedExpensiveFunction(5)); // First call, will take time\n  Logger.log(memoizedExpensiveFunction(5)); // Second call, will return cached result\n}"
+  },
+  "finishReason": "stop",
+  "usage": {
+    "promptTokens": 108,
+    "completionTokens": 195,
+    "totalTokens": 303
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "openai": {
+      "reasoningTokens": 0,
+      "acceptedPredictionTokens": 0,
+      "rejectedPredictionTokens": 0,
+      "cachedPromptTokens": 0
+    }
+  },
+  "experimental_providerMetadata": {
+    "openai": {
+      "reasoningTokens": 0,
+      "acceptedPredictionTokens": 0,
+      "rejectedPredictionTokens": 0,
+      "cachedPromptTokens": 0
+    }
+  },
+  "response": {
+    "id": "chatcmpl-BA40nqkfEVkY8dg8bc7Bv35Utaxjs",
+    "timestamp": "2025-03-12T00:13:21.000Z",
+    "modelId": "gpt-4o-2024-11-20",
+    "headers": {
+      "access-control-expose-headers": "X-Request-ID",
+      "alt-svc": "h3=\":443\"; ma=86400",
+      "cf-cache-status": "DYNAMIC",
+      "cf-ray": "91ef15cd1ba8ae22-SLC",
+      "connection": "keep-alive",
+      "content-encoding": "br",
+      "content-type": "application/json",
+      "date": "Wed, 12 Mar 2025 00:13:24 GMT",
+      "openai-organization": "user-d5jsqqcojibbhbhmezpursh3",
+      "openai-processing-ms": "3692",
+      "openai-version": "2020-10-01",
+      "server": "cloudflare",
+      "set-cookie": "_cfuvid=KnN4.1.1edt_KVYpveKoHsCf1X0dPiV5QhH7UOhRJS8-1741738404777-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None",
+      "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+      "transfer-encoding": "chunked",
+      "x-content-type-options": "nosniff",
+      "x-ratelimit-limit-requests": "500",
+      "x-ratelimit-limit-tokens": "30000",
+      "x-ratelimit-remaining-requests": "499",
+      "x-ratelimit-remaining-tokens": "24935",
+      "x-ratelimit-reset-requests": "120ms",
+      "x-ratelimit-reset-tokens": "10.13s",
+      "x-request-id": "req_076b2400511871e4b845d20cc273fa86"
+    },
+    "body": {
+      "id": "chatcmpl-BA40nqkfEVkY8dg8bc7Bv35Utaxjs",
+      "object": "chat.completion",
+      "created": 1741738401,
+      "model": "gpt-4o-2024-11-20",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "tool_calls": [
+              {
+                "id": "call_hio0HNbhjvpJn5sTlmMg21io",
+                "type": "function",
+                "function": {
+                  "name": "json",
+                  "arguments": "{\"code\":\"function memoize(fn) {\\n  const cache = {};\\n  return function(...args) {\\n    const key = JSON.stringify(args);\\n    if (cache[key]) {\\n      return cache[key];\\n    }\\n    const result = fn(...args);\\n    cache[key] = result;\\n    return result;\\n  };\\n}\\n\\n// Example of an expensive function\\nfunction expensiveFunction(num) {\\n  Utilities.sleep(2000); // Simulate a time-consuming operation\\n  return num * num;\\n}\\n\\n// Memoized version of the expensive function\\nconst memoizedExpensiveFunction = memoize(expensiveFunction);\\n\\nfunction testMemoization() {\\n  Logger.log(memoizedExpensiveFunction(5)); // First call, will take time\\n  Logger.log(memoizedExpensiveFunction(5)); // Second call, will return cached result\\n}\"}"
+                }
+              }
+            ],
+            "refusal": null,
+            "annotations": []
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 108,
+        "completion_tokens": 195,
+        "total_tokens": 303,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "service_tier": "default",
+      "system_fingerprint": "fp_1d7c5f52ce"
+    }
+  },
+  "request": {
+    "body": "{\"model\":\"gpt-4o-2024-11-20\",\"max_tokens\":5000,\"temperature\":0,\"messages\":[{\"role\":\"system\",\"content\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"},{\"role\":\"user\",\"content\":\"Write Apps Script code that memoizes an expensive function call\"}],\"tool_choice\":{\"type\":\"function\",\"function\":{\"name\":\"json\"}},\"tools\":[{\"type\":\"function\",\"function\":{\"name\":\"json\",\"description\":\"Respond with a JSON object.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\",\"description\":\"Valid Apps Script code\"}},\"required\":[\"code\"],\"additionalProperties\":false,\"$schema\":\"http://json-schema.org/draft-07/schema#\"}}}]}"
+  },
+  "duration": 4016
+}

@@ -1,0 +1,108 @@
+{
+  "object": {
+    "code": "function onGmailMessageOpen(e) {\n  var messageId = e.messageId;\n  var message = GmailApp.getMessageById(messageId);\n  var subject = message.getSubject();\n  var from = message.getFrom();\n  var body = message.getBody();\n\n  // Create a card to display additional information\n  var card = CardService.newCardBuilder();\n\n  // Add a header\n  card.addHeader(CardService.newCardHeader()\n      .setTitle('Email Information')\n      .setSubtitle('Details about the email you are reading'));\n\n  // Add a section with the email details\n  var section = CardService.newCardSection();\n  section.addWidget(CardService.newTextParagraph().setText('From: ' + from));\n  section.addWidget(CardService.newTextParagraph().setText('Subject: ' + subject));\n  section.addWidget(CardService.newTextParagraph().setText('Body: ' + body.substring(0, 200) + '...')); // Show first 200 chars\n\n  card.addSection(section);\n\n  // Return the card to display\n  return card.build();\n}\n\nfunction getContextualAddOn(e) {\n  return onGmailMessageOpen(e);\n}"
+  },
+  "finishReason": "stop",
+  "usage": {
+    "promptTokens": 120,
+    "completionTokens": 284,
+    "totalTokens": 404
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "openai": {
+      "reasoningTokens": 0,
+      "acceptedPredictionTokens": 0,
+      "rejectedPredictionTokens": 0,
+      "cachedPromptTokens": 0
+    }
+  },
+  "experimental_providerMetadata": {
+    "openai": {
+      "reasoningTokens": 0,
+      "acceptedPredictionTokens": 0,
+      "rejectedPredictionTokens": 0,
+      "cachedPromptTokens": 0
+    }
+  },
+  "response": {
+    "id": "chatcmpl-BA41CnYT18i1JjDal4YY8ijlw49sz",
+    "timestamp": "2025-03-12T00:13:46.000Z",
+    "modelId": "gpt-4o-mini-2024-07-18",
+    "headers": {
+      "access-control-expose-headers": "X-Request-ID",
+      "alt-svc": "h3=\":443\"; ma=86400",
+      "cf-cache-status": "DYNAMIC",
+      "cf-ray": "91ef166c2b06ae22-SLC",
+      "connection": "keep-alive",
+      "content-encoding": "br",
+      "content-type": "application/json",
+      "date": "Wed, 12 Mar 2025 00:13:50 GMT",
+      "openai-organization": "user-d5jsqqcojibbhbhmezpursh3",
+      "openai-processing-ms": "3934",
+      "openai-version": "2020-10-01",
+      "server": "cloudflare",
+      "set-cookie": "_cfuvid=IVGw_mp.PobKQ_QkRzC6eZmGhtKVL_ar_iWHzkFlYg8-1741738430310-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None",
+      "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+      "transfer-encoding": "chunked",
+      "x-content-type-options": "nosniff",
+      "x-ratelimit-limit-requests": "10000",
+      "x-ratelimit-limit-tokens": "200000",
+      "x-ratelimit-remaining-requests": "9997",
+      "x-ratelimit-remaining-tokens": "194917",
+      "x-ratelimit-reset-requests": "19.474s",
+      "x-ratelimit-reset-tokens": "1.524s",
+      "x-request-id": "req_4a1c1c8f61aa793d54bfc9ee6789857d"
+    },
+    "body": {
+      "id": "chatcmpl-BA41CnYT18i1JjDal4YY8ijlw49sz",
+      "object": "chat.completion",
+      "created": 1741738426,
+      "model": "gpt-4o-mini-2024-07-18",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "tool_calls": [
+              {
+                "id": "call_zCaSv9H1axhtdA3G71gylG9O",
+                "type": "function",
+                "function": {
+                  "name": "json",
+                  "arguments": "{\"code\":\"function onGmailMessageOpen(e) {\\n  var messageId = e.messageId;\\n  var message = GmailApp.getMessageById(messageId);\\n  var subject = message.getSubject();\\n  var from = message.getFrom();\\n  var body = message.getBody();\\n\\n  // Create a card to display additional information\\n  var card = CardService.newCardBuilder();\\n\\n  // Add a header\\n  card.addHeader(CardService.newCardHeader()\\n      .setTitle('Email Information')\\n      .setSubtitle('Details about the email you are reading'));\\n\\n  // Add a section with the email details\\n  var section = CardService.newCardSection();\\n  section.addWidget(CardService.newTextParagraph().setText('From: ' + from));\\n  section.addWidget(CardService.newTextParagraph().setText('Subject: ' + subject));\\n  section.addWidget(CardService.newTextParagraph().setText('Body: ' + body.substring(0, 200) + '...')); // Show first 200 chars\\n\\n  card.addSection(section);\\n\\n  // Return the card to display\\n  return card.build();\\n}\\n\\nfunction getContextualAddOn(e) {\\n  return onGmailMessageOpen(e);\\n}\"}"
+                }
+              }
+            ],
+            "refusal": null,
+            "annotations": []
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 120,
+        "completion_tokens": 284,
+        "total_tokens": 404,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "service_tier": "default",
+      "system_fingerprint": "fp_06737a9306"
+    }
+  },
+  "request": {
+    "body": "{\"model\":\"gpt-4o-mini-2024-07-18\",\"max_tokens\":5000,\"temperature\":0,\"messages\":[{\"role\":\"system\",\"content\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"},{\"role\":\"user\",\"content\":\"Write Apps Script code to create a Gmail add-on that allows users to view additional information about the email they are reading\"}],\"tool_choice\":{\"type\":\"function\",\"function\":{\"name\":\"json\"}},\"tools\":[{\"type\":\"function\",\"function\":{\"name\":\"json\",\"description\":\"Respond with a JSON object.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\",\"description\":\"Valid Apps Script code\"}},\"required\":[\"code\"],\"additionalProperties\":false,\"$schema\":\"http://json-schema.org/draft-07/schema#\"}}}]}"
+  },
+  "duration": 4115
+}

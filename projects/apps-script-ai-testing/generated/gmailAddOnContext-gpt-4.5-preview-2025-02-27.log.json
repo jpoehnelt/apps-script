@@ -1,0 +1,107 @@
+{
+  "object": {
+    "code": "function buildAddOn(e) {\n  var messageId = e.gmail.messageId;\n  var message = GmailApp.getMessageById(messageId);\n  var sender = message.getFrom();\n  var subject = message.getSubject();\n  var date = message.getDate();\n\n  var card = CardService.newCardBuilder()\n    .setHeader(CardService.newCardHeader().setTitle(\"Email Details\"))\n    .addSection(CardService.newCardSection()\n      .addWidget(CardService.newTextParagraph().setText(\"<b>Sender:</b> \" + sender))\n      .addWidget(CardService.newTextParagraph().setText(\"<b>Subject:</b> \" + subject))\n      .addWidget(CardService.newTextParagraph().setText(\"<b>Date:</b> \" + date)))\n    .build();\n\n  return card;\n}\n\nfunction getContextualAddOn(e) {\n  return buildAddOn(e);\n}"
+  },
+  "finishReason": "stop",
+  "usage": {
+    "promptTokens": 120,
+    "completionTokens": 221,
+    "totalTokens": 341
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "openai": {
+      "reasoningTokens": 0,
+      "acceptedPredictionTokens": 0,
+      "rejectedPredictionTokens": 0,
+      "cachedPromptTokens": 0
+    }
+  },
+  "experimental_providerMetadata": {
+    "openai": {
+      "reasoningTokens": 0,
+      "acceptedPredictionTokens": 0,
+      "rejectedPredictionTokens": 0,
+      "cachedPromptTokens": 0
+    }
+  },
+  "response": {
+    "id": "chatcmpl-BA40bcFssKCnJC7mnPGINWDKFYJJe",
+    "timestamp": "2025-03-12T00:13:09.000Z",
+    "modelId": "gpt-4.5-preview-2025-02-27",
+    "headers": {
+      "access-control-expose-headers": "X-Request-ID",
+      "alt-svc": "h3=\":443\"; ma=86400",
+      "cf-cache-status": "DYNAMIC",
+      "cf-ray": "91ef1584adddae22-SLC",
+      "connection": "keep-alive",
+      "content-encoding": "br",
+      "content-type": "application/json",
+      "date": "Wed, 12 Mar 2025 00:13:15 GMT",
+      "openai-organization": "user-d5jsqqcojibbhbhmezpursh3",
+      "openai-processing-ms": "6334",
+      "openai-version": "2020-10-01",
+      "server": "cloudflare",
+      "set-cookie": "_cfuvid=upn4hWfLSl.6vZbnD1iACRDjfduhC5mgCHAVa2uHEKE-1741738395665-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None",
+      "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+      "transfer-encoding": "chunked",
+      "x-content-type-options": "nosniff",
+      "x-ratelimit-limit-requests": "1000",
+      "x-ratelimit-limit-tokens": "125000",
+      "x-ratelimit-remaining-requests": "999",
+      "x-ratelimit-remaining-tokens": "119917",
+      "x-ratelimit-reset-requests": "60ms",
+      "x-ratelimit-reset-tokens": "2.439s",
+      "x-request-id": "req_312fc83776d38c6afa5e8300d8fc3e3c"
+    },
+    "body": {
+      "id": "chatcmpl-BA40bcFssKCnJC7mnPGINWDKFYJJe",
+      "object": "chat.completion",
+      "created": 1741738389,
+      "model": "gpt-4.5-preview-2025-02-27",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "tool_calls": [
+              {
+                "id": "call_ZsFPoYTqCzfXcr7u1HE2yvcz",
+                "type": "function",
+                "function": {
+                  "name": "json",
+                  "arguments": "{\"code\":\"function buildAddOn(e) {\\n  var messageId = e.gmail.messageId;\\n  var message = GmailApp.getMessageById(messageId);\\n  var sender = message.getFrom();\\n  var subject = message.getSubject();\\n  var date = message.getDate();\\n\\n  var card = CardService.newCardBuilder()\\n    .setHeader(CardService.newCardHeader().setTitle(\\\"Email Details\\\"))\\n    .addSection(CardService.newCardSection()\\n      .addWidget(CardService.newTextParagraph().setText(\\\"<b>Sender:</b> \\\" + sender))\\n      .addWidget(CardService.newTextParagraph().setText(\\\"<b>Subject:</b> \\\" + subject))\\n      .addWidget(CardService.newTextParagraph().setText(\\\"<b>Date:</b> \\\" + date)))\\n    .build();\\n\\n  return card;\\n}\\n\\nfunction getContextualAddOn(e) {\\n  return buildAddOn(e);\\n}\"}"
+                }
+              }
+            ],
+            "refusal": null,
+            "annotations": []
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 120,
+        "completion_tokens": 221,
+        "total_tokens": 341,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "service_tier": "default",
+      "system_fingerprint": null
+    }
+  },
+  "request": {
+    "body": "{\"model\":\"gpt-4.5-preview-2025-02-27\",\"max_tokens\":5000,\"temperature\":0,\"messages\":[{\"role\":\"system\",\"content\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"},{\"role\":\"user\",\"content\":\"Write Apps Script code to create a Gmail add-on that allows users to view additional information about the email they are reading\"}],\"tool_choice\":{\"type\":\"function\",\"function\":{\"name\":\"json\"}},\"tools\":[{\"type\":\"function\",\"function\":{\"name\":\"json\",\"description\":\"Respond with a JSON object.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\",\"description\":\"Valid Apps Script code\"}},\"required\":[\"code\"],\"additionalProperties\":false,\"$schema\":\"http://json-schema.org/draft-07/schema#\"}}}]}"
+  },
+  "duration": 6485
+}

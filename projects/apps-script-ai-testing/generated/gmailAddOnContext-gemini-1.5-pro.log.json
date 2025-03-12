@@ -1,0 +1,80 @@
+{
+  "object": {
+    "code": "/** * Opens a sidebar when the add-on is installed. */function onInstall(e) {  onOpen(e);}/** * Opens a sidebar when the add-on is opened. */function onOpen(e) {  GmailApp.getUi().createAddonMenu()      .addItem('Show email info', 'showSidebar')      .addToUi();}/** * Opens a sidebar in the Gmail UI. */function showSidebar() {  var html = HtmlService.createHtmlOutputFromFile('sidebar')      .setTitle('Email Information');  GmailApp.getUi().showSidebar(html);}/** * Gets the current message thread. */function getCurrentMessageThread() {  return GmailApp.getActiveMessageThread();}/** * Gets the subject of the current email. */function getSubject() {  var message = GmailApp.getActiveMessage();  return message.getSubject();}/** * Gets the sender of the current email. */function getSender() {  var message = GmailApp.getActiveMessage();  return message.getFrom();}/** * Gets the recipients of the current email. */function getRecipients() {  var message = GmailApp.getActiveMessage();  return message.getTo();}/** * Gets the email body. */function getEmailBody() {  var message = GmailApp.getActiveMessage();  return message.getBody();}"
+  },
+  "finishReason": "stop",
+  "usage": {
+    "promptTokens": 71,
+    "completionTokens": 282,
+    "totalTokens": 353
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "experimental_providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "response": {
+    "id": "aiobj-tlwLOp8E5PxAwNhw1FLRM3uw",
+    "timestamp": "2025-03-12T00:12:54.807Z",
+    "modelId": "gemini-1.5-pro",
+    "headers": {
+      "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+      "content-encoding": "gzip",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Wed, 12 Mar 2025 00:11:55 GMT",
+      "server": "scaffolding on HTTPServer2",
+      "server-timing": "gfet4t7; dur=4589",
+      "transfer-encoding": "chunked",
+      "vary": "Origin, X-Origin, Referer",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "0"
+    },
+    "body": {
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"code\": \"/** * Opens a sidebar when the add-on is installed. */function onInstall(e) {  onOpen(e);}/** * Opens a sidebar when the add-on is opened. */function onOpen(e) {  GmailApp.getUi().createAddonMenu()      .addItem('Show email info', 'showSidebar')      .addToUi();}/** * Opens a sidebar in the Gmail UI. */function showSidebar() {  var html = HtmlService.createHtmlOutputFromFile('sidebar')      .setTitle('Email Information');  GmailApp.getUi().showSidebar(html);}/** * Gets the current message thread. */function getCurrentMessageThread() {  return GmailApp.getActiveMessageThread();}/** * Gets the subject of the current email. */function getSubject() {  var message = GmailApp.getActiveMessage();  return message.getSubject();}/** * Gets the sender of the current email. */function getSender() {  var message = GmailApp.getActiveMessage();  return message.getFrom();}/** * Gets the recipients of the current email. */function getRecipients() {  var message = GmailApp.getActiveMessage();  return message.getTo();}/** * Gets the email body. */function getEmailBody() {  var message = GmailApp.getActiveMessage();  return message.getBody();}\"\n}"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP",
+          "avgLogprobs": -0.020841978965921604
+        }
+      ],
+      "usageMetadata": {
+        "promptTokenCount": 71,
+        "candidatesTokenCount": 282,
+        "totalTokenCount": 353,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 71
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 282
+          }
+        ]
+      },
+      "modelVersion": "gemini-1.5-pro-002"
+    }
+  },
+  "request": {
+    "body": "{\"generationConfig\":{\"maxOutputTokens\":5000,\"temperature\":0,\"responseMimeType\":\"application/json\",\"responseSchema\":{\"required\":[\"code\"],\"type\":\"object\",\"properties\":{\"code\":{\"description\":\"Valid Apps Script code\",\"type\":\"string\"}}}},\"contents\":[{\"role\":\"user\",\"parts\":[{\"text\":\"Write Apps Script code to create a Gmail add-on that allows users to view additional information about the email they are reading\"}]}],\"systemInstruction\":{\"parts\":[{\"text\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"}]}}"
+  },
+  "duration": 64197
+}

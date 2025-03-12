@@ -1,0 +1,108 @@
+{
+  "object": {
+    "code": "function getContextualAddOn() {\n  return CardService.newCardBuilder()\n    .setHeader(CardService.newCardHeader().setTitle(\"Email Details\"))\n    .addSection(\n      CardService.newCardSection()\n        .addWidget(\n          CardService.newTextParagraph().setText(\"This add-on provides additional information about the email you are reading.\"))\n    )\n    .build();\n}\n\nfunction buildAddOn(e) {\n  const messageId = e.gmail.messageId;\n  const threadId = e.gmail.threadId;\n\n  const message = GmailApp.getMessageById(messageId);\n  const subject = message.getSubject();\n  const sender = message.getFrom();\n  const recipients = message.getTo();\n  const date = message.getDate();\n\n  const card = CardService.newCardBuilder()\n    .setHeader(CardService.newCardHeader().setTitle(\"Email Details\"))\n    .addSection(\n      CardService.newCardSection()\n        .addWidget(CardService.newKeyValue().setTopLabel(\"Subject\").setContent(subject))\n        .addWidget(CardService.newKeyValue().setTopLabel(\"Sender\").setContent(sender))\n        .addWidget(CardService.newKeyValue().setTopLabel(\"Recipients\").setContent(recipients))\n        .addWidget(CardService.newKeyValue().setTopLabel(\"Date\").setContent(date.toString()))\n    )\n    .build();\n\n  return card;\n}\n\nfunction onGmailMessageOpen(e) {\n  return buildAddOn(e);\n}\n\nfunction onHomepage(e) {\n  return getContextualAddOn();\n}\n\nfunction getGmailAddOnManifest() {\n  return {\n    \"oauthScopes\": [\n      \"https://www.googleapis.com/auth/gmail.readonly\"\n    ],\n    \"gmail\": {\n      \"name\": \"Email Details Viewer\",\n      \"logoUrl\": \"https://www.example.com/logo.png\",\n      \"contextualTriggers\": [\n        {\n          \"unconditional\": {},\n          \"onTriggerFunction\": \"onGmailMessageOpen\"\n        }\n      ],\n      \"primaryColor\": \"#4285F4\",\n      \"secondaryColor\": \"#D3E3FD\",\n      \"homepageTrigger\": {\n        \"runFunction\": \"onHomepage\"\n      }\n    }\n  };\n}"
+  },
+  "finishReason": "stop",
+  "usage": {
+    "promptTokens": 120,
+    "completionTokens": 554,
+    "totalTokens": 674
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "openai": {
+      "reasoningTokens": 0,
+      "acceptedPredictionTokens": 0,
+      "rejectedPredictionTokens": 0,
+      "cachedPromptTokens": 0
+    }
+  },
+  "experimental_providerMetadata": {
+    "openai": {
+      "reasoningTokens": 0,
+      "acceptedPredictionTokens": 0,
+      "rejectedPredictionTokens": 0,
+      "cachedPromptTokens": 0
+    }
+  },
+  "response": {
+    "id": "chatcmpl-BA40ss13jdIsCsPrJMeOagbwGjoCD",
+    "timestamp": "2025-03-12T00:13:26.000Z",
+    "modelId": "gpt-4o-2024-11-20",
+    "headers": {
+      "access-control-expose-headers": "X-Request-ID",
+      "alt-svc": "h3=\":443\"; ma=86400",
+      "cf-cache-status": "DYNAMIC",
+      "cf-ray": "91ef15eccd51ae22-SLC",
+      "connection": "keep-alive",
+      "content-encoding": "br",
+      "content-type": "application/json",
+      "date": "Wed, 12 Mar 2025 00:13:35 GMT",
+      "openai-organization": "user-d5jsqqcojibbhbhmezpursh3",
+      "openai-processing-ms": "9546",
+      "openai-version": "2020-10-01",
+      "server": "cloudflare",
+      "set-cookie": "_cfuvid=3lecWqoocQhuLCXIx132gd4OOJTJQ55Wrlha0NYJ4QY-1741738415537-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None",
+      "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+      "transfer-encoding": "chunked",
+      "x-content-type-options": "nosniff",
+      "x-ratelimit-limit-requests": "500",
+      "x-ratelimit-limit-tokens": "30000",
+      "x-ratelimit-remaining-requests": "499",
+      "x-ratelimit-remaining-tokens": "24918",
+      "x-ratelimit-reset-requests": "120ms",
+      "x-ratelimit-reset-tokens": "10.164s",
+      "x-request-id": "req_d257b130045f4191f2c7d8e00f43cf7a"
+    },
+    "body": {
+      "id": "chatcmpl-BA40ss13jdIsCsPrJMeOagbwGjoCD",
+      "object": "chat.completion",
+      "created": 1741738406,
+      "model": "gpt-4o-2024-11-20",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "tool_calls": [
+              {
+                "id": "call_vixhGTjDK9vrVVWD9tO4KAPL",
+                "type": "function",
+                "function": {
+                  "name": "json",
+                  "arguments": "{\"code\":\"function getContextualAddOn() {\\n  return CardService.newCardBuilder()\\n    .setHeader(CardService.newCardHeader().setTitle(\\\"Email Details\\\"))\\n    .addSection(\\n      CardService.newCardSection()\\n        .addWidget(\\n          CardService.newTextParagraph().setText(\\\"This add-on provides additional information about the email you are reading.\\\"))\\n    )\\n    .build();\\n}\\n\\nfunction buildAddOn(e) {\\n  const messageId = e.gmail.messageId;\\n  const threadId = e.gmail.threadId;\\n\\n  const message = GmailApp.getMessageById(messageId);\\n  const subject = message.getSubject();\\n  const sender = message.getFrom();\\n  const recipients = message.getTo();\\n  const date = message.getDate();\\n\\n  const card = CardService.newCardBuilder()\\n    .setHeader(CardService.newCardHeader().setTitle(\\\"Email Details\\\"))\\n    .addSection(\\n      CardService.newCardSection()\\n        .addWidget(CardService.newKeyValue().setTopLabel(\\\"Subject\\\").setContent(subject))\\n        .addWidget(CardService.newKeyValue().setTopLabel(\\\"Sender\\\").setContent(sender))\\n        .addWidget(CardService.newKeyValue().setTopLabel(\\\"Recipients\\\").setContent(recipients))\\n        .addWidget(CardService.newKeyValue().setTopLabel(\\\"Date\\\").setContent(date.toString()))\\n    )\\n    .build();\\n\\n  return card;\\n}\\n\\nfunction onGmailMessageOpen(e) {\\n  return buildAddOn(e);\\n}\\n\\nfunction onHomepage(e) {\\n  return getContextualAddOn();\\n}\\n\\nfunction getGmailAddOnManifest() {\\n  return {\\n    \\\"oauthScopes\\\": [\\n      \\\"https://www.googleapis.com/auth/gmail.readonly\\\"\\n    ],\\n    \\\"gmail\\\": {\\n      \\\"name\\\": \\\"Email Details Viewer\\\",\\n      \\\"logoUrl\\\": \\\"https://www.example.com/logo.png\\\",\\n      \\\"contextualTriggers\\\": [\\n        {\\n          \\\"unconditional\\\": {},\\n          \\\"onTriggerFunction\\\": \\\"onGmailMessageOpen\\\"\\n        }\\n      ],\\n      \\\"primaryColor\\\": \\\"#4285F4\\\",\\n      \\\"secondaryColor\\\": \\\"#D3E3FD\\\",\\n      \\\"homepageTrigger\\\": {\\n        \\\"runFunction\\\": \\\"onHomepage\\\"\\n      }\\n    }\\n  };\\n}\"}"
+                }
+              }
+            ],
+            "refusal": null,
+            "annotations": []
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 120,
+        "completion_tokens": 554,
+        "total_tokens": 674,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "service_tier": "default",
+      "system_fingerprint": "fp_1d7c5f52ce"
+    }
+  },
+  "request": {
+    "body": "{\"model\":\"gpt-4o-2024-11-20\",\"max_tokens\":5000,\"temperature\":0,\"messages\":[{\"role\":\"system\",\"content\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"},{\"role\":\"user\",\"content\":\"Write Apps Script code to create a Gmail add-on that allows users to view additional information about the email they are reading\"}],\"tool_choice\":{\"type\":\"function\",\"function\":{\"name\":\"json\"}},\"tools\":[{\"type\":\"function\",\"function\":{\"name\":\"json\",\"description\":\"Respond with a JSON object.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\",\"description\":\"Valid Apps Script code\"}},\"required\":[\"code\"],\"additionalProperties\":false,\"$schema\":\"http://json-schema.org/draft-07/schema#\"}}}]}"
+  },
+  "duration": 9720
+}
