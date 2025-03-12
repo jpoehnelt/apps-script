@@ -1,0 +1,74 @@
+{
+  "object": {
+    "code": "/**\n * Memoizes a function call to improve performance.\n *\n * @param {function} func The function to memoize.\n * @return {function} The memoized function.\n */\nfunction memoizeFunction(func) {\n  const cache = {};\n\n  return function(...args) {\n    const key = JSON.stringify(args);\n    if (cache[key]) {\n      console.log(`Returning cached result for key: ${key}`);\n      return cache[key];\n    }\n\n    console.log(`Calculating result for key: ${key}`);\n    const result = func.apply(this, args);\n    cache[key] = result;\n    return result;\n  };\n}\n\n\n/**\n * Example of an expensive function (simulated with a delay).\n *\n * @param {number} a\n * @param {number} b\n */\nfunction expensiveFunction(a, b) {\n  // Simulate a time-consuming operation (e.g., network request, complex calculation)\n  Utilities.sleep(1000); // Pause for 1 second\n  return a + b;\n}\n\n\n/**\n * Example usage of the memoization function.\n */\nfunction testMemoization() {\n  const memoizedExpensiveFunction = memoizeFunction(expensiveFunction);\n\n  // First call (calculates and caches the result)\n  const result1 = memoizedExpensiveFunction(2, 3);\n  console.log(`Result 1: ${result1}`); // Output: 5 (after a 1-second delay)\n\n  // Second call (retrieves from cache)\n  const result2 = memoizedExpensiveFunction(2, 3);\n  console.log(`Result 2: ${result2}`); // Output: 5 (immediately)\n\n  // Third call with different arguments (calculates and caches)\n  const result3 = memoizedExpensiveFunction(5, 4);\n  console.log(`Result 3: ${result3}`); // Output: 9 (after a 1-second delay)\n\n    // Fourth call (retrieves from cache)\n  const result4 = memoizedExpensiveFunction(5, 4);\n  console.log(`Result 4: ${result4}`); // Output: 9 (immediately)\n\n      // Fifth call (calculates and caches)\n  const result5 = memoizedExpensiveFunction(5, 4, 9);\n  console.log(`Result 5: ${result5}`); // Output: NaN, because expensiveFunction only takes two arguments.  (after a 1-second delay)\n\n\n}\n\n"
+  },
+  "finishReason": "stop",
+  "usage": {
+    "promptTokens": 53,
+    "completionTokens": 620,
+    "totalTokens": 673
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "experimental_providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "response": {
+    "id": "aiobj-kjBQr5qiEhpeDQuCFHcP8Lfb",
+    "timestamp": "2025-03-12T00:10:30.118Z",
+    "modelId": "gemini-2.0-pro-exp-02-05",
+    "headers": {
+      "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+      "content-encoding": "gzip",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Wed, 12 Mar 2025 00:10:30 GMT",
+      "server": "scaffolding on HTTPServer2",
+      "server-timing": "gfet4t7; dur=6289",
+      "transfer-encoding": "chunked",
+      "vary": "Origin, X-Origin, Referer",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "0"
+    },
+    "body": {
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": " {\n  \"code\": \"/**\\n * Memoizes a function call to improve performance.\\n *\\n * @param {function} func The function to memoize.\\n * @return {function} The memoized function.\\n */\\nfunction memoizeFunction(func) {\\n  const cache = {};\\n\\n  return function(...args) {\\n    const key = JSON.stringify(args);\\n    if (cache[key]) {\\n      console.log(`Returning cached result for key: ${key}`);\\n      return cache[key];\\n    }\\n\\n    console.log(`Calculating result for key: ${key}`);\\n    const result = func.apply(this, args);\\n    cache[key] = result;\\n    return result;\\n  };\\n}\\n\\n\\n/**\\n * Example of an expensive function (simulated with a delay).\\n *\\n * @param {number} a\\n * @param {number} b\\n */\\nfunction expensiveFunction(a, b) {\\n  // Simulate a time-consuming operation (e.g., network request, complex calculation)\\n  Utilities.sleep(1000); // Pause for 1 second\\n  return a + b;\\n}\\n\\n\\n/**\\n * Example usage of the memoization function.\\n */\\nfunction testMemoization() {\\n  const memoizedExpensiveFunction = memoizeFunction(expensiveFunction);\\n\\n  // First call (calculates and caches the result)\\n  const result1 = memoizedExpensiveFunction(2, 3);\\n  console.log(`Result 1: ${result1}`); // Output: 5 (after a 1-second delay)\\n\\n  // Second call (retrieves from cache)\\n  const result2 = memoizedExpensiveFunction(2, 3);\\n  console.log(`Result 2: ${result2}`); // Output: 5 (immediately)\\n\\n  // Third call with different arguments (calculates and caches)\\n  const result3 = memoizedExpensiveFunction(5, 4);\\n  console.log(`Result 3: ${result3}`); // Output: 9 (after a 1-second delay)\\n\\n    // Fourth call (retrieves from cache)\\n  const result4 = memoizedExpensiveFunction(5, 4);\\n  console.log(`Result 4: ${result4}`); // Output: 9 (immediately)\\n\\n      // Fifth call (calculates and caches)\\n  const result5 = memoizedExpensiveFunction(5, 4, 9);\\n  console.log(`Result 5: ${result5}`); // Output: NaN, because expensiveFunction only takes two arguments.  (after a 1-second delay)\\n\\n\\n}\\n\\n\"\n}"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP",
+          "index": 0
+        }
+      ],
+      "usageMetadata": {
+        "promptTokenCount": 53,
+        "candidatesTokenCount": 620,
+        "totalTokenCount": 673,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 53
+          }
+        ]
+      },
+      "modelVersion": "gemini-2.0-pro-exp-02-05"
+    }
+  },
+  "request": {
+    "body": "{\"generationConfig\":{\"maxOutputTokens\":5000,\"temperature\":0,\"responseMimeType\":\"application/json\",\"responseSchema\":{\"required\":[\"code\"],\"type\":\"object\",\"properties\":{\"code\":{\"description\":\"Valid Apps Script code\",\"type\":\"string\"}}}},\"contents\":[{\"role\":\"user\",\"parts\":[{\"text\":\"Write Apps Script code that memoizes an expensive function call\"}]}],\"systemInstruction\":{\"parts\":[{\"text\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"}]}}"
+  },
+  "duration": 6324
+}

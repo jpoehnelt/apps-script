@@ -1,0 +1,80 @@
+{
+  "object": {
+    "code": "function createCalendarEvent(calendarId, eventTitle, eventDescription, startTime, endTime, guestEmails) {\n  try {\n    // Get the calendar.\n    var calendar = CalendarApp.getCalendarById(calendarId);\n\n    // Create the event.\n    var event = calendar.createEvent(eventTitle,\n                                     startTime,\n                                     endTime,\n                                     {\n                                       description: eventDescription,\n                                       guests: guestEmails.join(','), // Join the array of emails into a comma-separated string\n                                       sendInvites: true // Automatically send invites to guests\n                                     });\n\n    Logger.log('Event created: ' + event.getTitle() + ' (ID: ' + event.getId() + ')');\n    return 'Event created successfully!';\n\n  } catch (e) {\n    Logger.log('Error creating event: ' + e.toString());\n    return 'Error creating event: ' + e.toString();\n  }\n}\n\n// Example usage (replace with your actual values):\nfunction testCreateCalendarEvent() {\n  var calendarId = 'your_calendar_id@group.calendar.google.com'; // Replace with your calendar ID\n  var eventTitle = 'Meeting with Team';\n  var eventDescription = 'Discuss project progress and next steps.';\n  var startTime = new Date('2024-03-15T10:00:00-08:00'); // Example: March 15, 2024, 10:00 AM PST\n  var endTime = new Date('2024-03-15T11:00:00-08:00');   // Example: March 15, 2024, 11:00 AM PST\n  var guestEmails = ['guest1@example.com', 'guest2@example.com']; // Replace with guest email addresses\n\n  var result = createCalendarEvent(calendarId, eventTitle, eventDescription, startTime, endTime, guestEmails);\n  Logger.log(result);\n}\n"
+  },
+  "finishReason": "stop",
+  "usage": {
+    "promptTokens": 64,
+    "completionTokens": 493,
+    "totalTokens": 557
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "experimental_providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "response": {
+    "id": "aiobj-U0i0jq6PC1KMSiYinyQfMXm4",
+    "timestamp": "2025-03-12T00:10:23.792Z",
+    "modelId": "gemini-2.0-flash",
+    "headers": {
+      "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+      "content-encoding": "gzip",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Wed, 12 Mar 2025 00:09:24 GMT",
+      "server": "scaffolding on HTTPServer2",
+      "server-timing": "gfet4t7; dur=2647",
+      "transfer-encoding": "chunked",
+      "vary": "Origin, X-Origin, Referer",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "0"
+    },
+    "body": {
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\n  \"code\": \"function createCalendarEvent(calendarId, eventTitle, eventDescription, startTime, endTime, guestEmails) {\\n  try {\\n    // Get the calendar.\\n    var calendar = CalendarApp.getCalendarById(calendarId);\\n\\n    // Create the event.\\n    var event = calendar.createEvent(eventTitle,\\n                                     startTime,\\n                                     endTime,\\n                                     {\\n                                       description: eventDescription,\\n                                       guests: guestEmails.join(','), // Join the array of emails into a comma-separated string\\n                                       sendInvites: true // Automatically send invites to guests\\n                                     });\\n\\n    Logger.log('Event created: ' + event.getTitle() + ' (ID: ' + event.getId() + ')');\\n    return 'Event created successfully!';\\n\\n  } catch (e) {\\n    Logger.log('Error creating event: ' + e.toString());\\n    return 'Error creating event: ' + e.toString();\\n  }\\n}\\n\\n// Example usage (replace with your actual values):\\nfunction testCreateCalendarEvent() {\\n  var calendarId = 'your_calendar_id@group.calendar.google.com'; // Replace with your calendar ID\\n  var eventTitle = 'Meeting with Team';\\n  var eventDescription = 'Discuss project progress and next steps.';\\n  var startTime = new Date('2024-03-15T10:00:00-08:00'); // Example: March 15, 2024, 10:00 AM PST\\n  var endTime = new Date('2024-03-15T11:00:00-08:00');   // Example: March 15, 2024, 11:00 AM PST\\n  var guestEmails = ['guest1@example.com', 'guest2@example.com']; // Replace with guest email addresses\\n\\n  var result = createCalendarEvent(calendarId, eventTitle, eventDescription, startTime, endTime, guestEmails);\\n  Logger.log(result);\\n}\\n\"\n}"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP",
+          "avgLogprobs": -0.030361846784549118
+        }
+      ],
+      "usageMetadata": {
+        "promptTokenCount": 64,
+        "candidatesTokenCount": 493,
+        "totalTokenCount": 557,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 64
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 493
+          }
+        ]
+      },
+      "modelVersion": "gemini-2.0-flash"
+    }
+  },
+  "request": {
+    "body": "{\"generationConfig\":{\"maxOutputTokens\":5000,\"temperature\":0,\"responseMimeType\":\"application/json\",\"responseSchema\":{\"required\":[\"code\"],\"type\":\"object\",\"properties\":{\"code\":{\"description\":\"Valid Apps Script code\",\"type\":\"string\"}}}},\"contents\":[{\"role\":\"user\",\"parts\":[{\"text\":\"Write Apps Script code create a new event in Google Calendar and send invites to all guests\"}]}],\"systemInstruction\":{\"parts\":[{\"text\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"}]}}"
+  },
+  "duration": 61669
+}
