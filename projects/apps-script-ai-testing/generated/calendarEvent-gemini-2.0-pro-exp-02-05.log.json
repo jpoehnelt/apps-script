@@ -1,0 +1,74 @@
+{
+  "object": {
+    "code": "function createAndInvite() {\n  var calendarId = 'primary'; // Use 'primary' for the user's primary calendar or specify a calendar ID.\n  var event = {\n    summary: 'Meeting with Client',\n    location: 'Conference Room A',\n    description: 'Discuss project progress and next steps.',\n    start: {\n      dateTime: '2024-03-15T09:00:00-07:00', // Example: March 15, 2024, 9:00 AM PST\n      timeZone: 'America/Los_Angeles', // Specify the time zone.\n    },\n    end: {\n      dateTime: '2024-03-15T10:00:00-07:00', // Example: March 15, 2024, 10:00 AM PST\n      timeZone: 'America/Los_Angeles',\n    },\n    attendees: [\n      {email: 'attendee1@example.com'},\n      {email: 'attendee2@example.com'},\n      // Add more attendees as needed.\n    ],\n    // Optional: Set reminders.\n    reminders: {\n      useDefault: false,\n      overrides: [\n        {method: 'email', minutes: 24 * 60}, // 24 hours before\n        {method: 'popup', minutes: 10},      // 10 minutes before\n      ],\n    },\n    sendUpdates: 'all' // Send updates to all attendees.  Other options: 'externalOnly', 'none'\n  };\n\n  try {\n    event = Calendar.Events.insert(event, calendarId);\n    Logger.log('Event ID: ' + event.id);\n    Logger.log('Event Link:' + event.htmlLink) // Log the link to the created event.\n  } catch (error) {\n    Logger.log('Error creating event: ' + error);\n    // Handle errors, such as invalid calendar ID or API quota limits.\n  }\n}\n\n\n\n"
+  },
+  "finishReason": "stop",
+  "usage": {
+    "promptTokens": 59,
+    "completionTokens": 496,
+    "totalTokens": 555
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "experimental_providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "response": {
+    "id": "aiobj-Cvgt7FtM6E4VUMsNwu1AP6hv",
+    "timestamp": "2025-03-12T00:11:42.936Z",
+    "modelId": "gemini-2.0-pro-exp-02-05",
+    "headers": {
+      "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+      "content-encoding": "gzip",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Wed, 12 Mar 2025 00:11:43 GMT",
+      "server": "scaffolding on HTTPServer2",
+      "server-timing": "gfet4t7; dur=5371",
+      "transfer-encoding": "chunked",
+      "vary": "Origin, X-Origin, Referer",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "0"
+    },
+    "body": {
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": " {\"code\":\"function createAndInvite() {\\n  var calendarId = 'primary'; // Use 'primary' for the user's primary calendar or specify a calendar ID.\\n  var event = {\\n    summary: 'Meeting with Client',\\n    location: 'Conference Room A',\\n    description: 'Discuss project progress and next steps.',\\n    start: {\\n      dateTime: '2024-03-15T09:00:00-07:00', // Example: March 15, 2024, 9:00 AM PST\\n      timeZone: 'America/Los_Angeles', // Specify the time zone.\\n    },\\n    end: {\\n      dateTime: '2024-03-15T10:00:00-07:00', // Example: March 15, 2024, 10:00 AM PST\\n      timeZone: 'America/Los_Angeles',\\n    },\\n    attendees: [\\n      {email: 'attendee1@example.com'},\\n      {email: 'attendee2@example.com'},\\n      // Add more attendees as needed.\\n    ],\\n    // Optional: Set reminders.\\n    reminders: {\\n      useDefault: false,\\n      overrides: [\\n        {method: 'email', minutes: 24 * 60}, // 24 hours before\\n        {method: 'popup', minutes: 10},      // 10 minutes before\\n      ],\\n    },\\n    sendUpdates: 'all' // Send updates to all attendees.  Other options: 'externalOnly', 'none'\\n  };\\n\\n  try {\\n    event = Calendar.Events.insert(event, calendarId);\\n    Logger.log('Event ID: ' + event.id);\\n    Logger.log('Event Link:' + event.htmlLink) // Log the link to the created event.\\n  } catch (error) {\\n    Logger.log('Error creating event: ' + error);\\n    // Handle errors, such as invalid calendar ID or API quota limits.\\n  }\\n}\\n\\n\\n\\n\"}"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP",
+          "index": 0
+        }
+      ],
+      "usageMetadata": {
+        "promptTokenCount": 59,
+        "candidatesTokenCount": 496,
+        "totalTokenCount": 555,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 59
+          }
+        ]
+      },
+      "modelVersion": "gemini-2.0-pro-exp-02-05"
+    }
+  },
+  "request": {
+    "body": "{\"generationConfig\":{\"maxOutputTokens\":5000,\"temperature\":0,\"responseMimeType\":\"application/json\",\"responseSchema\":{\"required\":[\"code\"],\"type\":\"object\",\"properties\":{\"code\":{\"description\":\"Valid Apps Script code\",\"type\":\"string\"}}}},\"contents\":[{\"role\":\"user\",\"parts\":[{\"text\":\"Write Apps Script code create a new event in Google Calendar and send invites to all guests\"}]}],\"systemInstruction\":{\"parts\":[{\"text\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"}]}}"
+  },
+  "duration": 5412
+}

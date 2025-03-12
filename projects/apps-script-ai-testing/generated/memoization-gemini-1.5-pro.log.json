@@ -1,0 +1,80 @@
+{
+  "object": {
+    "code": "/**\n * Memoizes an expensive function call.\n *\n * @param {function} func The expensive function to memoize.\n * @return {function} The memoized function.\n */\nfunction memoize(func) {\n  const cache = new Map();\n\n  return function memoized(...args) {\n    const key = JSON.stringify(args);\n    if (cache.has(key)) {\n      return cache.get(key);\n    }\n\n    const result = func.apply(this, args);\n    cache.set(key, result);\n    return result;\n  };\n}\n\n/**\n * An example of an expensive function.\n *\n * @param {number} n The number to calculate the factorial of.\n * @return {number} The factorial of n.\n */\nexpensiveFunction = (n) => {\n  console.log(`Calculating factorial of ${n}...`);\n  let result = 1;\n  for (let i = 2; i <= n; i++) {\n    result *= i;\n  }\n  return result;\n};\n\n/**\n * Memoized version of expensiveFunction\n */\nconst memoizedExpensiveFunction = memoize(expensiveFunction);\n\n/**\n * Example usage.\n */\nfunction testMemoize() {\n  console.log(memoizedExpensiveFunction(5)); // Calculates and returns 120\n  console.log(memoizedExpensiveFunction(5)); // Returns 120 from cache\n  console.log(memoizedExpensiveFunction(6)); // Calculates and returns 720\n  console.log(memoizedExpensiveFunction(5)); // Returns 120 from cache\n  console.log(memoizedExpensiveFunction(6)); // Returns 720 from cache\n};"
+  },
+  "finishReason": "stop",
+  "usage": {
+    "promptTokens": 58,
+    "completionTokens": 416,
+    "totalTokens": 474
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "experimental_providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "response": {
+    "id": "aiobj-32TmyHmRA4Ovu8jxSs06REhC",
+    "timestamp": "2025-03-12T00:11:48.732Z",
+    "modelId": "gemini-1.5-pro",
+    "headers": {
+      "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+      "content-encoding": "gzip",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Wed, 12 Mar 2025 00:11:48 GMT",
+      "server": "scaffolding on HTTPServer2",
+      "server-timing": "gfet4t7; dur=5733",
+      "transfer-encoding": "chunked",
+      "vary": "Origin, X-Origin, Referer",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "0"
+    },
+    "body": {
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"code\": \"/**\\n * Memoizes an expensive function call.\\n *\\n * @param {function} func The expensive function to memoize.\\n * @return {function} The memoized function.\\n */\\nfunction memoize(func) {\\n  const cache = new Map();\\n\\n  return function memoized(...args) {\\n    const key = JSON.stringify(args);\\n    if (cache.has(key)) {\\n      return cache.get(key);\\n    }\\n\\n    const result = func.apply(this, args);\\n    cache.set(key, result);\\n    return result;\\n  };\\n}\\n\\n/**\\n * An example of an expensive function.\\n *\\n * @param {number} n The number to calculate the factorial of.\\n * @return {number} The factorial of n.\\n */\\nexpensiveFunction = (n) => {\\n  console.log(`Calculating factorial of ${n}...`);\\n  let result = 1;\\n  for (let i = 2; i <= n; i++) {\\n    result *= i;\\n  }\\n  return result;\\n};\\n\\n/**\\n * Memoized version of expensiveFunction\\n */\\nconst memoizedExpensiveFunction = memoize(expensiveFunction);\\n\\n/**\\n * Example usage.\\n */\\nfunction testMemoize() {\\n  console.log(memoizedExpensiveFunction(5)); // Calculates and returns 120\\n  console.log(memoizedExpensiveFunction(5)); // Returns 120 from cache\\n  console.log(memoizedExpensiveFunction(6)); // Calculates and returns 720\\n  console.log(memoizedExpensiveFunction(5)); // Returns 120 from cache\\n  console.log(memoizedExpensiveFunction(6)); // Returns 720 from cache\\n};\"}"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP",
+          "avgLogprobs": -0.018503592564509466
+        }
+      ],
+      "usageMetadata": {
+        "promptTokenCount": 58,
+        "candidatesTokenCount": 416,
+        "totalTokenCount": 474,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 58
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 416
+          }
+        ]
+      },
+      "modelVersion": "gemini-1.5-pro-002"
+    }
+  },
+  "request": {
+    "body": "{\"generationConfig\":{\"maxOutputTokens\":5000,\"temperature\":0,\"responseMimeType\":\"application/json\",\"responseSchema\":{\"required\":[\"code\"],\"type\":\"object\",\"properties\":{\"code\":{\"description\":\"Valid Apps Script code\",\"type\":\"string\"}}}},\"contents\":[{\"role\":\"user\",\"parts\":[{\"text\":\"Write Apps Script code that memoizes an expensive function call\"}]}],\"systemInstruction\":{\"parts\":[{\"text\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"}]}}"
+  },
+  "duration": 5794
+}
