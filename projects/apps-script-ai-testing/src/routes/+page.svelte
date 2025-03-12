@@ -17,7 +17,7 @@
 
 <div class="p-8 relative">
     <div
-        class="sticky top-0 bg-white -mx-8 px-8 py-2 mb-4 border-b border-gray-200 shadow flex gap-2 flex-col"
+        class="lg:sticky top-0 bg-white -mx-8 px-8 py-2 mb-4 border-b border-gray-200 shadow flex gap-2 flex-col"
     >
         <h1 class="text-3xl mb-4">
             Comparing AI Code Generation for Apps Script <a
