@@ -1,0 +1,83 @@
+{
+  "object": {
+    "code": "/**\n * Creates a memoization wrapper for an expensive function\n * @param {Function} fn - The function to memoize\n * @return {Function} Memoized version of the function\n */\nfunction memoize(fn) {\n  // Cache to store previous function results\n  const cache = {};\n  \n  return function(...args) {\n    // Create a unique key from the arguments\n    const key = JSON.stringify(args);\n    \n    // If result is already in cache, return cached value\n    if (key in cache) {\n      return cache[key];\n    }\n    \n    // Otherwise, call the original function and cache the result\n    const result = fn.apply(this, args);\n    cache[key] = result;\n    \n    return result;\n  };\n}\n\n// Example of an expensive function to memoize\nfunction expensiveCalculation(n) {\n  // Simulate an expensive computation\n  Utilities.sleep(2000); // Simulate 2-second delay\n  return n * n;\n}\n\n// Create a memoized version of the expensive function\nconst memoizedCalculation = memoize(expensiveCalculation);\n\n// Demonstration function to show memoization working\nfunction demonstrateMemoization() {\n  // First call will take 2 seconds\n  const start1 = new Date().getTime();\n  const result1 = memoizedCalculation(5);\n  const end1 = new Date().getTime();\n  Logger.log('First call time: ' + (end1 - start1) + 'ms');\n  \n  // Second call with same argument will be instant\n  const start2 = new Date().getTime();\n  const result2 = memoizedCalculation(5);\n  const end2 = new Date().getTime();\n  Logger.log('Second call time: ' + (end2 - start2) + 'ms');\n  \n  // Verify results are the same\n  Logger.log('Result 1: ' + result1);\n  Logger.log('Result 2: ' + result2);\n}"
+  },
+  "finishReason": "tool-calls",
+  "usage": {
+    "promptTokens": 513,
+    "completionTokens": 527,
+    "totalTokens": 1040
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "anthropic": {
+      "cacheCreationInputTokens": 0,
+      "cacheReadInputTokens": 0
+    }
+  },
+  "experimental_providerMetadata": {
+    "anthropic": {
+      "cacheCreationInputTokens": 0,
+      "cacheReadInputTokens": 0
+    }
+  },
+  "response": {
+    "id": "msg_01A8wJk3Yo1yDvqixyezD4U6",
+    "timestamp": "2025-03-12T00:02:46.028Z",
+    "modelId": "claude-3-5-haiku-20241022",
+    "headers": {
+      "anthropic-organization-id": "215d381a-c388-42c7-8115-840170a6d5c4",
+      "anthropic-ratelimit-input-tokens-limit": "50000",
+      "anthropic-ratelimit-input-tokens-remaining": "50000",
+      "anthropic-ratelimit-input-tokens-reset": "2025-03-12T00:00:32Z",
+      "anthropic-ratelimit-output-tokens-limit": "10000",
+      "anthropic-ratelimit-output-tokens-remaining": "10000",
+      "anthropic-ratelimit-output-tokens-reset": "2025-03-12T00:00:39Z",
+      "anthropic-ratelimit-requests-limit": "50",
+      "anthropic-ratelimit-requests-remaining": "49",
+      "anthropic-ratelimit-requests-reset": "2025-03-12T00:00:31Z",
+      "anthropic-ratelimit-tokens-limit": "60000",
+      "anthropic-ratelimit-tokens-remaining": "60000",
+      "anthropic-ratelimit-tokens-reset": "2025-03-12T00:00:32Z",
+      "cf-cache-status": "DYNAMIC",
+      "cf-ray": "91ef02feaa7c2f75-LAX",
+      "connection": "keep-alive",
+      "content-encoding": "gzip",
+      "content-type": "application/json",
+      "date": "Wed, 12 Mar 2025 00:00:39 GMT",
+      "request-id": "req_01Gb1XGhiQK7JmPGhmwgNgE3",
+      "server": "cloudflare",
+      "transfer-encoding": "chunked",
+      "via": "1.1 google",
+      "x-robots-tag": "none"
+    },
+    "body": {
+      "id": "msg_01A8wJk3Yo1yDvqixyezD4U6",
+      "type": "message",
+      "role": "assistant",
+      "model": "claude-3-5-haiku-20241022",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_01RxwqkoeVF4VUQyehWkotAn",
+          "name": "json",
+          "input": {
+            "code": "/**\n * Creates a memoization wrapper for an expensive function\n * @param {Function} fn - The function to memoize\n * @return {Function} Memoized version of the function\n */\nfunction memoize(fn) {\n  // Cache to store previous function results\n  const cache = {};\n  \n  return function(...args) {\n    // Create a unique key from the arguments\n    const key = JSON.stringify(args);\n    \n    // If result is already in cache, return cached value\n    if (key in cache) {\n      return cache[key];\n    }\n    \n    // Otherwise, call the original function and cache the result\n    const result = fn.apply(this, args);\n    cache[key] = result;\n    \n    return result;\n  };\n}\n\n// Example of an expensive function to memoize\nfunction expensiveCalculation(n) {\n  // Simulate an expensive computation\n  Utilities.sleep(2000); // Simulate 2-second delay\n  return n * n;\n}\n\n// Create a memoized version of the expensive function\nconst memoizedCalculation = memoize(expensiveCalculation);\n\n// Demonstration function to show memoization working\nfunction demonstrateMemoization() {\n  // First call will take 2 seconds\n  const start1 = new Date().getTime();\n  const result1 = memoizedCalculation(5);\n  const end1 = new Date().getTime();\n  Logger.log('First call time: ' + (end1 - start1) + 'ms');\n  \n  // Second call with same argument will be instant\n  const start2 = new Date().getTime();\n  const result2 = memoizedCalculation(5);\n  const end2 = new Date().getTime();\n  Logger.log('Second call time: ' + (end2 - start2) + 'ms');\n  \n  // Verify results are the same\n  Logger.log('Result 1: ' + result1);\n  Logger.log('Result 2: ' + result2);\n}"
+          }
+        }
+      ],
+      "stop_reason": "tool_use",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 513,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "output_tokens": 527
+      }
+    }
+  },
+  "request": {
+    "body": "{\"model\":\"claude-3-5-haiku-20241022\",\"max_tokens\":5000,\"temperature\":0,\"system\":[{\"type\":\"text\",\"text\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"}],\"messages\":[{\"role\":\"user\",\"content\":[{\"type\":\"text\",\"text\":\"Write Apps Script code that memoizes an expensive function call\"}]}],\"tools\":[{\"name\":\"json\",\"description\":\"Respond with a JSON object.\",\"input_schema\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\",\"description\":\"Valid Apps Script code\"}},\"required\":[\"code\"],\"additionalProperties\":false,\"$schema\":\"http://json-schema.org/draft-07/schema#\"}}],\"tool_choice\":{\"type\":\"tool\",\"name\":\"json\"}}"
+  },
+  "duration": 135633
+}

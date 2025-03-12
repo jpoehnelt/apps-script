@@ -1,0 +1,83 @@
+{
+  "object": {
+    "code": "function onHomePage(e) {\n  var card = CardService.newCardBuilder()\n    .setHeader(CardService.newCardHeader().setTitle('Email Insights'))\n    .addSection(CardService.newCardSection()\n      .addWidget(CardService.newTextButton()\n        .setText('Analyze Email')\n        .setOnClickAction(CardService.newAction().setFunctionName('analyzeEmail'))\n      )\n    )\n    .build();\n  \n  return card;\n}\n\nfunction analyzeEmail(e) {\n  // Get the current email message\n  var message = GmailApp.getMessageById(e.gmail.messageId);\n  \n  // Extract email details\n  var sender = message.getFrom();\n  var subject = message.getSubject();\n  var body = message.getPlainBody();\n  \n  // Create a card with email insights\n  var card = CardService.newCardBuilder()\n    .setHeader(CardService.newCardHeader().setTitle('Email Details'))\n    .addSection(CardService.newCardSection()\n      .addWidget(CardService.newKeyValue()\n        .setTopLabel('Sender')\n        .setContent(sender)\n      )\n      .addWidget(CardService.newKeyValue()\n        .setTopLabel('Subject')\n        .setContent(subject)\n      )\n      .addWidget(CardService.newTextParagraph()\n        .setText('Body Preview: ' + body.substring(0, 200) + '...')\n      )\n      .addWidget(CardService.newTextButton()\n        .setText('Perform Email Analysis')\n        .setOnClickAction(CardService.newAction().setFunctionName('performDetailedAnalysis'))\n      )\n    )\n    .build();\n  \n  return card;\n}\n\nfunction performDetailedAnalysis(e) {\n  var message = GmailApp.getMessageById(e.gmail.messageId);\n  \n  // Example additional analysis (you can expand this)\n  var wordCount = message.getPlainBody().split(' ').length;\n  var attachmentCount = message.getAttachments().length;\n  \n  var card = CardService.newCardBuilder()\n    .setHeader(CardService.newCardHeader().setTitle('Detailed Email Analysis'))\n    .addSection(CardService.newCardSection()\n      .addWidget(CardService.newKeyValue()\n        .setTopLabel('Word Count')\n        .setContent(wordCount.toString())\n      )\n      .addWidget(CardService.newKeyValue()\n        .setTopLabel('Attachment Count')\n        .setContent(attachmentCount.toString())\n      )\n      .addWidget(CardService.newTextParagraph()\n        .setText('Additional insights and actions can be added here.')\n      )\n    )\n    .build();\n  \n  return card;\n}\n\n// Manifest configuration\nfunction getManifest() {\n  return {\n    \"name\": \"Email Insights Add-on\",\n    \"description\": \"Provides additional information about emails\",\n    \"gmail\": {\n      \"homepageTrigger\": {\n        \"enabled\": true,\n        \"runFunction\": \"onHomePage\"\n      }\n    }\n  };\n}"
+  },
+  "finishReason": "tool-calls",
+  "usage": {
+    "promptTokens": 525,
+    "completionTokens": 805,
+    "totalTokens": 1330
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "anthropic": {
+      "cacheCreationInputTokens": 0,
+      "cacheReadInputTokens": 0
+    }
+  },
+  "experimental_providerMetadata": {
+    "anthropic": {
+      "cacheCreationInputTokens": 0,
+      "cacheReadInputTokens": 0
+    }
+  },
+  "response": {
+    "id": "msg_01N1nv6mRvZYQnc77a11Vc43",
+    "timestamp": "2025-03-12T00:03:02.624Z",
+    "modelId": "claude-3-5-haiku-20241022",
+    "headers": {
+      "anthropic-organization-id": "215d381a-c388-42c7-8115-840170a6d5c4",
+      "anthropic-ratelimit-input-tokens-limit": "50000",
+      "anthropic-ratelimit-input-tokens-remaining": "50000",
+      "anthropic-ratelimit-input-tokens-reset": "2025-03-12T00:02:52Z",
+      "anthropic-ratelimit-output-tokens-limit": "10000",
+      "anthropic-ratelimit-output-tokens-remaining": "10000",
+      "anthropic-ratelimit-output-tokens-reset": "2025-03-12T00:03:02Z",
+      "anthropic-ratelimit-requests-limit": "50",
+      "anthropic-ratelimit-requests-remaining": "49",
+      "anthropic-ratelimit-requests-reset": "2025-03-12T00:02:52Z",
+      "anthropic-ratelimit-tokens-limit": "60000",
+      "anthropic-ratelimit-tokens-remaining": "60000",
+      "anthropic-ratelimit-tokens-reset": "2025-03-12T00:02:52Z",
+      "cf-cache-status": "DYNAMIC",
+      "cf-ray": "91ef066e0fe82f75-LAX",
+      "connection": "keep-alive",
+      "content-encoding": "gzip",
+      "content-type": "application/json",
+      "date": "Wed, 12 Mar 2025 00:03:02 GMT",
+      "request-id": "req_01Na1hP98Vtio8PeizJSDfMS",
+      "server": "cloudflare",
+      "transfer-encoding": "chunked",
+      "via": "1.1 google",
+      "x-robots-tag": "none"
+    },
+    "body": {
+      "id": "msg_01N1nv6mRvZYQnc77a11Vc43",
+      "type": "message",
+      "role": "assistant",
+      "model": "claude-3-5-haiku-20241022",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_01JrDePC2yBP4ULf3CLB9GBW",
+          "name": "json",
+          "input": {
+            "code": "function onHomePage(e) {\n  var card = CardService.newCardBuilder()\n    .setHeader(CardService.newCardHeader().setTitle('Email Insights'))\n    .addSection(CardService.newCardSection()\n      .addWidget(CardService.newTextButton()\n        .setText('Analyze Email')\n        .setOnClickAction(CardService.newAction().setFunctionName('analyzeEmail'))\n      )\n    )\n    .build();\n  \n  return card;\n}\n\nfunction analyzeEmail(e) {\n  // Get the current email message\n  var message = GmailApp.getMessageById(e.gmail.messageId);\n  \n  // Extract email details\n  var sender = message.getFrom();\n  var subject = message.getSubject();\n  var body = message.getPlainBody();\n  \n  // Create a card with email insights\n  var card = CardService.newCardBuilder()\n    .setHeader(CardService.newCardHeader().setTitle('Email Details'))\n    .addSection(CardService.newCardSection()\n      .addWidget(CardService.newKeyValue()\n        .setTopLabel('Sender')\n        .setContent(sender)\n      )\n      .addWidget(CardService.newKeyValue()\n        .setTopLabel('Subject')\n        .setContent(subject)\n      )\n      .addWidget(CardService.newTextParagraph()\n        .setText('Body Preview: ' + body.substring(0, 200) + '...')\n      )\n      .addWidget(CardService.newTextButton()\n        .setText('Perform Email Analysis')\n        .setOnClickAction(CardService.newAction().setFunctionName('performDetailedAnalysis'))\n      )\n    )\n    .build();\n  \n  return card;\n}\n\nfunction performDetailedAnalysis(e) {\n  var message = GmailApp.getMessageById(e.gmail.messageId);\n  \n  // Example additional analysis (you can expand this)\n  var wordCount = message.getPlainBody().split(' ').length;\n  var attachmentCount = message.getAttachments().length;\n  \n  var card = CardService.newCardBuilder()\n    .setHeader(CardService.newCardHeader().setTitle('Detailed Email Analysis'))\n    .addSection(CardService.newCardSection()\n      .addWidget(CardService.newKeyValue()\n        .setTopLabel('Word Count')\n        .setContent(wordCount.toString())\n      )\n      .addWidget(CardService.newKeyValue()\n        .setTopLabel('Attachment Count')\n        .setContent(attachmentCount.toString())\n      )\n      .addWidget(CardService.newTextParagraph()\n        .setText('Additional insights and actions can be added here.')\n      )\n    )\n    .build();\n  \n  return card;\n}\n\n// Manifest configuration\nfunction getManifest() {\n  return {\n    \"name\": \"Email Insights Add-on\",\n    \"description\": \"Provides additional information about emails\",\n    \"gmail\": {\n      \"homepageTrigger\": {\n        \"enabled\": true,\n        \"runFunction\": \"onHomePage\"\n      }\n    }\n  };\n}"
+          }
+        }
+      ],
+      "stop_reason": "tool_use",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 525,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "output_tokens": 805
+      }
+    }
+  },
+  "request": {
+    "body": "{\"model\":\"claude-3-5-haiku-20241022\",\"max_tokens\":5000,\"temperature\":0,\"system\":[{\"type\":\"text\",\"text\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"}],\"messages\":[{\"role\":\"user\",\"content\":[{\"type\":\"text\",\"text\":\"Write Apps Script code to create a Gmail add-on that allows users to view additional information about the email they are reading\"}]}],\"tools\":[{\"name\":\"json\",\"description\":\"Respond with a JSON object.\",\"input_schema\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\",\"description\":\"Valid Apps Script code\"}},\"required\":[\"code\"],\"additionalProperties\":false,\"$schema\":\"http://json-schema.org/draft-07/schema#\"}}],\"tool_choice\":{\"type\":\"tool\",\"name\":\"json\"}}"
+  },
+  "duration": 11586
+}
