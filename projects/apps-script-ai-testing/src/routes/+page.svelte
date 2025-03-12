@@ -21,7 +21,7 @@
     >
         <h1 class="text-3xl mb-4">
             Comparing AI Code Generation for Apps Script <a
-                href="https://github.com/jpoehnelt/apps-script">(source)</a
+                href="https://github.com/jpoehnelt/apps-script/tree/main/projects/apps-script-ai-testing">(source)</a
             >
         </h1>
         <div class="flex gap-1 flex-wrap mb-2">
