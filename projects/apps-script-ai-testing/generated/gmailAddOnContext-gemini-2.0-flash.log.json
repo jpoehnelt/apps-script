@@ -1,0 +1,80 @@
+{
+  "object": {
+    "code": "// This global variable caches the add-on's user interface.\nvar card;\n\n/**\n * Runs when the add-on is installed.\n * @param {object} e The event parameter for add-on install.\n */\nfunction onInstall(e) {\n  onOpen(e);\n}\n\n/**\n * Runs when the add-on is opened from a Gmail message.\n * @param {object} e The event parameter for add-on open.\n * @return {CardService.Card} The card to display to the user.\n */\nfunction onOpen(e) {\n  var accessToken = e.authorizationEventObject.userOAuthToken;\n  if (accessToken) {\n    // User has granted authorization, build the card.\n    card = createCard(e);\n  } else {\n    // User has not granted authorization, build the authorization card.\n    card = createAuthorizationCard();\n  }\n  return [card];\n}\n\n/**\n * Creates the main card with email information.\n * @param {object} e The event parameter for add-on open.\n * @return {CardService.Card} The card to display to the user.\n */\nfunction createCard(e) {\n  var message = e.gmail.message;\n  var headerFrom = message.getHeaderValue('From');\n  var headerTo = message.getHeaderValue('To');\n  var subject = message.subject;\n  var body = message.body;\n  var date = message.date;\n\n  // Create a card builder.\n  var cardBuilder = CardService.newCardBuilder();\n\n  // Add a section to display email details.\n  var section = CardService.newCardSection()\n    .setHeader('Email Details')\n    .addWidget(CardService.newTextParagraph().setText('From: ' + headerFrom))\n    .addWidget(CardService.newTextParagraph().setText('To: ' + headerTo))\n    .addWidget(CardService.newTextParagraph().setText('Subject: ' + subject))\n    .addWidget(CardService.newTextParagraph().setText('Date: ' + date));\n\n  cardBuilder.addSection(section);\n\n  // Add a section to display the email body (truncated).\n  var bodySection = CardService.newCardSection()\n    .setHeader('Email Body (Truncated)')\n    .addWidget(CardService.newTextParagraph().setText(body.substring(0, 500) + '...')); // Truncate to 500 characters\n\n  cardBuilder.addSection(bodySection);\n\n  // Create a button to open the email in a new tab.\n  var openEmailButton = CardService.newTextButton()\n    .setText('Open Email')\n    .setOpenLink(message.permalink);\n\n  var buttonSet = CardService.newButtonSet().addButton(openEmailButton);\n  cardBuilder.addCardAction(CardService.newCardAction().setText('Refresh').setOnClick(CardService.newAction().setFunctionName('onOpen')));\n  cardBuilder.addButtonSet(buttonSet);\n\n  // Build the card.\n  return cardBuilder.build();\n}\n\n/**\n * Creates the authorization card.\n * @return {CardService.Card} The card to display to the user.\n */\nfunction createAuthorizationCard() {\n  var cardBuilder = CardService.newCardBuilder();\n\n  var authorizationAction = CardService.newAuthorizationAction()\n    .setAuthorizationUrl(ScriptApp.getService().getUrl());\n\n  var textParagraph = CardService.newTextParagraph()\n    .setText('Authorize the add-on to access your Gmail data.');\n\n  var button = CardService.newTextButton()\n    .setText('Authorize')\n    .setAuthorizationAction(authorizationAction);\n\n  var buttonSet = CardService.newButtonSet().addButton(button);\n\n  cardBuilder.addSection(CardService.newCardSection().addWidget(textParagraph));\n  cardBuilder.addButtonSet(buttonSet);\n\n  return cardBuilder.build();\n}\n"
+  },
+  "finishReason": "stop",
+  "usage": {
+    "promptTokens": 71,
+    "completionTokens": 953,
+    "totalTokens": 1024
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "experimental_providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "response": {
+    "id": "aiobj-IY3TK7APP8JbsXapG2xzQGEb",
+    "timestamp": "2025-03-12T00:09:22.120Z",
+    "modelId": "gemini-2.0-flash",
+    "headers": {
+      "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+      "content-encoding": "gzip",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Wed, 12 Mar 2025 00:09:22 GMT",
+      "server": "scaffolding on HTTPServer2",
+      "server-timing": "gfet4t7; dur=5220",
+      "transfer-encoding": "chunked",
+      "vary": "Origin, X-Origin, Referer",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "0"
+    },
+    "body": {
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\n  \"code\": \"// This global variable caches the add-on's user interface.\\nvar card;\\n\\n/**\\n * Runs when the add-on is installed.\\n * @param {object} e The event parameter for add-on install.\\n */\\nfunction onInstall(e) {\\n  onOpen(e);\\n}\\n\\n/**\\n * Runs when the add-on is opened from a Gmail message.\\n * @param {object} e The event parameter for add-on open.\\n * @return {CardService.Card} The card to display to the user.\\n */\\nfunction onOpen(e) {\\n  var accessToken = e.authorizationEventObject.userOAuthToken;\\n  if (accessToken) {\\n    // User has granted authorization, build the card.\\n    card = createCard(e);\\n  } else {\\n    // User has not granted authorization, build the authorization card.\\n    card = createAuthorizationCard();\\n  }\\n  return [card];\\n}\\n\\n/**\\n * Creates the main card with email information.\\n * @param {object} e The event parameter for add-on open.\\n * @return {CardService.Card} The card to display to the user.\\n */\\nfunction createCard(e) {\\n  var message = e.gmail.message;\\n  var headerFrom = message.getHeaderValue('From');\\n  var headerTo = message.getHeaderValue('To');\\n  var subject = message.subject;\\n  var body = message.body;\\n  var date = message.date;\\n\\n  // Create a card builder.\\n  var cardBuilder = CardService.newCardBuilder();\\n\\n  // Add a section to display email details.\\n  var section = CardService.newCardSection()\\n    .setHeader('Email Details')\\n    .addWidget(CardService.newTextParagraph().setText('From: ' + headerFrom))\\n    .addWidget(CardService.newTextParagraph().setText('To: ' + headerTo))\\n    .addWidget(CardService.newTextParagraph().setText('Subject: ' + subject))\\n    .addWidget(CardService.newTextParagraph().setText('Date: ' + date));\\n\\n  cardBuilder.addSection(section);\\n\\n  // Add a section to display the email body (truncated).\\n  var bodySection = CardService.newCardSection()\\n    .setHeader('Email Body (Truncated)')\\n    .addWidget(CardService.newTextParagraph().setText(body.substring(0, 500) + '...')); // Truncate to 500 characters\\n\\n  cardBuilder.addSection(bodySection);\\n\\n  // Create a button to open the email in a new tab.\\n  var openEmailButton = CardService.newTextButton()\\n    .setText('Open Email')\\n    .setOpenLink(message.permalink);\\n\\n  var buttonSet = CardService.newButtonSet().addButton(openEmailButton);\\n  cardBuilder.addCardAction(CardService.newCardAction().setText('Refresh').setOnClick(CardService.newAction().setFunctionName('onOpen')));\\n  cardBuilder.addButtonSet(buttonSet);\\n\\n  // Build the card.\\n  return cardBuilder.build();\\n}\\n\\n/**\\n * Creates the authorization card.\\n * @return {CardService.Card} The card to display to the user.\\n */\\nfunction createAuthorizationCard() {\\n  var cardBuilder = CardService.newCardBuilder();\\n\\n  var authorizationAction = CardService.newAuthorizationAction()\\n    .setAuthorizationUrl(ScriptApp.getService().getUrl());\\n\\n  var textParagraph = CardService.newTextParagraph()\\n    .setText('Authorize the add-on to access your Gmail data.');\\n\\n  var button = CardService.newTextButton()\\n    .setText('Authorize')\\n    .setAuthorizationAction(authorizationAction);\\n\\n  var buttonSet = CardService.newButtonSet().addButton(button);\\n\\n  cardBuilder.addSection(CardService.newCardSection().addWidget(textParagraph));\\n  cardBuilder.addButtonSet(buttonSet);\\n\\n  return cardBuilder.build();\\n}\\n\"\n}"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP",
+          "avgLogprobs": -0.059321188351289925
+        }
+      ],
+      "usageMetadata": {
+        "promptTokenCount": 71,
+        "candidatesTokenCount": 953,
+        "totalTokenCount": 1024,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 71
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 953
+          }
+        ]
+      },
+      "modelVersion": "gemini-2.0-flash"
+    }
+  },
+  "request": {
+    "body": "{\"generationConfig\":{\"maxOutputTokens\":5000,\"temperature\":0,\"responseMimeType\":\"application/json\",\"responseSchema\":{\"required\":[\"code\"],\"type\":\"object\",\"properties\":{\"code\":{\"description\":\"Valid Apps Script code\",\"type\":\"string\"}}}},\"contents\":[{\"role\":\"user\",\"parts\":[{\"text\":\"Write Apps Script code to create a Gmail add-on that allows users to view additional information about the email they are reading\"}]}],\"systemInstruction\":{\"parts\":[{\"text\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"}]}}"
+  },
+  "duration": 5264
+}

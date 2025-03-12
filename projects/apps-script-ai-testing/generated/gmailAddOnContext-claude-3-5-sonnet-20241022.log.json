@@ -1,0 +1,83 @@
+{
+  "object": {
+    "code": "// Gmail add-on that shows additional email information\nfunction getContextualAddOn(e) {\n  var message = getCurrentMessage(e);\n  \n  // Create a card with email information\n  var card = CardService.newCardBuilder();\n  \n  // Add header\n  card.setHeader(CardService.newCardHeader()\n    .setTitle('Email Details')\n    .setImageUrl('https://www.gstatic.com/images/icons/material/system/1x/email_black_48dp.png'));\n  \n  // Get message details\n  var sender = message.getFrom();\n  var date = message.getDate();\n  var subject = message.getSubject();\n  var size = Math.round(message.getRawContent().length / 1024); // Size in KB\n  var attachments = message.getAttachments();\n  var recipients = message.getTo() + ',' + message.getCc() + ',' + message.getBcc();\n  \n  // Create sections for different types of information\n  var basicInfoSection = CardService.newCardSection()\n    .setHeader('Basic Information')\n    .addWidget(CardService.newKeyValue()\n      .setTopLabel('From')\n      .setContent(sender))\n    .addWidget(CardService.newKeyValue()\n      .setTopLabel('Date')\n      .setContent(date.toLocaleString()))\n    .addWidget(CardService.newKeyValue()\n      .setTopLabel('Subject')\n      .setContent(subject))\n    .addWidget(CardService.newKeyValue()\n      .setTopLabel('Size')\n      .setContent(size + ' KB'));\n  \n  var recipientSection = CardService.newCardSection()\n    .setHeader('Recipients')\n    .addWidget(CardService.newTextParagraph()\n      .setText(recipients));\n  \n  var attachmentSection = CardService.newCardSection()\n    .setHeader('Attachments (' + attachments.length + ')');\n  \n  // Add attachment information\n  if (attachments.length > 0) {\n    attachments.forEach(function(attachment) {\n      attachmentSection.addWidget(\n        CardService.newKeyValue()\n          .setTopLabel(attachment.getName())\n          .setContent(Math.round(attachment.getSize() / 1024) + ' KB')\n      );\n    });\n  } else {\n    attachmentSection.addWidget(\n      CardService.newTextParagraph()\n        .setText('No attachments')\n    );\n  }\n  \n  // Add all sections to the card\n  card.addSection(basicInfoSection)\n      .addSection(recipientSection)\n      .addSection(attachmentSection);\n  \n  return [card.build()];\n}\n\n// Helper function to get the current message\nfunction getCurrentMessage(e) {\n  var accessToken = e.messageMetadata.accessToken;\n  var messageId = e.messageMetadata.messageId;\n  GmailApp.setCurrentMessageAccessToken(accessToken);\n  return GmailApp.getMessageById(messageId);\n}\n\n// Manifest for deployment\nfunction getManifest() {\n  return {\n    \"addOns\": {\n      \"common\": {\n        \"name\": \"Email Details\",\n        \"logoUrl\": \"https://www.gstatic.com/images/icons/material/system/1x/email_black_48dp.png\",\n        \"useLocaleFromApp\": true,\n        \"homepageTrigger\": {\n          \"enabled\": false\n        }\n      },\n      \"gmail\": {\n        \"contextualTriggers\": [{\n          \"unconditional\": {},\n          \"onTriggerFunction\": \"getContextualAddOn\"\n        }],\n        \"composeTrigger\": {\n          \"enabled\": false\n        }\n      }\n    }\n  };\n}"
+  },
+  "finishReason": "tool-calls",
+  "usage": {
+    "promptTokens": 484,
+    "completionTokens": 953,
+    "totalTokens": 1437
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "anthropic": {
+      "cacheCreationInputTokens": 0,
+      "cacheReadInputTokens": 0
+    }
+  },
+  "experimental_providerMetadata": {
+    "anthropic": {
+      "cacheCreationInputTokens": 0,
+      "cacheReadInputTokens": 0
+    }
+  },
+  "response": {
+    "id": "msg_01FDdL1PC95iMLBFR9BiKGpx",
+    "timestamp": "2025-03-12T00:08:01.412Z",
+    "modelId": "claude-3-5-sonnet-20241022",
+    "headers": {
+      "anthropic-organization-id": "215d381a-c388-42c7-8115-840170a6d5c4",
+      "anthropic-ratelimit-input-tokens-limit": "40000",
+      "anthropic-ratelimit-input-tokens-remaining": "40000",
+      "anthropic-ratelimit-input-tokens-reset": "2025-03-12T00:05:36Z",
+      "anthropic-ratelimit-output-tokens-limit": "8000",
+      "anthropic-ratelimit-output-tokens-remaining": "8000",
+      "anthropic-ratelimit-output-tokens-reset": "2025-03-12T00:05:49Z",
+      "anthropic-ratelimit-requests-limit": "50",
+      "anthropic-ratelimit-requests-remaining": "49",
+      "anthropic-ratelimit-requests-reset": "2025-03-12T00:05:35Z",
+      "anthropic-ratelimit-tokens-limit": "48000",
+      "anthropic-ratelimit-tokens-remaining": "48000",
+      "anthropic-ratelimit-tokens-reset": "2025-03-12T00:05:36Z",
+      "cf-cache-status": "DYNAMIC",
+      "cf-ray": "91ef0a682fa12f75-LAX",
+      "connection": "keep-alive",
+      "content-encoding": "gzip",
+      "content-type": "application/json",
+      "date": "Wed, 12 Mar 2025 00:05:49 GMT",
+      "request-id": "req_013Ebk84CTESmvZ6uY6uvDHr",
+      "server": "cloudflare",
+      "transfer-encoding": "chunked",
+      "via": "1.1 google",
+      "x-robots-tag": "none"
+    },
+    "body": {
+      "id": "msg_01FDdL1PC95iMLBFR9BiKGpx",
+      "type": "message",
+      "role": "assistant",
+      "model": "claude-3-5-sonnet-20241022",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_0129UvqNLCSjpZooFpDBAwW5",
+          "name": "json",
+          "input": {
+            "code": "// Gmail add-on that shows additional email information\nfunction getContextualAddOn(e) {\n  var message = getCurrentMessage(e);\n  \n  // Create a card with email information\n  var card = CardService.newCardBuilder();\n  \n  // Add header\n  card.setHeader(CardService.newCardHeader()\n    .setTitle('Email Details')\n    .setImageUrl('https://www.gstatic.com/images/icons/material/system/1x/email_black_48dp.png'));\n  \n  // Get message details\n  var sender = message.getFrom();\n  var date = message.getDate();\n  var subject = message.getSubject();\n  var size = Math.round(message.getRawContent().length / 1024); // Size in KB\n  var attachments = message.getAttachments();\n  var recipients = message.getTo() + ',' + message.getCc() + ',' + message.getBcc();\n  \n  // Create sections for different types of information\n  var basicInfoSection = CardService.newCardSection()\n    .setHeader('Basic Information')\n    .addWidget(CardService.newKeyValue()\n      .setTopLabel('From')\n      .setContent(sender))\n    .addWidget(CardService.newKeyValue()\n      .setTopLabel('Date')\n      .setContent(date.toLocaleString()))\n    .addWidget(CardService.newKeyValue()\n      .setTopLabel('Subject')\n      .setContent(subject))\n    .addWidget(CardService.newKeyValue()\n      .setTopLabel('Size')\n      .setContent(size + ' KB'));\n  \n  var recipientSection = CardService.newCardSection()\n    .setHeader('Recipients')\n    .addWidget(CardService.newTextParagraph()\n      .setText(recipients));\n  \n  var attachmentSection = CardService.newCardSection()\n    .setHeader('Attachments (' + attachments.length + ')');\n  \n  // Add attachment information\n  if (attachments.length > 0) {\n    attachments.forEach(function(attachment) {\n      attachmentSection.addWidget(\n        CardService.newKeyValue()\n          .setTopLabel(attachment.getName())\n          .setContent(Math.round(attachment.getSize() / 1024) + ' KB')\n      );\n    });\n  } else {\n    attachmentSection.addWidget(\n      CardService.newTextParagraph()\n        .setText('No attachments')\n    );\n  }\n  \n  // Add all sections to the card\n  card.addSection(basicInfoSection)\n      .addSection(recipientSection)\n      .addSection(attachmentSection);\n  \n  return [card.build()];\n}\n\n// Helper function to get the current message\nfunction getCurrentMessage(e) {\n  var accessToken = e.messageMetadata.accessToken;\n  var messageId = e.messageMetadata.messageId;\n  GmailApp.setCurrentMessageAccessToken(accessToken);\n  return GmailApp.getMessageById(messageId);\n}\n\n// Manifest for deployment\nfunction getManifest() {\n  return {\n    \"addOns\": {\n      \"common\": {\n        \"name\": \"Email Details\",\n        \"logoUrl\": \"https://www.gstatic.com/images/icons/material/system/1x/email_black_48dp.png\",\n        \"useLocaleFromApp\": true,\n        \"homepageTrigger\": {\n          \"enabled\": false\n        }\n      },\n      \"gmail\": {\n        \"contextualTriggers\": [{\n          \"unconditional\": {},\n          \"onTriggerFunction\": \"getContextualAddOn\"\n        }],\n        \"composeTrigger\": {\n          \"enabled\": false\n        }\n      }\n    }\n  };\n}"
+          }
+        }
+      ],
+      "stop_reason": "tool_use",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 484,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "output_tokens": 953
+      }
+    }
+  },
+  "request": {
+    "body": "{\"model\":\"claude-3-5-sonnet-20241022\",\"max_tokens\":5000,\"temperature\":0,\"system\":[{\"type\":\"text\",\"text\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"}],\"messages\":[{\"role\":\"user\",\"content\":[{\"type\":\"text\",\"text\":\"Write Apps Script code to create a Gmail add-on that allows users to view additional information about the email they are reading\"}]}],\"tools\":[{\"name\":\"json\",\"description\":\"Respond with a JSON object.\",\"input_schema\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\",\"description\":\"Valid Apps Script code\"}},\"required\":[\"code\"],\"additionalProperties\":false,\"$schema\":\"http://json-schema.org/draft-07/schema#\"}}],\"tool_choice\":{\"type\":\"tool\",\"name\":\"json\"}}"
+  },
+  "duration": 147456
+}

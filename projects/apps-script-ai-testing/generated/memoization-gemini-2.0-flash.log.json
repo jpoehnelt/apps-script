@@ -1,0 +1,80 @@
+{
+  "object": {
+    "code": "/**\n * Memoizes an expensive function.\n *\n * @param {Function} func The function to memoize.\n * @return {Function} The memoized function.\n */\nfunction memoize(func) {\n  const cache = {};\n\n  return function(...args) {\n    const key = JSON.stringify(args);\n\n    if (cache[key]) {\n      return cache[key];\n    }\n\n    const result = func(...args);\n    cache[key] = result;\n    return result;\n  };\n}\n\n/**\n * Example of an expensive function (replace with your actual function).\n *\n * @param {number} n A number.\n * @return {number} The nth Fibonacci number.\n */\nfunction expensiveFunction(n) {\n  if (n <= 1) {\n    return n;\n  }\n  Utilities.sleep(100); // Simulate a time-consuming operation\n  return expensiveFunction(n - 1) + expensiveFunction(n - 2);\n}\n\n/**\n * Example usage.\n */\nfunction testMemoize() {\n  const memoizedExpensiveFunction = memoize(expensiveFunction);\n\n  // First call will be slow\n  const startTime1 = new Date().getTime();\n  const result1 = memoizedExpensiveFunction(10);\n  const endTime1 = new Date().getTime();\n  Logger.log('First call result: ' + result1 + ', time: ' + (endTime1 - startTime1) + 'ms');\n\n  // Second call will be fast (using the cached value)\n  const startTime2 = new Date().getTime();\n  const result2 = memoizedExpensiveFunction(10);\n  const endTime2 = new Date().getTime();\n  Logger.log('Second call result: ' + result2 + ', time: ' + (endTime2 - startTime2) + 'ms');\n\n  //Call with different arguments\n  const startTime3 = new Date().getTime();\n  const result3 = memoizedExpensiveFunction(12);\n  const endTime3 = new Date().getTime();\n  Logger.log('Third call result: ' + result3 + ', time: ' + (endTime3 - startTime3) + 'ms');\n}\n"
+  },
+  "finishReason": "stop",
+  "usage": {
+    "promptTokens": 58,
+    "completionTokens": 533,
+    "totalTokens": 591
+  },
+  "warnings": [],
+  "providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "experimental_providerMetadata": {
+    "google": {
+      "groundingMetadata": null,
+      "safetyRatings": null
+    }
+  },
+  "response": {
+    "id": "aiobj-VP8QeEJDoDJxBZQXTNqp3q0a",
+    "timestamp": "2025-03-12T00:09:16.173Z",
+    "modelId": "gemini-2.0-flash",
+    "headers": {
+      "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+      "content-encoding": "gzip",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Wed, 12 Mar 2025 00:09:16 GMT",
+      "server": "scaffolding on HTTPServer2",
+      "server-timing": "gfet4t7; dur=2897",
+      "transfer-encoding": "chunked",
+      "vary": "Origin, X-Origin, Referer",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "0"
+    },
+    "body": {
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\n  \"code\": \"/**\\n * Memoizes an expensive function.\\n *\\n * @param {Function} func The function to memoize.\\n * @return {Function} The memoized function.\\n */\\nfunction memoize(func) {\\n  const cache = {};\\n\\n  return function(...args) {\\n    const key = JSON.stringify(args);\\n\\n    if (cache[key]) {\\n      return cache[key];\\n    }\\n\\n    const result = func(...args);\\n    cache[key] = result;\\n    return result;\\n  };\\n}\\n\\n/**\\n * Example of an expensive function (replace with your actual function).\\n *\\n * @param {number} n A number.\\n * @return {number} The nth Fibonacci number.\\n */\\nfunction expensiveFunction(n) {\\n  if (n <= 1) {\\n    return n;\\n  }\\n  Utilities.sleep(100); // Simulate a time-consuming operation\\n  return expensiveFunction(n - 1) + expensiveFunction(n - 2);\\n}\\n\\n/**\\n * Example usage.\\n */\\nfunction testMemoize() {\\n  const memoizedExpensiveFunction = memoize(expensiveFunction);\\n\\n  // First call will be slow\\n  const startTime1 = new Date().getTime();\\n  const result1 = memoizedExpensiveFunction(10);\\n  const endTime1 = new Date().getTime();\\n  Logger.log('First call result: ' + result1 + ', time: ' + (endTime1 - startTime1) + 'ms');\\n\\n  // Second call will be fast (using the cached value)\\n  const startTime2 = new Date().getTime();\\n  const result2 = memoizedExpensiveFunction(10);\\n  const endTime2 = new Date().getTime();\\n  Logger.log('Second call result: ' + result2 + ', time: ' + (endTime2 - startTime2) + 'ms');\\n\\n  //Call with different arguments\\n  const startTime3 = new Date().getTime();\\n  const result3 = memoizedExpensiveFunction(12);\\n  const endTime3 = new Date().getTime();\\n  Logger.log('Third call result: ' + result3 + ', time: ' + (endTime3 - startTime3) + 'ms');\\n}\\n\"\n}"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP",
+          "avgLogprobs": -0.040104112750370104
+        }
+      ],
+      "usageMetadata": {
+        "promptTokenCount": 58,
+        "candidatesTokenCount": 533,
+        "totalTokenCount": 591,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 58
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 533
+          }
+        ]
+      },
+      "modelVersion": "gemini-2.0-flash"
+    }
+  },
+  "request": {
+    "body": "{\"generationConfig\":{\"maxOutputTokens\":5000,\"temperature\":0,\"responseMimeType\":\"application/json\",\"responseSchema\":{\"required\":[\"code\"],\"type\":\"object\",\"properties\":{\"code\":{\"description\":\"Valid Apps Script code\",\"type\":\"string\"}}}},\"contents\":[{\"role\":\"user\",\"parts\":[{\"text\":\"Write Apps Script code that memoizes an expensive function call\"}]}],\"systemInstruction\":{\"parts\":[{\"text\":\"You are an expert in Google Apps Script writing code. Your output should only be valid code that can be run in Google Apps Script. DO NOT WRITE MARKOWN. RETURN VALID APPS SCRIPT CODE ONLY.\"}]}}"
+  },
+  "duration": 3074
+}
