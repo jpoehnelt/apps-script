@@ -1,0 +1,10 @@
+{
+  "timeZone": "America/Denver",
+  "dependencies": {},
+  "exceptionLogging": "STACKDRIVER",
+  "runtimeVersion": "V8",
+  "oauthScopes": [
+    "https://www.googleapis.com/auth/gmail.compose",
+    "https://www.googleapis.com/auth/userinfo.email"
+  ]
+}

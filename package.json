@@ -5,6 +5,7 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "push": "turbo run push",
+    "exec": "turbo run exec",
     "test": "turbo run test",
     "check": "turbo run check",
     "release": "turbo run build && pnpm publish -r"

@@ -1,0 +1,16 @@
+{
+  "scriptId": "1a3yrznE2bKOcDhyoMb4GTJfG3n2IvpwAzK_g1IbXoiKY0BpLq0U0HAZv",
+  "rootDir": "dist",
+  "projectId": "jpoehnelt-internal",
+  "scriptExtensions": [
+    ".js",
+    ".gs"
+  ],
+  "htmlExtensions": [
+    ".html"
+  ],
+  "jsonExtensions": [
+    ".json"
+  ],
+  "filePushOrder": []
+}
