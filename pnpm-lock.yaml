@@ -151,6 +151,18 @@ importers:
         specifier: ^0.25.0
         version: 0.25.0
 
+  projects/vector-embeddings:
+    devDependencies:
+      '@google/clasp':
+        specifier: 3.0.2-alpha
+        version: 3.0.2-alpha(@types/node@22.13.10)
+      '@types/google-apps-script':
+        specifier: ^1.0.97
+        version: 1.0.97
+      esbuild:
+        specifier: ^0.25.0
+        version: 0.25.0
+
 packages:
 
   '@ai-sdk/anthropic@1.1.15':
