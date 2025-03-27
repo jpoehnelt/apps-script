@@ -1,0 +1,19 @@
+{
+  "name": "@repository/vector-embeddings",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "node build.js",
+    "check": "tsc --noEmit",
+    "push": "DEBUG=clasp:* clasp push -f"
+  },
+  "author": "Justin Poehnelt <justin.poehnelt@gmail.com>",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@google/clasp": "3.0.2-alpha",
+    "@types/google-apps-script": "^1.0.97",
+    "esbuild": "^0.25.0"
+  },
+  "type": "module",
+  "dependencies": {},
+  "private": true
+}
