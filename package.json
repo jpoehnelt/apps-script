@@ -9,7 +9,7 @@
     "test": "turbo run test",
     "check": "turbo run check",
     "release": "turbo run build && pnpm publish -r",
-    "prepare": "husky"
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@changesets/cli": "^2.28.1",
