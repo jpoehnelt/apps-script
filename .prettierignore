@@ -1,6 +1,0 @@
-**/generated**
-**/*.{js,ts,json}
-.husky/**
-.prettierignore
-**/pnpm-*
-LICENSE

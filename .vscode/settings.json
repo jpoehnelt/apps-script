@@ -18,5 +18,7 @@
 	],
 	"[shellscript]": {
 		"editor.defaultFormatter": "foxundermoon.shell-format"
-	}
+	},
+	"prettier.configPath": "./config/.prettier.json",
+	"prettier.ignorePath": ".config/.prettierignore"
 }

@@ -1,0 +1,8 @@
+**/generated**
+**/*.js
+**/*.ts
+**/*.json
+.husky/**
+.config/.prettierignore
+**/pnpm-*
+LICENSE
