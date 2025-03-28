@@ -10,9 +10,9 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "@google-cloud/vertexai": "^1.9.3",
-    "@google/clasp": "^2.5.0",
-    "@types/google-apps-script": "^1.0.97",
-    "esbuild": "^0.25.0"
+    "@google/clasp": "catalog:",
+    "@types/google-apps-script": "catalog:",
+    "esbuild": "catalog:"
   },
   "type": "module",
   "dependencies": {

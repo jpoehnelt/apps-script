@@ -1,3 +1,9 @@
 packages:
   - "packages/*"
   - "projects/*"
+catalog:
+  "@google/clasp": "3.0.2-alpha"
+  "typescript": "5.8.2"
+  "esbuild": "0.25.0"
+  "@types/google-apps-script": "^1.0.97"
+  
