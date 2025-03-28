@@ -1,5 +1,13 @@
 #!/bin/sh
 
-set -ex
+set -e
+
+remote_name="$1"
+remote_url="$2"
+
+if [ -f .private ] && [ "$remote_name" == "upstream" ]; then
+  echo "Cannot push to $remote_name because .private file exists to prevent accidental pushes."
+  exit 1
+fi
 
 pnpx lint-staged --config .config/.lintstagedrc.push.js
