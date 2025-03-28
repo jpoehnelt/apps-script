@@ -1,13 +1,22 @@
 {
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "windsurf.cascadeCommandsAllowList": [
-    "pnpm test",
-    "pnpm build",
-    "pnpm build check test",
-    "pnpm format",
-    "cd"
-  ]
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"[javascript]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[json]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"windsurf.cascadeCommandsAllowList": [
+		"pnpm test",
+		"pnpm build",
+		"pnpm build check test",
+		"pnpm format",
+		"cd"
+	],
+	"[shellscript]": {
+		"editor.defaultFormatter": "foxundermoon.shell-format"
+	}
 }

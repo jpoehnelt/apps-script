@@ -1,0 +1,4 @@
+**/generated**
+**/*.{js,ts,json}
+.husky/**
+.prettierignore
