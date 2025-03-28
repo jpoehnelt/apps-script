@@ -9,12 +9,20 @@
     "test": "turbo run test",
     "check": "turbo run check",
     "release": "turbo run build && pnpm publish -r",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "format:biome": "biome check --write .",
+    "format:prettier": "prettier --write .",
+    "format": "pnpm format:prettier && pnpm format:biome",
+    "lint:biome": "biome check .",
+    "lint:prettier": "prettier --check .",
+    "lint": "pnpm lint:prettier && pnpm lint:biome"
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
     "@changesets/cli": "^2.28.1",
     "husky": "^9.1.7",
-    "prettier": "^3.5.3",
+    "lint-staged": "^15.5.0",
+    "prettier": "^3.4.2",
     "turbo": "^2.4.4",
     "typescript": "5.8.2"
   },
@@ -26,5 +34,6 @@
     "onlyBuiltDependencies": [
       "esbuild"
     ]
-  }
+  },
+  "type": "module"
 }
