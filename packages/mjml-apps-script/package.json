@@ -10,10 +10,10 @@
   "author": "Justin Poehnelt <justin.poehnelt@gmail.com>",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@google/clasp": "^3.0.2-alpha",
-    "@types/google-apps-script": "^1.0.97",
+    "@google/clasp": "catalog:",
+    "@types/google-apps-script": "catalog:",
     "@types/mjml-browser": "^4.15.0",
-    "esbuild": "^0.25.0"
+    "esbuild": "catalog:"
   },
   "type": "module",
   "dependencies": {

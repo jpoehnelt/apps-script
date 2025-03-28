@@ -9,7 +9,7 @@
     "test": "turbo run test",
     "check": "turbo run check",
     "release": "turbo run build && pnpm publish -r",
-    "prepare": "husky install",
+    "prepare": "husky",
     "format:biome": "biome check --write .",
     "format:prettier": "prettier --write .",
     "format": "pnpm format:prettier && pnpm format:biome",
@@ -21,14 +21,13 @@
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@changesets/cli": "^2.28.1",
-    "@google/clasp": "3.0.2-alpha",
     "husky": "^9.1.7",
     "lint-staged": "^15.5.0",
     "prettier": "^3.4.2",
     "turbo": "^2.4.4",
-    "typescript": "5.8.2"
+    "typescript": "catalog:"
   },
-  "packageManager": "pnpm@9.0.0",
+  "packageManager": "pnpm@10.7.0+sha512.6b865ad4b62a1d9842b61d674a393903b871d9244954f652b8842c2b553c72176b278f64c463e52d40fff8aba385c235c8c9ecf5cc7de4fd78b8bb6d49633ab6",
   "engines": {
     "node": ">=18"
   },
