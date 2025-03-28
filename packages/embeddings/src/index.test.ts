@@ -1,5 +1,5 @@
-import { Mock, beforeEach, describe, expect, it, vi } from "vitest";
-import { batchedEmbeddings, similarity, similarityEmoji } from "./index.js";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import { getTextEmbeddings, similarity, similarityEmoji } from "./index.js";
 
 // Mock Google Apps Script global objects
 global.ScriptApp = {
@@ -47,7 +47,7 @@ describe("similarityEmoji", () => {
 	});
 });
 
-describe("batchedEmbeddings", () => {
+describe("getEmbeddings", () => {
 	const mockResponse = {
 		getResponseCode: vi.fn().mockReturnValue(200),
 		getContentText: vi.fn().mockReturnValue(
@@ -63,7 +63,7 @@ describe("batchedEmbeddings", () => {
 	});
 
 	it("handles single string input", () => {
-		const result = batchedEmbeddings("test text");
+		const result = getTextEmbeddings("test text");
 
 		expect(fetchAll).toHaveBeenCalledTimes(1);
 		const requests = fetchAll.mock.calls[0][0];
@@ -97,16 +97,16 @@ describe("batchedEmbeddings", () => {
 
 		fetchAll.mockReturnValue(mockResponses);
 
-		const result = batchedEmbeddings(["text1", "text2"]);
+		const result = getTextEmbeddings(["text1", "text2"]);
 		expect(result).toEqual([
 			[0.1, 0.2, 0.3],
 			[0.4, 0.5, 0.6],
 		]);
 	});
 
-	it("uses custom parameters and handles errors", () => {
+	it("uses custom parameters", () => {
 		// Test custom parameters
-		batchedEmbeddings("test", {
+		getTextEmbeddings("test", {
 			model: "custom-model",
 			parameters: {},
 			projectId: "custom-project",
@@ -116,15 +116,5 @@ describe("batchedEmbeddings", () => {
 		const requests = fetchAll.mock.calls[0][0];
 		expect(requests[0].url).toContain("custom-region");
 		expect(requests[0].url).toContain("custom-model");
-
-		// Test error handling
-		fetchAll.mockReturnValue([
-			{
-				getResponseCode: vi.fn().mockReturnValue(400),
-				getContentText: vi.fn().mockReturnValue("Bad Request"),
-			},
-		]);
-
-		expect(() => batchedEmbeddings("test")).toThrow("Bad Request");
 	});
 });

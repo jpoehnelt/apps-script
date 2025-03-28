@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "scripts": {
     "check": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest"
   },
   "author": "Justin Poehnelt <jpoehnelt@google.com>",
   "license": "Apache-2.0",

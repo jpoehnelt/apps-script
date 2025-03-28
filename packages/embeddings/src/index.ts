@@ -6,6 +6,20 @@ interface Parameters {
 	outputDimensionality?: number;
 }
 
+interface Instance {
+	task_type?:
+		| "RETRIEVAL_DOCUMENT"
+		| "RETRIEVAL_QUERY"
+		| "SEMANTIC_SIMILARITY"
+		| "CLASSIFICATION"
+		| "CLUSTERING"
+		| "QUESTION_ANSWERING"
+		| "FACT_VERIFICATION"
+		| "CODE_RETRIEVAL_QUERY";
+	title?: string;
+	content: string;
+}
+
 /**
  * Options for generating embeddings.
  */
@@ -51,13 +65,39 @@ const getProjectId = (): string => {
 };
 
 /**
- * Generate embeddings for the given text.
- * @param text - The text to generate embeddings for.
+ * Generate embeddings for the given text content.
+ *
+ * @param content - The text content to generate embeddings for.
  * @param options - Options for the embeddings generation.
  * @returns The generated embeddings.
+ *
+ * @see https://cloud.google.com/vertex-ai/generative-ai/docs/model-reference/text-embeddings-api
  */
-export function batchedEmbeddings(
-	text: string | string[],
+export function getTextEmbeddings(
+	contentOrContentArray: string | string[],
+	options: Options = {},
+): number[][] {
+	const inputs = Array.isArray(contentOrContentArray)
+		? contentOrContentArray
+		: [contentOrContentArray];
+
+	return getBatchedEmbeddings(
+		inputs.map((content) => ({ content })),
+		options,
+	);
+}
+
+/**
+ * Generate embeddings for the given instances in parallel UrlFetchApp requests.
+ *
+ * @param instances - The instances to generate embeddings for.
+ * @param options - Options for the embeddings generation.
+ * @returns The generated embeddings.
+ *
+ * @see https://cloud.google.com/vertex-ai/generative-ai/docs/model-reference/text-embeddings-api
+ */
+export function getBatchedEmbeddings(
+	instances: Instance[],
 	{
 		parameters = {},
 		model = MODEL_ID,
@@ -66,10 +106,8 @@ export function batchedEmbeddings(
 		token = ScriptApp.getOAuthToken(),
 	}: Options = {},
 ): number[][] {
-	const inputs = !Array.isArray(text) ? [text] : text;
-
-	// TODO chunk in instances of 5
-	const requests = inputs.map((content) => ({
+	const chunks = chunkArray(instances, 5);
+	const requests = chunks.map((instances) => ({
 		url: `https://${region}-aiplatform.googleapis.com/v1/projects/${projectId}/locations/${region}/publishers/google/models/${model}:predict`,
 		method: "post" as const,
 		headers: {
@@ -79,7 +117,7 @@ export function batchedEmbeddings(
 		muteHttpExceptions: true,
 		contentType: "application/json",
 		payload: JSON.stringify({
-			instances: [{ content }],
+			instances,
 			parameters,
 		}),
 	}));
@@ -94,7 +132,12 @@ export function batchedEmbeddings(
 		return JSON.parse(response.getContentText());
 	});
 
-	return results.map((result) => result.predictions[0].embeddings.values);
+	return results.flatMap((result) =>
+		result.predictions.map(
+			(prediction: { embeddings: { values: number[] } }) =>
+				prediction.embeddings.values,
+		),
+	);
 }
 
 /**
@@ -146,3 +189,11 @@ export const similarityEmoji = (value: number): string => {
 	if (value >= 0.3) return "🤔"; // Low similarity
 	return "❌"; // Very low similarity
 };
+
+function chunkArray<T>(array: T[], size: number): T[][] {
+	const chunks: T[][] = [];
+	for (let i = 0; i < array.length; i += size) {
+		chunks.push(array.slice(i, i + size));
+	}
+	return chunks;
+}
