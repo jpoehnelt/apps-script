@@ -1,6 +1,13 @@
 {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "[javascript]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-    }
-  }
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "windsurf.cascadeCommandsAllowList": [
+    "pnpm test",
+    "pnpm build",
+    "pnpm build check test",
+    "pnpm format",
+    "cd"
+  ]
+}
