@@ -1,3 +1,4 @@
 #!/bin/sh
 
-pnpx lint-staged --config .lintstagedrc.commit.js
+set -ex
+pnpx lint-staged --config .config/.lintstagedrc.commit.js

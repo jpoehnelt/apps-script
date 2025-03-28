@@ -10,12 +10,10 @@
     "check": "turbo run check",
     "release": "turbo run build && pnpm publish -r",
     "prepare": "husky",
-    "format:biome": "biome check --write .",
-    "format:prettier": "prettier --write .",
-    "format": "pnpm format:prettier && pnpm format:biome",
-    "lint:biome": "biome check .",
-    "lint:prettier": "prettier --check .",
-    "lint": "pnpm lint:prettier && pnpm lint:biome",
+    "biome": "biome check --no-errors-on-unmatched",
+    "prettier": "prettier --check --ignore-path .config/.prettierignore --ignore-path .gitignore",
+    "format": "pnpm prettier . && pnpm biome --write .",
+    "lint": "pnpm prettier --check . && pnpm biome .",
     "clasp": "@google/clasp"
   },
   "devDependencies": {

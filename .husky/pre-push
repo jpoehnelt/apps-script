@@ -1,3 +1,5 @@
 #!/bin/sh
 
-pnpx lint-staged --config .lintstagedrc.push.js
+set -ex
+
+pnpx lint-staged --config .config/.lintstagedrc.push.js
