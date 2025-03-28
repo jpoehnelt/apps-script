@@ -1,0 +1,4 @@
+1. This is a monorepo using pnpm workspaces, turborepo, and vitest.
+2. The code is written in TypeScript and compiled to JavaScript to run in Google Apps Script.
+3. Run `pnpm build check test` to build, check, and test the code. Use `--filter "@repository/NAME_OF_PACKAGE"` to only run specific packages.
+4. Use `pnpm format` for code formatting with prettier.
