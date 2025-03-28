@@ -2,3 +2,4 @@
 **/*.{js,ts,json}
 .husky/**
 .prettierignore
+**/pnpm-*
